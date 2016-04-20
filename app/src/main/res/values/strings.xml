@@ -2,7 +2,7 @@
 <resources>
 
     <!-- system -->
-    <string name="system_name">蓝牙防丢器</string>
+    <string name="system_name">智能WIFI</string>
     <string name="system_image_back">返回</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
@@ -343,4 +343,10 @@
     <string name="str_network_prompt">Please check wether the network connection is OK or not.</string>
     <string name="str_wait_for_position">waiting for positioning!</string>
     <string name="str_position_success">position success!</string>
+    <string name="str_link_device">Link Wifi Device</string>
+    <string name="str_input_id">Input term ID</string>
+    <string name="str_input_imei">Input WIFI ID </string>
+    <string name="str_inactive">inactive status</string>
+    <string name="str_online">Online</string>
+    <string name="str_offline">Offline</string>
 </resources>

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
-        <com.watch.customer.ui.CameraSurfaceView
+        <com.watch.wifidemo.ui.CameraSurfaceView
             android:id="@+id/camera_surfaceview"
             android:layout_width="0dip"
             android:layout_height="0dip" />

@@ -57,7 +57,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true" />
 
-        <com.watch.customer.util.SwitchButton
+        <com.watch.wifidemo.util.SwitchButton
             android:id="@+id/switchAntiLost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true" />
 
-        <com.watch.customer.util.SwitchButton
+        <com.watch.wifidemo.util.SwitchButton
             android:id="@+id/switchLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- system -->
-    <string name="system_name">蓝牙防丢器</string>
+    <string name="system_name">智能WIFI</string>
     <string name="system_image_back">返回</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
@@ -16,7 +16,7 @@
     <string name="system_submit">提交</string>
     <string name="system_cancel">取消</string>
     <string name="system_sure">确定</string>
-    <string name="system_sureifexit">是否确定要退出蓝牙防丢器</string>
+    <string name="system_sureifexit">是否确定要退出程序</string>
     <string name="system_exit">退出</string>
     <string name="system_delete">删除</string>
     <!-- auth.login -->
@@ -342,4 +342,10 @@
     <string name="str_position_success">定位记录成功</string>
 
     <string name="location">经纬度:</string>
+    <string name="str_link_device">关联WIFI设备</string>
+    <string name="str_input_id">请输入终端ID</string>
+    <string name="str_input_imei">请输入WIFI唯一标识</string>
+    <string name="str_inactive">未激活</string>
+    <string name="str_online">在线</string>
+    <string name="str_offline">离线</string>
 </resources>
