@@ -12,8 +12,7 @@ interface IService {
     boolean connect(String addr);
     void disconnect(String addr);
 
-    void turnOnImmediateAlert(String addr);
-    void turnOffImmediateAlert(String addr);
-
-    void setAntiLost(boolean enable);
+    void enableLight(String addr, boolean on);
+    void getLightStatus(String addr);
+    void ping(String addr, int val);
 }

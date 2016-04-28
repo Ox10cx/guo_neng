@@ -14,17 +14,29 @@
         android:orientation="horizontal"
          >
 
-        <ImageView
-            android:id="@+id/search"
+        <!--<ImageView-->
+            <!--android:id="@+id/search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:contentDescription="@string/system_image_search"-->
+            <!--android:background="@drawable/search_btn_bg"-->
+            <!--android:focusable="true"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginLeft="5dp">-->
+        <!--</ImageView>-->
+
+        <com.watch.wifidemo.ui.MyButton
+            android:id="@+id/btn_link"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/system_image_search"
-            android:background="@drawable/search_btn_bg"
-            android:focusable="true"
+            android:layout_height="40dp"
+            android:text="@string/str_link_device"
+            android:background="@drawable/shape"
+            android:focusable="false"
             android:clickable="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="5dp">
-        </ImageView>
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="5dp"
+         />
 
         <TextView
             android:id="@+id/device_text"
@@ -36,20 +48,33 @@
             android:layout_weight="1"
             style="@style/text_head" />
 
-        <ImageView
-            android:id="@+id/testkey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/system_image_search"
-            android:background="@drawable/edit_btn_bg"
-            android:adjustViewBounds="true"
-            android:baselineAlignBottom="false"
-            android:focusable="true"
+        <!--<ImageView-->
+            <!--android:id="@+id/testkey"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:contentDescription="@string/system_image_search"-->
+            <!--android:background="@drawable/edit_btn_bg"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:baselineAlignBottom="false"-->
+            <!--android:focusable="true"-->
+            <!--android:clickable="true"-->
+            <!--android:visibility="visible"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginRight="8dp">-->
+        <!--</ImageView>-->
+
+        <com.watch.wifidemo.ui.MyButton
+            android:id="@+id/btn_connect"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="@string/str_connect"
+            android:background="@drawable/shape"
+            android:focusable="false"
             android:clickable="true"
-            android:visibility="visible"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="8dp">
-        </ImageView>
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="8dp"
+            />
+
     </LinearLayout>
 
     <RelativeLayout

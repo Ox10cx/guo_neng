@@ -32,48 +32,12 @@
             android:id="@+id/device_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/str_anti_lost"
+            android:text="@string/str_light_control"
             android:textColor="@color/text_white"
             android:textSize="18sp"
             android:layout_weight="1"
             style="@style/text_head" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginRight="5dp">
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_anti_lost"
-            android:id="@+id/textView"
-            android:textSize="18sp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true" />
-
-        <com.watch.wifidemo.util.SwitchButton
-            android:id="@+id/switchAntiLost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:textSize="16sp"
-
-            style="@style/SwitchButtonStyle"
-            android:textColor="#FFFFFF"
-            app:kswTextOff="@string/str_off"
-            app:kswTextOn="@string/str_on"
-
-            android:layout_gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true" />
-
-    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -84,7 +48,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/str_device_alert"
+            android:text="@string/str_light_control"
             android:textSize="18sp"
             android:layout_marginLeft="5dp"
             android:id="@+id/textView1"
@@ -128,169 +92,6 @@
             android:layout_centerVertical="true" />
 </RelativeLayout>
 
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#1e6115"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Alarm distance set"
-            android:textSize="18sp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/textView3"
-            android:textColor="@color/text_white"
-            android:layout_gravity="center_vertical"
-            android:gravity="left"
-            />
-    </FrameLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="60dp"
-       >
-
-      <Button
-          android:id="@+id/btn_near"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:text="near"
-          android:textSize="18sp"
-          android:background="#ffffffff"
-          android:clickable="true"
-          android:enabled="true"
-          android:focusable="true" />
-
-        <Button
-            android:id="@+id/btn_middle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="middle"
-            android:textSize="18sp"
-            android:clickable="true"
-            android:enabled="true"
-            android:background="#ffffffff"
-            android:focusable="true" />
-
-        <Button
-            android:id="@+id/btn_far"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="far"
-            android:background="#ffffffff"
-            android:enabled="true"
-            android:clickable="true"
-            android:focusable="true" />
-
-    </LinearLayout>
-    <FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="#1e6115"
-    android:layout_gravity="center_horizontal">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_phone_alert"
-        android:textSize="18sp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/textView4"
-        android:textColor="@color/text_white"
-        android:layout_gravity="center_vertical"
-        android:gravity="left"
-        />
-</FrameLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginRight="5dp"
-        android:background="#ffffffff"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="5dp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/small_voice"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp" />
-        <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBarVolume"
-            android:layout_weight="5"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/big_voice"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="#dddddd">
-
-    </View>
-
-    <LinearLayout
-        android:id="@+id/ll_ringtone"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginRight="5dp"
-        android:background="#ffffffff"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="5dp"
-        android:focusable="true"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/str_ringtone"
-            android:layout_weight="3"
-            android:layout_gravity="center_vertical"
-            android:gravity="left"
-            android:textSize="18sp"
-            />
-
-        <ImageView
-            android:id="@+id/ivRingtone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/right_arrow"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp" />
-
-    </LinearLayout>
 
     <View
         android:layout_height="1dp"

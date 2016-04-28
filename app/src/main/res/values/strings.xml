@@ -283,19 +283,18 @@
     <string name="submit_msg">您的订单已提交，请等待商家确认，谢谢</string>
 
     <string name="ble_not_supported">Bluetooth Low Energy not supported</string>
-    <string name="disconnect">断开连接</string>
-    <string name="connect">连接</string>
-    <string name="connect_success">连接成功</string>
+    <string name="str_connect">Connect</string>
+    <string name="str_connect_success">Connect successful</string>
 
-    <string name="connected">已连接</string>
-    <string name="disconnected">未连接</string>
-    <string name="connecting">正在连接</string>
-    <string name="alert">告警</string>
-    <string name="stop_alert">停止告警</string>
-    <string name="prompt">左滑删除</string>
+    <string name="str_connected">connected</string>
+    <string name="str_disconnected">disconnected</string>
+    <string name="str_connecting">connecting</string>
+    <string name="alert">Alert</string>
+    <string name="stop_alert">Stop alert</string>
+    <string name="prompt">slide left to delete</string>
     <!-- device list -->
-    <string name="devicelist">设备列表</string>
-    <string name="name1">测试设备1</string>
+    <string name="devicelist">device list</string>
+    <string name="name1">test device1</string>
     <string name="waiting">Please waiting…</string>
 
     <string name="location">Position:</string>
@@ -321,7 +320,7 @@
     <string name="str_reenter_pass">Re-enter your password</string>
     <string name="str_no_match">Not match, try again.</string>
 
-    <string name="app_versionName">1.17</string>
+    <string name="app_versionName">1.19</string>
 
     <string name="str_second">second</string>
     <string name="str_stretch">stretch</string>
@@ -349,4 +348,10 @@
     <string name="str_inactive">inactive status</string>
     <string name="str_online">Online</string>
     <string name="str_offline">Offline</string>
+    <string name="str_unkown">Unkown</string>
+    <string name="str_light_control">Light control</string>
+    <string name="str_success">Success</string>
+    <string name="str_fail">Fail</string>
+    <string name="str_unlink_device">Unlink wifi device</string>
+    <string name="str_prompt">Prompt</string>
 </resources>

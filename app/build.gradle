@@ -1,21 +1,29 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'wifidemokey'
+            keyPassword 'qinwifidemo'
+            storeFile file('C:/prog/java/wifi_demo/wifidemo.keystore')
+            storePassword 'qinwifidemo'
+        }
+    }
     compileSdkVersion 'Google Inc.:Google APIs:21'
     buildToolsVersion "22.0.1"
-
     defaultConfig {
-        applicationId "com.uacent.watchapp"
+        applicationId "com.watch.wifidemo"
         minSdkVersion 19
         targetSdkVersion 19
+        signingConfig signingConfigs.config
     }
-
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+    productFlavors {
     }
 }
 
@@ -36,7 +44,6 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:23.1.0'
     compile 'com.android.support:appcompat-v7:21.+'
-
     compile files('libs/alipay.jar')
     compile files('libs/httpcore-4.3.3.jar')
     compile files('libs/httpmime-4.3.6.jar')

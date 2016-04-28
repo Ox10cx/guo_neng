@@ -10,7 +10,6 @@
 
     <!-- baidu_map base permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 可选 -->
@@ -113,6 +112,9 @@
 
         <activity android:name="com.watch.wifidemo.ui.WifiTestActivity" android:screenOrientation="portrait">
             </activity>
+
+        <activity android:name="com.watch.wifidemo.ui.WifiSettingActivity" android:screenOrientation="portrait">
+        </activity>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

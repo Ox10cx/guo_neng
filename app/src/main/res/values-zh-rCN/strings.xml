@@ -284,15 +284,12 @@
     <string name="submit_msg">您的订单已提交，请等待商家确认，谢谢</string>
 
     <string name="ble_not_supported">Bluetooth Low Energy not supported</string>
-    <string name="disconnect">断开连接</string>
-    <string name="connect">连接</string>
-    <string name="connect_success">连接成功</string>
+    <string name="str_connect">连接</string>
+    <string name="str_connect_success">连接成功</string>
 
-    <string name="connected">已连接</string>
-    <string name="disconnected">未连接</string>
-    <string name="connecting">正在连接</string>
-    <string name="alert">告警</string>
-    <string name="stop_alert">停止告警</string>
+    <string name="str_connected">已连接</string>
+    <string name="str_disconnected">未连接</string>
+    <string name="str_connecting">正在连接</string>
     <string name="prompt">左滑删除</string>
     <!-- device list -->
     <string name="devicelist">设备列表</string>
@@ -333,13 +330,14 @@
     <string name="str_camera_setting">照相机设置</string>
     <string name="str_continuous">连拍</string>
     <string name="str_interval">间隔</string>
-    <string name="str_connect_first">请先连接蓝牙设备</string>
+    <string name="str_connect_first">请先连接服务器</string>
     <string name="str_off">关闭</string>
     <string name="str_on">打开</string>
     <string name="str_network_error">网络错误</string>
     <string name="str_network_prompt">请检查是否可以正常连接网络</string>
     <string name="str_wait_for_position">等待定位!</string>
     <string name="str_position_success">定位记录成功</string>
+    <!--<string name="app_versionName">1.18</string>-->
 
     <string name="location">经纬度:</string>
     <string name="str_link_device">关联WIFI设备</string>
@@ -348,4 +346,12 @@
     <string name="str_inactive">未激活</string>
     <string name="str_online">在线</string>
     <string name="str_offline">离线</string>
+    <string name="str_unkown">未知</string>
+    <string name="str_light_control">灯光控制</string>
+    <string name="str_success">成功</string>
+    <string name="str_fail">失败</string>
+    <string name="alert">警告</string>
+    <string name="stop_alert">停止告警</string>
+    <string name="str_unlink_device">解除Wifi设备连接</string>
+    <string name="str_prompt">删除连接提示</string>
 </resources>
