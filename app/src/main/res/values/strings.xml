@@ -54,7 +54,7 @@
     <string name="city_select">城市选择</string>
     <string name="city_unknown">未知</string>
     <string name="main_tabtext_device">设备</string>
-    <string name="main_tabtext_camera">拍照</string>
+    <string name="main_tabtext_camera">SmartLink</string>
     <string name="main_tabtext_location">定位</string>
     <string name="main_tabtext_setting">设置</string>
     <string name="main_tabtext_info">软件介绍</string>
@@ -354,4 +354,11 @@
     <string name="str_fail">Fail</string>
     <string name="str_unlink_device">Unlink wifi device</string>
     <string name="str_prompt">Prompt</string>
+
+    <string name="SSID">SSID</string>
+    <string name="BSSID">MAC</string>
+    <string name="PASS">PASSWORD</string>
+    <string name="send">send</string>
+    <string name="close">close</string>
+    <string name="IPMAC">IP/MAC</string>
 </resources>

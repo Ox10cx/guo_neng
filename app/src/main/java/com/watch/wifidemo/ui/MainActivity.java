@@ -2,7 +2,6 @@ package com.watch.wifidemo.ui;
 
 import android.app.AlertDialog;
 import android.app.TabActivity;
-import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +18,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -236,7 +234,7 @@ public class MainActivity extends TabActivity {
         mTabHost = getTabHost();
 
         Intent i_device = new Intent(this, DeviceListActivity.class);
-        Intent i_location = new Intent(this, LocationActivity.class);
+        Intent i_location = new Intent(this, SmartLinkActivity.class);
         Intent i_setting = new Intent(this, SettingActivity.class);
         Intent i_info = new Intent(this, InfoActivity.class);
 

@@ -97,7 +97,7 @@
         </activity>
         <activity android:name="com.watch.wifidemo.ui.StaticPageActivity" android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.watch.wifidemo.ui.LocationActivity" android:screenOrientation="portrait" >
+        <activity android:name=".ui.SmartLinkActivity" android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.watch.wifidemo.ui.SettingActivity" android:screenOrientation="portrait" >
         </activity>

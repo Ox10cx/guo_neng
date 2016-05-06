@@ -354,4 +354,11 @@
     <string name="stop_alert">停止告警</string>
     <string name="str_unlink_device">解除Wifi设备连接</string>
     <string name="str_prompt">删除连接提示</string>
+
+    <string name="SSID">SSID名称</string>
+    <string name="BSSID">MAC 地址</string>
+    <string name="PASS">密码</string>
+    <string name="send">发送</string>
+    <string name="close">关闭</string>
+    <string name="IPMAC">IP 地址以及 MAC 地址</string>
 </resources>
