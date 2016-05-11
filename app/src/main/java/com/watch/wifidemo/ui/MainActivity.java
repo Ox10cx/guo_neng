@@ -237,11 +237,12 @@ public class MainActivity extends TabActivity {
         Intent i_location = new Intent(this, SmartLinkActivity.class);
         Intent i_setting = new Intent(this, SettingActivity.class);
         Intent i_info = new Intent(this, InfoActivity.class);
+        Intent i_control_light=new Intent(this,GroupLightActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAB_DEVICE).setIndicator(TAB_DEVICE)
                 .setContent(i_device));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_CAMERA).setIndicator(TAB_CAMERA)
-                .setContent(i_info));
+                .setContent(i_control_light));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_LOCATION).setIndicator(TAB_LOCATION)
                 .setContent(i_location));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_SETTING).setIndicator(TAB_SETTING)
