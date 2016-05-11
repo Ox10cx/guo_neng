@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.watch.wifidemo"
     android:versionCode="1"
-    android:versionName="@string/app_versionName" >
+    android:versionName="@string/app_versionName">
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -28,22 +28,20 @@
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.android.providers.settings.SettingsProvider" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- baidu_map location permission -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
-    </uses-permission>
-        <!-- 推送 -->
-        <permission
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 推送 -->
+    <permission
         android:name="com.uacent.wifidemo.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.fdcz.zsct.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -55,84 +53,102 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
 
     <application
         android:name="com.watch.wifidemo.app.MyApplication"
         android:allowBackup="true"
         android:icon="@android:drawable/sym_def_app_icon"
-        android:largeHeap="true"
         android:label="@string/system_name"
-        android:theme="@style/AppTheme" >
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
 
-        <activity android:name="com.watch.wifidemo.ui.FirstActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name="com.watch.wifidemo.ui.FirstActivity"
             android:configChanges="orientation|screenSize"
-            android:icon="@android:drawable/sym_def_app_icon">
+            android:icon="@android:drawable/sym_def_app_icon"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.watch.wifidemo.ui.MainActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name="com.watch.wifidemo.ui.MainActivity"
             android:configChanges="orientation|screenSize"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name="com.watch.wifidemo.ui.AuthLoginActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.AuthRegisterActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.PersonInfoActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.PersonUpdatePasswordActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.StaticPageActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name=".ui.SmartLinkActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.SettingActivity" android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.watch.wifidemo.ui.InfoActivity" android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.AuthLoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.AuthRegisterActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.PersonInfoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.PersonUpdatePasswordActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.StaticPageActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.SmartLinkActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.SettingActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.InfoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.GroupLightActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name="com.watch.wifidemo.ui.DeviceListActivity" android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".ui.ControlLightActivity"
+            android:screenOrientation="portrait"></activity>
+        ControlLightActivity
 
-        <activity android:name="com.watch.wifidemo.ui.LinkWifiDeviceActivity" android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.DeviceListActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name="com.watch.wifidemo.ui.WifiTestActivity" android:screenOrientation="portrait">
-            </activity>
+        <activity
+            android:name="com.watch.wifidemo.ui.LinkWifiDeviceActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name="com.watch.wifidemo.ui.WifiSettingActivity" android:screenOrientation="portrait">
-        </activity>
+      <!--  <activity
+            android:name="com.watch.wifidemo.ui.WifiTestActivity"
+            android:screenOrientation="portrait"></activity>
+-->
+        <activity
+            android:name="com.watch.wifidemo.ui.WifiSettingActivity"
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="KF1Sp0yWSXX5mjt01kXOGDCb" >
-        </meta-data>
+            android:value="KF1Sp0yWSXX5mjt01kXOGDCb"></meta-data>
 
         <service
             android:name="com.watch.wifidemo.service.WifiConnectService"
-            android:enabled="true">
-        </service>
+            android:enabled="true"></service>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
-        </service>
-         <!-- 极光推送 -->
-         <!-- Required SDK核心功能-->
+            android:process=":remote"></service>
+        <!-- 极光推送 -->
+        <!-- Required SDK核心功能-->
         <!--
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
