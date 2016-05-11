@@ -28,4 +28,13 @@
     <dimen name="ksw_md_thumb_shadow_size">21dp</dimen>
     <dimen name="ksw_md_thumb_shadow_offset">2dp</dimen>
 
+    <!--lzg_edit-->
+
+    <dimen name="layout_size_10">10dp</dimen>
+    <dimen name="layout_size_30">30dp</dimen>
+    <dimen name="layout_size_50">50dp</dimen>
+    <dimen name="layout_size_60">60dp</dimen>
+    <dimen name="layout_size_70">70dp</dimen>
+
+
 </resources>

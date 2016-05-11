@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="conlight">彩灯控制</string>
+    <string name="use_light">常用彩灯</string>
+    <string name="useless_light">少用彩灯</string>
+    <string name="other_light">其他</string>
+    <string name="ok">确定</string>
+    <string name="control_lightness">调节亮度:</string>
+    <string name="control_tem">调节色温:</string>
+    <string name="control_color">调节颜色:</string>
+    <string name="control_light_switch">彩灯开关:</string>
+    <string name="lightness_per">0%</string>
+
+</resources>

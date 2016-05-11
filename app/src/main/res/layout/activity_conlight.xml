@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:background="@color/headbg">
+
+        <TextView
+            android:id="@+id/head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"></TextView>
+
+        <TextView
+            android:id="@+id/ok_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/layout_size_30"
+            android:text="@string/ok"
+            android:textColor="@color/textbg_red"
+            android:textSize="18sp"></TextView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_10"
+                android:background="@color/gray_bg"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_50"
+                android:layout_marginTop="@dimen/layout_size_10"
+                android:background="@color/text_white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/layout_size_10"
+                    android:text="@string/control_light_switch"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/light_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/layout_size_10"
+                    android:src="@drawable/tbtn_off" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_10"
+                android:background="@color/gray_bg"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_60"
+                android:background="@color/TextColorWhite"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/layout_size_10"
+                        android:layout_marginTop="@dimen/layout_size_10"
+                        android:text="@string/control_lightness"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/lightness_per"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/layout_size_10"
+                        android:text="@string/lightness_per"
+                        android:textColor="@color/textbg_red"
+                        android:textSize="@dimen/text_size" />
+                </RelativeLayout>
+
+                <SeekBar
+                    android:id="@+id/lightness_sb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_size_10"
+                    android:layout_marginRight="@dimen/layout_size_10"
+                    android:focusable="true"
+                    android:max="255"
+                    android:maxHeight="5dp"
+                    android:minHeight="5dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/po_seekbar"
+                    android:thumb="@drawable/seekbar_thumb" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_10"
+                android:background="@color/gray_bg"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_60"
+                android:background="@color/TextColorWhite"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/layout_size_10"
+                        android:layout_marginTop="@dimen/layout_size_10"
+                        android:text="@string/control_tem"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/tem_per"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/layout_size_10"
+                        android:text="@string/lightness_per"
+                        android:textColor="@color/textbg_red"
+                        android:textSize="@dimen/text_size" />
+                </RelativeLayout>
+
+                <SeekBar
+                    android:id="@+id/tem_sb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_size_10"
+                    android:layout_marginRight="@dimen/layout_size_10"
+                    android:focusable="true"
+                    android:max="255"
+                    android:maxHeight="5dp"
+                    android:minHeight="5dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/po_seekbar"
+                    android:thumb="@drawable/seekbar_thumb" />
+            </LinearLayout>
+           <!-- <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_10"
+                android:background="@color/gray_bg"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_size_60"
+                android:background="@color/TextColorWhite"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/layout_size_10"
+                        android:layout_marginTop="@dimen/layout_size_10"
+                        android:text="@string/control_color"
+                        android:textSize="@dimen/text_size" />
+
+                    <TextView
+                        android:id="@+id/color_per"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/layout_size_10"
+                        android:text="@string/lightness_per"
+                        android:textColor="@color/textbg_red"
+                        android:textSize="@dimen/text_size" />
+                </RelativeLayout>
+
+                <SeekBar
+                    android:id="@+id/color_sb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_size_10"
+                    android:layout_marginRight="@dimen/layout_size_10"
+                    android:focusable="true"
+                    android:max="255"
+                    android:maxHeight="5dp"
+                    android:minHeight="5dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/po_seekbar"
+                    android:thumb="@drawable/seekbar_thumb" />
+            </LinearLayout>-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
