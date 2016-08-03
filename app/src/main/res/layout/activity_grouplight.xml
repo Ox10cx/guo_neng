@@ -2,28 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/text_white"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/headbg"
+        android:layout_weight="0"
         android:gravity="center"
-        android:textColor="@color/text_white"
-        android:textSize="18sp"
-        android:text="@string/conlight">
-    </TextView>
+        android:text="@string/conlight"
+        android:textColor="@color/TextColorBlack"
+        android:textSize="@dimen/title_size"></TextView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_size_50">
+
+
+        <ImageView
+            android:id="@+id/led_switch"
+            android:layout_width="@dimen/layout_size_150"
+            android:layout_height="@dimen/layout_size_150"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/socket_status_off" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/socket_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/led_switch"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/layout_size_30"
+        android:text="@string/socket_status_off"
+        android:textColor="@color/TextColorBlack"
+        android:textSize="@dimen/text_size" />
+
     <ExpandableListView
         android:id="@+id/scrolllistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/layout_size_10"
+        android:layout_weight="1"
         android:cacheColorHint="@android:color/transparent"
         android:childIndicatorLeft="0dp"
         android:divider="@null"
         android:groupIndicator="@null"
         android:listSelector="@android:color/transparent"
         android:scrollbarAlwaysDrawHorizontalTrack="false"
-        android:scrollbars="none" >
-    </ExpandableListView>
+        android:scrollbars="none"
+        android:visibility="gone"></ExpandableListView>
 
 </LinearLayout>

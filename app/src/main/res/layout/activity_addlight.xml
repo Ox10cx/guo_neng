@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:background="@color/headbg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:background="@drawable/null_btn_text"
+            android:src="@drawable/back_selector"></ImageView>
+
+        <!--android:text="@string/add_light"-->
+        <TextView
+            android:id="@+id/head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"></TextView>
+
+        <TextView
+            android:id="@+id/ok_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/layout_size_30"
+            android:text="@string/ok"
+            android:textColor="@color/textbg_red"
+            android:textSize="18sp"></TextView>
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_10"
+        android:background="@color/gray_bg"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:background="@color/text_white">
+
+        <TextView
+            android:id="@+id/tv_light_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:text="@string/light_name"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_light_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:layout_marginRight="@dimen/layout_size_10"
+            android:layout_toRightOf="@+id/tv_light_name"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_10"
+        android:background="@color/gray_bg"></View>
+
+    <RelativeLayout
+        android:id="@+id/edit_light_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:background="@color/text_white"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/tv_light_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:text="@string/light_no"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_light_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:layout_marginRight="@dimen/layout_size_10"
+            android:layout_toRightOf="@+id/tv_light_no"
+            android:inputType="number"
+            android:padding="@dimen/layout_size_10"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+
+</LinearLayout>

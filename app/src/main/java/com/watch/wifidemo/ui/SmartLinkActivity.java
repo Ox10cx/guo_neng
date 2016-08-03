@@ -1,22 +1,31 @@
 package com.watch.wifidemo.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.watch.wifidemo.R;
+import com.watch.wifidemo.tool.BaseTools;
+import com.watch.wifidemo.tool.Lg;
+import com.watch.wifidemo.util.HttpUtil;
+import com.watch.wifidemo.util.JsonUtil;
+import com.watch.wifidemo.util.ThreadPoolManager;
+import com.watch.wifidemo.xlistview.DonutProgress;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -29,17 +38,17 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by Administrator on 16-3-7.
  */
 public class SmartLinkActivity extends BaseActivity {
+    private static final String TAG = "SmartLinkActivity123";
     Thread sendUdpThread;
     Thread tcpThread;
     boolean exitProcess = false;
@@ -50,7 +59,7 @@ public class SmartLinkActivity extends BaseActivity {
     StringBuffer[] packetData = new StringBuffer[cmdNumber];
     StringBuffer[] seqData = new StringBuffer[cmdNumber];
     int testDataRetryNum = 150;
-    String retryNumber[] = {"10", "10",  "5"};
+    String retryNumber[] = {"10", "10", "5"};
     String magicNumber = "iot";
     String rc4Key = "Key";
     String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -61,66 +70,66 @@ public class SmartLinkActivity extends BaseActivity {
     String PASS;
     ServerSocket serv;
 
-    private TextView ssidView;
-    private TextView bssidView;
-    private TextView passView;
-    private TextView ipMacView;
     private EditText ssidEdit;
-    private EditText bssidEdit;
     private EditText passEdit;
-    private Button broadCastButton;
-    private ListView listview;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> items;
+    private DonutProgress broadCastButton;
+    private ImageView iv_back;
+    private ImageView pwd_show_hide;
+    private boolean isSendFinished = false;
+    private Timer timer;
+    private static final int CONFIGUREOK = 10;
+    private static final int CONFIGUREFAIL = 11;
+    private static final int LINKWIFI = 12;
+    private int ret = 0;
+    private boolean isHidden = true;
 
-
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+//    private GoogleApiClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.frag_smartlink);
-        ssidView = (TextView) findViewById(R.id.ssidView);
-        bssidView = (TextView) findViewById(R.id.bssidView);
-        passView = (TextView) findViewById(R.id.passView);
-        ssidEdit = (EditText) findViewById(R.id.ssidText);
-        bssidEdit = (EditText) findViewById(R.id.bssidText);
-        passEdit = (EditText) findViewById(R.id.passText);
-        broadCastButton = (Button) findViewById(R.id.button);
-        ipMacView = (TextView) findViewById(R.id.ipMac);
-        listview = (ListView) findViewById(R.id.listView);
-
-        ssidView.setText(getString(R.string.SSID));
-        bssidView.setText(getString(R.string.BSSID));
-        passView.setText(getString(R.string.PASS));
+        setContentView(R.layout.add_device);
+        initView();
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        ssidEdit.setText(whetherToRemoveTheDoubleQuotationMarks(wifiInfo.getSSID()));
-        bssidEdit.setText(wifiInfo.getBSSID());
+        if (wifiInfo != null) {
+            ssidEdit.setText(whetherToRemoveTheDoubleQuotationMarks(wifiInfo.getSSID()));
+        }
         SharedPreferences preferences = getSharedPreferences("preFile", 0);
         PASS = preferences.getString("pass", "");
         if (!(PASS.equals(""))) {
             passEdit.setText(PASS);
         }
-        broadCastButton.setText(getString(R.string.send));
-        broadCastButton.setBackgroundColor(Color.GRAY);
-        ipMacView.setText(getString(R.string.IPMAC));
-        items = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        listview.setItemsCanFocus(true);
-        listview.setAdapter(adapter);
-
-        broadCastButton.setOnClickListener(buttonSmartLink);
 
         savePhoneIp(wifiInfo.getIpAddress());
         serv = null;
         sendUdpThread = null;
         tcpThread = null;
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void initView() {
+        ssidEdit = (EditText) findViewById(R.id.ssidText);
+        passEdit = (EditText) findViewById(R.id.passText);
+        broadCastButton = (DonutProgress) findViewById(R.id.button);
+        broadCastButton.setOnClickListener(this);
+        iv_back = (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
+        pwd_show_hide = (ImageView) findViewById(R.id.pwd_show_hide);
+        pwd_show_hide.setOnClickListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        if (timer != null) {
+            timer.cancel();
+        }
         savePassData();
         exitAPP();
     }
@@ -134,38 +143,78 @@ public class SmartLinkActivity extends BaseActivity {
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         ssidEdit.setText(whetherToRemoveTheDoubleQuotationMarks(wifiInfo.getSSID()));
-        bssidEdit.setText(wifiInfo.getBSSID());
         SharedPreferences preferences = getSharedPreferences("preFile", 0);
         PASS = preferences.getString("pass", "");
         if (!(PASS.equals(""))) {
             passEdit.setText(PASS);
         }
-        broadCastButton.setText(getString(R.string.send));
-        broadCastButton.setBackgroundColor(Color.GRAY);
-        items.clear();
         savePhoneIp(wifiInfo.getIpAddress());
     }
 
-    View.OnClickListener buttonSmartLink = new View.OnClickListener() {
-        @Override
-        public void onClick(View arg0) {
-            if (broadCastButton.getText() == getString(R.string.send)) {
-                broadCastButton.setText(getString(R.string.close));
-                broadCastButton.setBackgroundColor(Color.RED);
-                enableThread();
-            } else {
-                broadCastButton.setText(getString(R.string.send));
-                broadCastButton.setBackgroundColor(Color.GRAY);
-                exitThread();
-            }
-        }
-    };
+  /*  @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "SmartLink Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.watch.wifidemo.ui/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "SmartLink Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.watch.wifidemo.ui/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }*/
+
+
+//    View.OnClickListener buttonSmartLink = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View arg0) {
+//            if (broadCastButton.getText() == getString(R.string.send)) {
+//                broadCastButton.setText(getString(R.string.close));
+//                broadCastButton.setBackgroundColor(Color.RED);
+//                enableThread();
+//            } else {
+//                broadCastButton.setText(getString(R.string.send));
+//                broadCastButton.setBackgroundColor(Color.GRAY);
+//                exitThread();
+//            }
+//        }
+//    };
+
     public class sendUdpThread extends Thread {
 
         public void run() {
+            Lg.i(TAG, "sendUdpThread->>>run()");
             KSA();
             PRGA();
             while (!exitProcess) {
+                Lg.i(TAG, "sendUdpThread->>>run()--->!exitProcess");
                 SendbroadCast();
             }
         }
@@ -177,13 +226,16 @@ public class SmartLinkActivity extends BaseActivity {
         private OutputStream out;
         private DataOutputStream streamWriter;
         private InputStreamReader streamReader;
+
         public tcpReceThread(Socket socket) {
             super("tcpReceThread");
             this.socket = socket;
             start();
+            Lg.i(TAG, "tcpReceThread.start()");
         }
 
         public void run() {
+            Lg.i(TAG, "tcpReceThread->>>run()");
             try {
                 char[] tmpbuffer = new char[1024];
                 in = socket.getInputStream();
@@ -191,11 +243,16 @@ public class SmartLinkActivity extends BaseActivity {
                 streamWriter = new DataOutputStream(out);
                 streamReader = new InputStreamReader(in, "UTF-8");
                 int len = streamReader.read(tmpbuffer, 0, 1024);
-                if(len > 0) {
+                Lg.i(TAG, "tcpReceThread->>>run()-->>>len----->>" + len);
+                if (len > 0) {
                     char[] buffer = Arrays.copyOf(tmpbuffer, len);
-                    String message =  socket.getInetAddress().getHostAddress() + "/" + new String(buffer);
-
-                    updateListViewState(message);
+//                    String macMessage = socket.getInetAddress().getHostAddress() + "/" + new String(buffer);
+                    String macMessage = new String(buffer);
+                    Lg.i(TAG, "message->>>" + macMessage);
+                    Message message = new Message();
+                    message.arg1 = CONFIGUREOK;
+                    message.obj = macMessage;
+                    handler.sendMessage(message);
                 }
                 String message = "ok";
                 byte[] midbytes = message.getBytes("UTF8");
@@ -217,26 +274,28 @@ public class SmartLinkActivity extends BaseActivity {
     }
 
     public class tcpThread extends Thread {
-        int port=8209;
-        Socket s1=null;
+        int port = 8209;
+        Socket s1 = null;
 
         public void run() {
+            Lg.i(TAG, "tcpThread");
             while (!exitProcess) {
                 try {
-                    serv=new ServerSocket(port,10);
-                }catch (Exception se){
-                    System.out.println("Init ServerSocker Error!!");
+                    serv = new ServerSocket(port, 10);
+                } catch (Exception se) {
+                    Lg.i(TAG, "Init ServerSocker Error!!");
                 }
 
                 try {
-                    s1=serv.accept();
-                    tcpReceThread mt=new tcpReceThread(s1);
+                    s1 = serv.accept();
+                    Lg.i(TAG, "new tcpReceThread(s1)");
+                    tcpReceThread mt = new tcpReceThread(s1);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             try {
-                if(serv != null) {
+                if (serv != null) {
                     serv.close();
                     serv = null;
                 }
@@ -266,12 +325,13 @@ public class SmartLinkActivity extends BaseActivity {
     }
 
     void enableThread() {
+        Lg.i(TAG, "enableThread");
         exitProcess = false;
-        if(sendUdpThread == null) {
+        if (sendUdpThread == null) {
             sendUdpThread = new sendUdpThread();
             sendUdpThread.start();
         }
-        if(tcpThread == null) {
+        if (tcpThread == null) {
             tcpThread = new tcpThread();
             tcpThread.start();
         }
@@ -279,12 +339,12 @@ public class SmartLinkActivity extends BaseActivity {
 
     void exitThread() {
         exitProcess = true;
-        if(sendUdpThread != null) {
+        if (sendUdpThread != null) {
             sendUdpThread.interrupt();
             sendUdpThread = null;
         }
-        if(tcpThread != null) {
-            if(serv != null) {
+        if (tcpThread != null) {
+            if (serv != null) {
                 try {
                     serv.close();
                     serv = null;
@@ -408,12 +468,13 @@ public class SmartLinkActivity extends BaseActivity {
                     e.printStackTrace();
                 }
             }
-            if(exitProcess)
+            if (exitProcess)
                 return;
         }
     }
 
     public void SendbroadCast() {
+        Lg.i(TAG, "SendbroadCast()");
         char crcDdata;
 
         sendTestData();
@@ -422,14 +483,14 @@ public class SmartLinkActivity extends BaseActivity {
             packetData[z] = new StringBuffer();
             if (z == 0)
                 packetData[0].append(magicNumber);
-            else if (z ==1)
+            else if (z == 1)
                 packetData[1].append((char) ssidEdit.length()).append((char) passEdit.length()).append(ipData.charAt(0)).append(ipData.charAt(1)).append(ipData.charAt(2)).append(ipData.charAt(3));
             else
                 packetData[2].append(ssidEdit.getText()).append(passEdit.getText());
             crcDdata = crc8_msb((char) 0x1D, packetData[z].length(), z);
             packetData[z].append(crcDdata);
             addSeqPacket(z);
-            if(exitProcess)
+            if (exitProcess)
                 return;
         }
 
@@ -466,7 +527,7 @@ public class SmartLinkActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                         clientSocket.close();
-                        if(exitProcess)
+                        if (exitProcess)
                             return;
                     } catch (SocketException e) {
                         e.printStackTrace();
@@ -475,46 +536,153 @@ public class SmartLinkActivity extends BaseActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if(exitProcess)
+                    if (exitProcess)
                         return;
                 }
             }
-            if(exitProcess)
+            if (exitProcess)
                 return;
         }
     }
 
-    public void updateListViewState(final String tmp) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (adapter.getCount() == 0) {
-                    items.add(tmp);
-                    listview.setAdapter(adapter);
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.button:
+                if (!isSendFinished) {
+                    isSendFinished = true;
+                    broadCastButton.setText(getString(R.string.cancel));
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
                         @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String str = adapter.getItem(position);
-                            Toast.makeText(getApplicationContext(), "choose " + str, Toast.LENGTH_SHORT).show();
-                            SharedPreferences preferences = getSharedPreferences("ipmacFile", 0);
-                            preferences.edit().putString("ipaddress", str).apply();
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    broadCastButton.setProgress(broadCastButton.getProgress() + 1);
+                                    if (broadCastButton.getProgress() > broadCastButton.getMax()) {
+                                        Lg.i(TAG, "broadCastButton.getProgress() > broadCastButton.getMax()");
+                                        Message message = new Message();
+                                        message.arg1 = CONFIGUREFAIL;
+                                        handler.sendMessage(message);
+                                        sendFinish();
+                                    }
+                                }
+                            });
+                        }
+                    }, 100, 1000);
+                    //有用
+                    enableThread();
+                } else {
+                    sendFinish();
+                }
+                break;
+            case R.id.pwd_show_hide:
+                if (isHidden) {
+                    //设置EditText文本为可见的
+                    passEdit.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    pwd_show_hide.setBackgroundResource(R.drawable.pwd_show);
+                } else {
+                    //设置EditText文本为隐藏的
+                    passEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    pwd_show_hide.setBackgroundResource(R.drawable.pwd_hide);
+                }
+                isHidden = !isHidden;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void sendFinish() {
+        isSendFinished = false;
+        broadCastButton.setText(getString(R.string.configure));
+        broadCastButton.setProgress(0);
+        if (timer != null) {
+            timer.cancel();
+        }
+        exitThread();
+    }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            String mac = (String) msg.obj;
+            if (mac.matches("Connection to .* refused") || mac.matches("Connect to.*timed out")) {
+                showComReminderDialog();
+                return;
+            }
+            super.handleMessage(msg);
+            switch (msg.arg1) {
+                case CONFIGUREOK:
+                    sendFinish();
+//                    showShortToast(getString(R.string.configure_route_ok));
+                    //处理mac---前面不足两位，前面加0,后面添加0
+                    String str[] = mac.split("\\:");
+                    String realMac = "";
+                    for (int i = 0; i < str.length; i++) {
+                        if (str[i].length() == 1) {
+                            str[i] = "0" + str[i];
+                        }
+                        realMac = realMac + str[i];
+                    }
+                    Lg.i(TAG, "realMac->>>" + realMac);
+                    if (realMac.length() < 15) {
+                        for (int j = realMac.length() + 1; j <= 15; j++) {
+                            realMac = realMac + "0";
+                        }
+                    } else if (realMac.length() > 15) {
+                        showShortToast(getString(R.string.get_wifi_mac_error));
+                        return;
+                    }
+                    final String stableMac = realMac;
+                    Lg.i(TAG, "stableMac>>>" + stableMac);
+                    showShortToast(getString(R.string.configure_route_ok));
+                    ThreadPoolManager.getInstance().addTask(new Runnable() {
+                        @Override
+                        public void run() {
+                            String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
+                                    new BasicNameValuePair(JsonUtil.IMEI, stableMac));
+                            Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
+                            Message msg = new Message();
+                            msg.obj = result;
+                            msg.arg1 = LINKWIFI;
+                            handler.sendMessage(msg);
                         }
                     });
-                }
-                for (int i = 0; i < adapter.getCount(); i++) {
-                    String c = adapter.getItem(i);
-                    if (c.matches(tmp)) {
-                        adapter.getItem(i);
-                    } else {
-                        Set<String> hs = new HashSet<String>();
-                        items.add(tmp);
-                        hs.addAll(items);
-                        items.clear();
-                        items.addAll(hs);
-                        adapter.notifyDataSetChanged();
+                    break;
+                case CONFIGUREFAIL:
+                    sendFinish();
+                    showShortToast(getString(R.string.configure_route_fail));
+                    break;
+                case LINKWIFI:
+                    JSONObject json = null;
+                    try {
+                        json = new JSONObject(mac);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }
+                    if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                        BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
+                    } else {
+                        BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
+                        ret = 1;
+                    }
+                    Intent intent = new Intent();
+                    Bundle b = new Bundle();
+                    b.putInt("ret", ret);
+                    intent.putExtras(b);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                    break;
+                default:
+                    break;
             }
-        });
-    }
+        }
+    };
+
 }

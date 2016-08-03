@@ -1,11 +1,8 @@
 package com.watch.wifidemo.ui;
 
 import android.content.ComponentName;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -13,25 +10,26 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.watch.wifidemo.R;
 import com.watch.wifidemo.model.WifiDevice;
 import com.watch.wifidemo.service.WifiConnectService;
+import com.watch.wifidemo.tool.Lg;
 import com.watch.wifidemo.util.SwitchButton;
 
 /**
  * Created by Administrator on 16-3-11.
  */
 public class WifiSettingActivity extends BaseActivity {
+    private static final String TAG="WifiSettingActivity";
     WifiDevice mDevice;
     SwitchButton lightSwitch;
     private IService mService;
     Handler mHandler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +105,6 @@ public class WifiSettingActivity extends BaseActivity {
         super.onClick(v);
     }
 
-    private String TAG = "hjq";
 
     private ICallback.Stub mCallback = new ICallback.Stub() {
 
@@ -171,7 +168,32 @@ public class WifiSettingActivity extends BaseActivity {
         }
 
         @Override
+        public void onHttpTimeout(String cmd, String imei) throws RemoteException {
+
+        }
+
+        @Override
         public void onPingRsp(String imei, int ret) throws RemoteException {
+
+        }
+
+        @Override
+        public void onGetLightList(String imei, byte[] list) throws RemoteException {
+
+        }
+
+        @Override
+        public void onSetBrightChromeRsp(String imei, int ret) throws RemoteException {
+            Lg.i(TAG,"onSetBrightChromeRsp");
+        }
+
+        @Override
+        public void onGetBrightChromeRsp(String imei, int index, int bright, int chrome) throws RemoteException {
+
+        }
+
+        @Override
+        public void onPairLightRsp(String imei, int ret) throws RemoteException {
 
         }
     };

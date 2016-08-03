@@ -3,7 +3,7 @@
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:background="#ffffff">
+    android:background="@drawable/home_default_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,10 +24,10 @@
             android:visibility="gone" />
 
         <RadioGroup
+            android:visibility="gone"
             android:id="@+id/home_radio_button_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="30dp"
             android:layout_gravity="bottom"
             android:gravity="center_vertical"
             android:background="@color/headbg"
@@ -48,12 +48,12 @@
                 android:textColor="@color/textcolor_normal"
                 android:text="@string/main_tabtext_camera" />
 
-            <RadioButton
-                android:id="@+id/home_tab_location"
-                style="@style/home_tab_bottom"
-                android:drawableTop="@drawable/location_check_bg"
-                android:textColor="@color/textcolor_normal"
-                android:text="@string/main_tabtext_location" />
+            <!--<RadioButton-->
+                <!--android:id="@+id/home_tab_location"-->
+                <!--style="@style/home_tab_bottom"-->
+                <!--android:drawableTop="@drawable/location_check_bg"-->
+                <!--android:textColor="@color/textcolor_normal"-->
+                <!--android:text="@string/main_tabtext_location" />-->
 
             <RadioButton
                 android:id="@+id/home_tab_setting"

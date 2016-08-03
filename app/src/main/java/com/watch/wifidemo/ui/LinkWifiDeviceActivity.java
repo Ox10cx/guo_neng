@@ -1,7 +1,5 @@
 package com.watch.wifidemo.ui;
 
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,16 +9,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.watch.wifidemo.R;
-import com.watch.wifidemo.app.MyApplication;
-import com.watch.wifidemo.dao.UserDao;
-import com.watch.wifidemo.model.User;
-import com.watch.wifidemo.util.DialogUtil;
 import com.watch.wifidemo.util.HttpUtil;
 import com.watch.wifidemo.util.JsonUtil;
-import com.watch.wifidemo.util.PreferenceUtil;
 import com.watch.wifidemo.util.ThreadPoolManager;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -32,12 +25,13 @@ import org.json.JSONObject;
  * Created by Administrator on 16-4-15.
  */
 public class LinkWifiDeviceActivity extends BaseActivity {
+    private static final String TAG="LinkWifiDeviceActivity";
     private EditText imeiEdit;
     private EditText idEdit;
     private Button linkBtn;
-
     private String imei;
     private String id;
+    private ImageView iv_back;
 
     int ret = 0;
 
@@ -61,6 +55,7 @@ public class LinkWifiDeviceActivity extends BaseActivity {
                         } else {
                             showLongToast(JsonUtil.getStr(json, JsonUtil.MSGCN));
                             ret = 1;
+                            goBack();
                         }
                     } catch (JSONException e) {
                         // TODO Auto-generated catch block
@@ -77,14 +72,12 @@ public class LinkWifiDeviceActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_link_device);
-
         linkBtn = (Button) findViewById(R.id.link);
         imeiEdit = (EditText) findViewById(R.id.wifi_imei);
         idEdit = (EditText) findViewById(R.id.wifi_id);
-
-        findViewById(R.id.iv_back).setOnClickListener(this);
+        iv_back= (ImageView) findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(this);
         linkBtn.setOnClickListener(this);
     }
 
@@ -93,7 +86,6 @@ public class LinkWifiDeviceActivity extends BaseActivity {
         Bundle b = new Bundle();
         b.putInt("ret", ret);
         intent.putExtras(b);
-
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -105,20 +97,21 @@ public class LinkWifiDeviceActivity extends BaseActivity {
                 && event.getRepeatCount() == 0) {
             // 具体的操作代码
             Log.e("hjq", "onBackPressed");
-           goBack();
+            goBack();
         }
 
         return super.dispatchKeyEvent(event);
     }
 
+
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.back:
+            case R.id.iv_back:
+                Log.i(TAG,"back");
                 goBack();
                 break;
-
             case R.id.link:
                 if (checkdata()) {
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
@@ -154,7 +147,6 @@ public class LinkWifiDeviceActivity extends BaseActivity {
         } else {
             isright = true;
         }
-
         Log.i("hjq", isright + "");
         return isright;
     }

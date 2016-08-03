@@ -44,7 +44,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/personmainShop"
+            android:id="@+id/personmainShop3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -71,7 +71,7 @@
             android:background="#aaaaaa" />
 
         <LinearLayout
-            android:id="@+id/personmainShop"
+            android:id="@+id/personmainShop4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

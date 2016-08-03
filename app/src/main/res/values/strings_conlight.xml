@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="conlight">彩灯控制</string>
+    <string name="conlight">智能控制</string>
     <string name="use_light">常用彩灯</string>
     <string name="useless_light">少用彩灯</string>
     <string name="other_light">其他</string>
@@ -11,5 +11,49 @@
     <string name="control_color">调节颜色:</string>
     <string name="control_light_switch">彩灯开关:</string>
     <string name="lightness_per">0%</string>
+    <string name="please_open_switch">请您先打开彩灯开关</string>
+    <string name="light_offline_remind">彩灯处于离线状态,请您检查该彩灯的网络状态</string>
+    <string name="led_control">Led开关:</string>
+    <string name="socket_status_on">开</string>
+    <string name="socket_status_off">关</string>
+    <string name="cmd_sending">请稍后...</string>
+    <string name="data_loading">数据加载中...</string>
+    <string name="add_light">添加彩灯</string>
+    <string name="delete_light">删除彩灯</string>
+    <string name="edit_light">编辑彩灯</string>
+    <string name="add_light_error">添加彩灯失败</string>
+    <string name="add_light_ok">添加彩灯成功</string>
+    <string name="delete_light_error">删除彩灯失败</string>
+    <string name="delete_light_ok">删除彩灯成功</string>
+    <string name="edit_light_error">编辑彩灯失败</string>
+    <string name="edit_light_ok">编辑彩灯成功</string>
+    <string name="light_name">彩灯名字:</string>
+    <string name="light_no">彩灯编号:</string>
+    <string name="light_name_empty_remind">彩灯名字不能为空</string>
+    <string name="light_no_empty_remind">彩灯编号不能为空</string>
+    <string name="light_name_format_remind">彩灯名字的字符长度不能超过20</string>
+    <string name="light_no_format_remind">彩灯编号不在1~255之间</string>
+    <string name="connect_time_out">连接超时</string>
+    <string name="crash_reminder">抱歉,程序异常,即将重启</string>
+    <string name="link_service_fail">关联服务失败</string>
+    <string name="device_link_no_light">该设备中上线的灯泡为空</string>
+    <string name="wifi_device_offline">该wifi设备处于离线状态</string>
+    <string name="net_has_breaked">网络已断开,请您设置网络</string>
+    <string name="service_long_socket_breaked">长连接服务断开,请您检查网络是否正常</string>
+    <string name="has_connect">已连接</string>
+    <string name="no_connect">未连接</string>
+    <string name="configure">配置</string>
+    <string name="configure_route_ok">配置成功</string>
+    <string name="configure_route_fail">配置失败</string>
+    <string name="get_wifi_mac_error">获取wifi的mac地址错误</string>
+
+    <!--添加设备-->
+    <string name="str_input_id">请输入WIFI的密码</string>
+    <string name="str_input_imei">请输入WIFI唯一标识</string>
+
+    <!--左边菜单-->
+    <string name="set">设置</string>
+    <string name="not_login">立即登录</string>
+
 
 </resources>

@@ -11,6 +11,8 @@ public class Light implements Serializable {
     private boolean is_on;
     private String lightness;
     private String color;
+//    private boolean is_line;
+    private byte lightStatu=0;
 
     public String getId() {
         return id;
@@ -48,9 +50,25 @@ public class Light implements Serializable {
         return color;
     }
 
+    public byte getLightStatu() {
+        return lightStatu;
+    }
+
+    public void setLightStatu(byte lightStatu) {
+        this.lightStatu = lightStatu;
+    }
+    //    public boolean is_line() {
+//        return is_line;
+//    }
+//
+//    public void setIs_line(boolean is_line) {
+//        this.is_line = is_line;
+//    }
+
     public void setColor(String color) {
         this.color = color;
     }
+
 
     @Override
     public String toString() {

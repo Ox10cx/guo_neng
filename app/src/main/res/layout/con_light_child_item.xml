@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/child_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/text_white"
     android:paddingLeft="@dimen/layout_size_30">
+
+    <View
+        android:id="@+id/child_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:background="#f0f0f0" />
 
     <TextView
         android:id="@+id/child_name"
@@ -10,33 +19,28 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:maxLines="2"
+        android:paddingLeft="@dimen/layout_size_15"
         android:textSize="16dp" />
 
     <TextView
         android:id="@+id/light_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_size_10"
         android:layout_below="@+id/child_name"
+        android:layout_marginTop="@dimen/layout_size_10"
         android:gravity="left"
+        android:paddingLeft="@dimen/layout_size_15"
         android:singleLine="true"
         android:textColor="#343434"
         android:textSize="15sp" />
 
     <ImageView
         android:id="@+id/light_of_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/layout_size_50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/toolbar_lamp_off"
-        />
-    <View
-        android:id="@+id/child_line"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#f0f0f0" />
+        android:src="@drawable/toolbar_lamp_off" />
 
 </RelativeLayout>

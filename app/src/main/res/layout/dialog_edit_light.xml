@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/layout_size_30">
+
+
+    <Button
+        android:id="@+id/delete_light"
+        android:layout_width="@dimen/layout_size_200"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/big_button_shape"
+        android:text="@string/delete_light"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:textSize="@dimen/text_size" />
+
+    <Button
+        android:id="@+id/edit_light"
+        android:layout_width="@dimen/layout_size_200"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/layout_size_10"
+        android:background="@drawable/big_button_shape"
+        android:text="@string/edit_light"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_size" />
+
+
+</LinearLayout>

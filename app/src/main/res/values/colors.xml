@@ -4,10 +4,11 @@
     <color name="text_press">#9d9c9c</color>
     <color name="border_gray">#cccccc</color>
     <color name="text_blue">#1398a7</color>
-    <color name="text_white">#FFFFFF</color>
+    <color name="text_white">#80FFFFFF</color>
+    <color name="wifi_edit_bg">#00FFFFFF</color>
     <color name="textbg_red">#FF0000</color>
 
-    
+
     <color name="orange">#FF7F24</color>
     <color name="deepgrey">#424242</color>
     <color name="btnbg_blue">#1197a6</color>
@@ -26,7 +27,14 @@
     <color name="ksw_md_solid_checked">#019285</color>
     <color name="ksw_md_solid_disable">#FFFFFF</color>
     <color name="ksw_md_solid_checked_disable">#aaaaaa</color>
-
     <!-- 灰色 -->
     <color name="gray_bg">#f0f0f0</color>
+    <color name="hint_text_remind">#FF4070</color>
+    <color name="switch_on">#94d5b5</color>
+    <color name="donut_finished_color">#157efb</color>
+    <color name="white">#FFFFFF</color>
+    <color name="app_bg">#47aa4f</color>
+    <!--f5f2e1  -->
+    <!--47aa4f-->
+
 </resources>

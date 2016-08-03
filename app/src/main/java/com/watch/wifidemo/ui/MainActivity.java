@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.watch.wifidemo.R;
 import com.watch.wifidemo.app.MyApplication;
+import com.watch.wifidemo.tool.NetworkChangeReceiver;
 import com.watch.wifidemo.util.CommonUtil;
 import com.watch.wifidemo.util.DialogUtil;
 import com.watch.wifidemo.util.HttpUtil;
@@ -59,7 +61,7 @@ public class MainActivity extends TabActivity {
     private RadioButton rButton1, rButton2, rButton3;
     private RadioButton rButtonDevice;
     private RadioButton rButtonCamera;
-    private RadioButton rButtonLocation;
+    //    private RadioButton rButtonLocation;
     private RadioButton rButtonSetting;
     private RadioButton rButtonInfo;
 
@@ -68,6 +70,7 @@ public class MainActivity extends TabActivity {
     public static boolean isForeground = false;
 
     private int mCurrentIndex = -1;
+    private NetworkChangeReceiver networkChangeReceiver = null;
 
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -110,6 +113,11 @@ public class MainActivity extends TabActivity {
         setContentView(R.layout.activity_main);
         findViewById();
         initView();
+        //注册网络变化广播
+        networkChangeReceiver = new NetworkChangeReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, filter);
 
         MyApplication.getInstance().addActivity(this);
         IntentFilter intentFilter = new IntentFilter();
@@ -148,7 +156,7 @@ public class MainActivity extends TabActivity {
 
     }
 
-    void confirmBluetooth(){
+    void confirmBluetooth() {
 //        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter
 //                .getDefaultAdapter();
 //        if (mBluetoothAdapter == null) {
@@ -175,17 +183,17 @@ public class MainActivity extends TabActivity {
                 mTabButtonGroup.check(R.id.home_tab_camera);
                 break;
 
-            case 3:
-                mTabHost.setCurrentTabByTag(TAB_LOCATION);
-                mTabButtonGroup.check(R.id.home_tab_location);
-                break;
+//            case 3:
+//                mTabHost.setCurrentTabByTag(TAB_LOCATION);
+//                mTabButtonGroup.check(R.id.home_tab_location);
+//                break;
 
-            case 4:
+            case 3:
                 mTabHost.setCurrentTabByTag(TAB_SETTING);
                 mTabButtonGroup.check(R.id.home_tab_setting);
                 break;
 
-            case 5:
+            case 4:
                 mTabHost.setCurrentTabByTag(TAB_INFO);
                 mTabButtonGroup.check(R.id.home_tab_info);
                 break;
@@ -221,7 +229,7 @@ public class MainActivity extends TabActivity {
 
         rButtonDevice = (RadioButton) findViewById(R.id.home_tab_device);
         rButtonCamera = (RadioButton) findViewById(R.id.home_tab_camera);
-        rButtonLocation = (RadioButton) findViewById(R.id.home_tab_location);
+//        rButtonLocation = (RadioButton) findViewById(R.id.home_tab_location);
         rButtonSetting = (RadioButton) findViewById(R.id.home_tab_setting);
         rButtonInfo = (RadioButton) findViewById(R.id.home_tab_info);
 
@@ -237,14 +245,14 @@ public class MainActivity extends TabActivity {
         Intent i_location = new Intent(this, SmartLinkActivity.class);
         Intent i_setting = new Intent(this, SettingActivity.class);
         Intent i_info = new Intent(this, InfoActivity.class);
-        Intent i_control_light=new Intent(this,GroupLightActivity.class);
+        Intent i_control_light = new Intent(this, GroupLightActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAB_DEVICE).setIndicator(TAB_DEVICE)
                 .setContent(i_device));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_CAMERA).setIndicator(TAB_CAMERA)
-                .setContent(i_control_light));
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_LOCATION).setIndicator(TAB_LOCATION)
                 .setContent(i_location));
+//        mTabHost.addTab(mTabHost.newTabSpec(TAB_LOCATION).setIndicator(TAB_LOCATION)
+//                .setContent(i_location));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_SETTING).setIndicator(TAB_SETTING)
                 .setContent(i_setting));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_INFO).setIndicator(TAB_INFO)
@@ -266,19 +274,19 @@ public class MainActivity extends TabActivity {
                                 break;
                             }
 
-                            case R.id.home_tab_location:
-                                mTabHost.setCurrentTabByTag(TAB_LOCATION);
-                                changeTextColor(3);
-                                break;
+//                            case R.id.home_tab_location:
+//                                mTabHost.setCurrentTabByTag(TAB_LOCATION);
+//                                changeTextColor(3);
+//                                break;
 
                             case R.id.home_tab_setting:
                                 mTabHost.setCurrentTabByTag(TAB_SETTING);
-                                changeTextColor(4);
+                                changeTextColor(3);
                                 break;
 
                             case R.id.home_tab_info:
                                 mTabHost.setCurrentTabByTag(TAB_INFO);
-                                changeTextColor(5);
+                                changeTextColor(4);
                                 break;
 
                             default:
@@ -295,8 +303,8 @@ public class MainActivity extends TabActivity {
                         R.color.textcolor_select));
                 rButtonCamera.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
-                rButtonLocation.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
+//                rButtonLocation.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
                 rButtonSetting.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 rButtonInfo.setTextColor(getResources().getColor(
@@ -308,48 +316,48 @@ public class MainActivity extends TabActivity {
                         R.color.textcolor_normal));
                 rButtonCamera.setTextColor(getResources().getColor(
                         R.color.textcolor_select));
-                rButtonLocation.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
+//                rButtonLocation.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
                 rButtonSetting.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 rButtonInfo.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 break;
+
+//            case 3:
+//                rButtonDevice.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
+//                rButtonCamera.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
+////                rButtonLocation.setTextColor(getResources().getColor(
+////                        R.color.textcolor_select));
+//                rButtonSetting.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
+//                rButtonInfo.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
+//                break;
 
             case 3:
                 rButtonDevice.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 rButtonCamera.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
-                rButtonLocation.setTextColor(getResources().getColor(
-                        R.color.textcolor_select));
+//                rButtonLocation.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
                 rButtonSetting.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
+                        R.color.textcolor_select));
                 rButtonInfo.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 break;
+
 
             case 4:
                 rButtonDevice.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 rButtonCamera.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
-                rButtonLocation.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
-                rButtonSetting.setTextColor(getResources().getColor(
-                        R.color.textcolor_select));
-                rButtonInfo.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
-                break;
-
-
-            case 5:
-                rButtonDevice.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
-                rButtonCamera.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
-                rButtonLocation.setTextColor(getResources().getColor(
-                        R.color.textcolor_normal));
+//                rButtonLocation.setTextColor(getResources().getColor(
+//                        R.color.textcolor_normal));
                 rButtonSetting.setTextColor(getResources().getColor(
                         R.color.textcolor_normal));
                 rButtonInfo.setTextColor(getResources().getColor(
@@ -409,6 +417,7 @@ public class MainActivity extends TabActivity {
         super.onDestroy();
         MyApplication.getInstance().removeActivity(this);
         unregisterReceiver(TabReceiver);
+        unregisterReceiver(networkChangeReceiver);
     }
 
     @Override

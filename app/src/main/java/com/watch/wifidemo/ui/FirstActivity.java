@@ -1,23 +1,24 @@
 package com.watch.wifidemo.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.watch.wifidemo.R;
 import com.watch.wifidemo.app.MyApplication;
 import com.watch.wifidemo.dao.UserDao;
 import com.watch.wifidemo.model.User;
-import com.watch.wifidemo.util.DialogUtil;
+import com.watch.wifidemo.tool.BaseTools;
+import com.watch.wifidemo.tool.Lg;
 import com.watch.wifidemo.util.HttpUtil;
 import com.watch.wifidemo.util.JsonUtil;
 import com.watch.wifidemo.util.PreferenceUtil;
 import com.watch.wifidemo.util.ThreadPoolManager;
+import com.watch.wifidemo.xlistview.ComReminderDialog;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -25,49 +26,56 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-//import cn.jpush.android.api.JPushInterface;
 
 public class FirstActivity extends BaseActivity {
-	private String phone;
-	private String password;
-	private final String TAG = "hjq";
+    private String phone;
+    private String password;
+    private final String TAG = "FirstActivity";
     private final int MSG_LOGIN = 0;
 
-	private Handler mHandler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			String result = msg.obj.toString();
-			closeLoadingDialog();
-			Log.e(TAG, result);
+    private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            final String result = msg.obj.toString();
+            closeLoadingDialog();
+            if (result.matches("Connection to .* refused") || result.matches("Connect to.*timed out")) {
+                closeComReminderDialog();
+                final ComReminderDialog comReminderDialog = new ComReminderDialog(FirstActivity.this,
+                        getResources().getString(R.string.net_has_breaked)
+                        , getResources().getString(R.string.cancel), getResources().getString(R.string.ensure));
+                comReminderDialog.setCanceledOnTouchOutside(false);
+                comReminderDialog.show();
+                comReminderDialog.dialog_cancel.setOnClickListener(new View.OnClickListener() {
+                                                                       @Override
+                                                                       public void onClick(View v) {
+                                                                           comReminderDialog.cancel();
+                                                                           finish();
+                                                                       }
+                                                                   }
+                );
+                comReminderDialog.dialog_submit.setOnClickListener(new View.OnClickListener() {
+                                                                       @Override
+                                                                       public void onClick(View v) {
+                                                                           comReminderDialog.cancel();
+                                                                           if (android.os.Build.VERSION.SDK_INT > 13) {
+                                                                               startActivity(new Intent(
+                                                                                       android.provider.Settings.ACTION_SETTINGS));
+                                                                           } else {
+                                                                               startActivity(new Intent(
+                                                                                       android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+                                                                           }
+                                                                           finish();
+                                                                       }
+                                                                   }
+                );
+                return;
+            }
 
-			if (result.matches("Connection to .* refused") || result.matches("Connect to.*timed out")) {
-				showLongToast(getString(R.string.network_error));
-				mHandler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						Log.i(TAG, "postDelayed2");
-						//finish();
-
-                        DialogUtil.showDialog(FirstActivity.this, getString(R.string.str_network_error),
-                               getString(R.string.str_network_prompt),
-                                getString(R.string.system_sure),
-                                null,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                       finish();
-                                    }
-                                }, null, true);
-					}
-				}, 1000);
-				return;
-			}
-
-			switch (msg.what) {
-				case MSG_LOGIN: {
+            switch (msg.what) {
+                case MSG_LOGIN: {
                     try {
                         JSONObject json = new JSONObject(result);
-                        if (JsonUtil.getInt(json, JsonUtil.CODE) != 1) {
-                            showLongToast(JsonUtil.getStr(json, JsonUtil.MSG));
+                        if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                            BaseTools.showToastByLanguage(FirstActivity.this, json);
                             startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
                         } else {
                             JSONObject msgobj = json.getJSONObject("msg");
@@ -78,30 +86,29 @@ public class FirstActivity extends BaseActivity {
                             String name = userobj.getString(JsonUtil.NAME);
                             String phone = userobj.getString(JsonUtil.PHONE);
                             String sex = userobj.getString(JsonUtil.SEX);
-                         //   String password = userobj.getString(JsonUtil.PASSWORD);
+                            //   String password = userobj.getString(JsonUtil.PASSWORD);
                             String create_time = userobj.getString(JsonUtil.CREATE_TIME);
 
-							String image_thumb = null;
-							String image = null;
-							try {
-								image_thumb = userobj.getString(JsonUtil.IMAGE_THUMB);
-								image = userobj.getString(JsonUtil.IMAGE);
-							} catch (Exception e)
-							{
-								e.printStackTrace();
-							}
+                            String image_thumb = null;
+                            String image = null;
+                            try {
+                                image_thumb = userobj.getString(JsonUtil.IMAGE_THUMB);
+                                image = userobj.getString(JsonUtil.IMAGE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
                             User user = new User(id, name, phone, sex, password, create_time, image_thumb, image, token);
                             new UserDao(FirstActivity.this).insert(user);
-                            showLongToast(getString(R.string.login_success));
+//                            showLongToast(getString(R.string.login_success));
                             PreferenceUtil.getInstance(FirstActivity.this).setUid(user.getId());
                             PreferenceUtil.getInstance(FirstActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
                             PreferenceUtil.getInstance(FirstActivity.this).setToken(user.getToken());
                             MyApplication.getInstance().mToken = user.getToken();
-                            startActivity(new Intent(FirstActivity.this, MainActivity.class));
+                            startActivity(new Intent(FirstActivity.this, DeviceListActivity.class));
+                            finish();
                         }
                     } catch (JSONException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     break;
@@ -109,43 +116,44 @@ public class FirstActivity extends BaseActivity {
 
                 default:
                     break;
-			}
-		}
-	};
+            }
+        }
+    };
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_first);
 
         ArrayList<User> list = new UserDao(this).queryAll();
-		User user = null;
+        //test
+        for (User ele : list) {
+            Lg.i(TAG, ele.getPhone());
+        }
+        User user = null;
 
         if (list != null && !list.isEmpty()) {
             user = list.get(0);
         }
-
-		Log.e("hjq", "user " + user);
-		if (user != null) {
-			phone = user.getPhone();
-			password = user.getPassword();
-
+        if (user != null) {
+            phone = user.getPhone();
+            password = user.getPassword();
+            Lg.i(TAG, "phone->>" + phone);
+            //延时2s后，跳转
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-               //     showLoadingDialog();
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
                         public void run() {
-                            // TODO Auto-generated method stub
                             Log.e(TAG, "begin post");
                             String result = HttpUtil.post(HttpUtil.URL_LOGIN,
                                     new BasicNameValuePair(JsonUtil.PHONE, phone),
                                     new BasicNameValuePair(JsonUtil.PASSWORD,
                                             password));
-                            Log.e(TAG, "my result " + result);
+                            Lg.i(TAG, "URL_LOGIN--->result:" + result);
                             Message msg = new Message();
                             msg.obj = result;
                             msg.what = MSG_LOGIN;
@@ -153,30 +161,18 @@ public class FirstActivity extends BaseActivity {
                         }
                     });
                 }
-            }, 3000);
-		} else {
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					Log.i(TAG, "postDelayed");
-					finish();
-					startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
-				}
-			}, 3000);
-		}
-	}
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_DOWN
-                && event.getRepeatCount() == 0) {
-            // 具体的操作代码
-            Log.e("hjq", "onBackPressed");
-
-            return true;
+            }, 2000);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "user is null");
+                    finish();
+                    startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
+                }
+            }, 2000);
         }
-
-        return super.dispatchKeyEvent(event);
     }
+
+
 }

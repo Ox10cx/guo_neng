@@ -6,10 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +16,6 @@ import com.watch.wifidemo.util.CommonUtil;
 import com.watch.wifidemo.util.ImageLoaderUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 16-3-7.
@@ -31,8 +27,7 @@ public class DeviceListAdapter extends BaseAdapter {
     private int mId;
     OnItemClickCallback mCallback;
 
-    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list, OnItemClickCallback listener)
-    {
+    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list, OnItemClickCallback listener) {
         this.context = context;
         data = list;
         mId = 0;
@@ -80,15 +75,15 @@ public class DeviceListAdapter extends BaseAdapter {
 
             convertView.setTag(holderView);
         } else {
-            holderView = (ViewHolder)convertView.getTag();
+            holderView = (ViewHolder) convertView.getTag();
         }
 
-        String path =  CommonUtil.getImageFilePath(data.get(position).getThumbnail());
-       // Log.e("hjq", "path = " + path);
+        String path = CommonUtil.getImageFilePath(data.get(position).getThumbnail());
+        // Log.e("hjq", "path = " + path);
         if (path != null) {
             ImageLoaderUtil.displayImage("file://" + path, holderView.image, context);
-        }  else {
-            Drawable d = context.getResources().getDrawable(R.drawable.device_icon);
+        } else {
+            Drawable d = context.getResources().getDrawable(R.drawable.wifi_device);
             holderView.image.setImageDrawable(d);
         }
 
@@ -98,46 +93,22 @@ public class DeviceListAdapter extends BaseAdapter {
         Log.d("hjq", "postion " + position + " status = " + status);
         if (status == WifiDevice.INACTIVE_STATUS) {
             holderView.status.setText(R.string.str_inactive);
-            holderView.right_arrow.setEnabled(false);
         } else if (status == WifiDevice.LOGIN_STATUS) {
             holderView.status.setText(R.string.str_online);
-            holderView.right_arrow.setEnabled(true);
         } else if (status == WifiDevice.LOGOUT_STATUS) {
             holderView.status.setText(R.string.str_offline);
-            holderView.right_arrow.setEnabled(false);
         } else {
             holderView.status.setText(R.string.str_unkown);
-            holderView.right_arrow.setEnabled(false);
         }
 
-//        status = data.get(position).getLinkStatus();
-//        if (status == WifiDevice.DISCONNECTED) {
-//            holderView.button.setText(R.string.str_connect);
-//        } else {
-//            holderView.button.setText(R.string.str_disconnect);
-//        }
-//
-//        holderView.button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final String address = data.get(position).getAddress();
-//                if (address == null) {
-//                    return;
-//                }
-//
-//                mId = position;
-//                mCallback.onButtonClick(view, position);
-//            }
-//        });
 
         holderView.right_arrow.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-               //   Log.d("hjq", "gggg");
-                  mId = position;
-                  mCallback.onRightArrowClick(position);
-              }
-          });
+            @Override
+            public void onClick(View view) {
+                mId = position;
+                mCallback.onRightArrowClick(position);
+            }
+        });
 
         return convertView;
     }
@@ -163,6 +134,8 @@ public class DeviceListAdapter extends BaseAdapter {
 
     public interface OnItemClickCallback {
         void onButtonClick(View v, int position);
+
         void onRightArrowClick(int postion);
-    };
+    }
+
 }

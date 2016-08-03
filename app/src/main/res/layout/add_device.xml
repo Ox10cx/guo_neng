@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50">
+
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/layout_size_15"
+            android:layout_height="@dimen/layout_size_30"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_10"
+            android:background="@drawable/btn_return"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            style="@style/TitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加设备" />
+
+
+        <ImageView
+            android:id="@+id/btn_connect"
+            android:layout_width="@dimen/layout_size_30"
+            android:layout_height="@dimen/layout_size_30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/layout_size_10"
+            android:background="@drawable/more_blue"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:layout_marginLeft="@dimen/layout_size_50"
+        android:layout_marginRight="@dimen/layout_size_50"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/title_button_shape">
+
+        <ImageView
+            android:id="@+id/wifi_icon"
+            android:layout_width="@dimen/layout_size_20"
+            android:layout_height="@dimen/layout_size_20"
+            android:layout_centerVertical="true"
+            android:background="@drawable/wifi_great" />
+
+        <EditText
+            android:id="@+id/ssidText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_5"
+            android:layout_toRightOf="@+id/wifi_icon"
+            android:background="@color/wifi_edit_bg"
+            android:hint="@string/str_input_imei"
+            android:inputType="text" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_size_50"
+        android:layout_marginLeft="@dimen/layout_size_50"
+        android:layout_marginRight="@dimen/layout_size_50"
+        android:layout_marginTop="@dimen/layout_size_20"
+        android:background="@drawable/title_button_shape">
+
+        <ImageView
+            android:id="@+id/lock_icon"
+            android:layout_width="@dimen/layout_size_20"
+            android:layout_height="@dimen/layout_size_20"
+            android:layout_centerVertical="true"
+            android:background="@drawable/gallery1_lock" />
+
+        <EditText
+            android:id="@+id/passText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/layout_size_5"
+            android:layout_toRightOf="@+id/lock_icon"
+            android:background="@color/wifi_edit_bg"
+            android:hint="@string/str_input_id"
+            android:inputType="textPassword" />
+
+        <ImageView
+            android:id="@+id/pwd_show_hide"
+            android:layout_width="@dimen/layout_size_20"
+            android:layout_height="@dimen/layout_size_15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/pwd_hide" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/layout_size_50">
+
+        <com.watch.wifidemo.xlistview.DonutProgress
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            custom:donut_finished_color="@color/donut_finished_color"
+            custom:donut_finished_stroke_width="@dimen/layout_size_5"
+            custom:donut_inner_bottom_text_color="#214193"
+            custom:donut_inner_bottom_text_size="10dp"
+            custom:donut_progress="0"
+            custom:donut_unfinished_color="@color/white"
+            custom:donut_unfinished_stroke_width="@dimen/layout_size_5" />
+    </RelativeLayout>
+</LinearLayout>

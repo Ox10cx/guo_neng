@@ -1,5 +1,10 @@
 package com.watch.wifidemo.ui;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,11 +17,6 @@ import com.watch.wifidemo.util.CommonUtil;
 import com.watch.wifidemo.util.HttpUtil;
 import com.watch.wifidemo.util.JsonUtil;
 import com.watch.wifidemo.util.ThreadPoolManager;
-
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class AboutUsActivity extends BaseActivity {
    private TextView titletv;
@@ -82,5 +82,4 @@ public class AboutUsActivity extends BaseActivity {
 			break;
 		}
 	}
-	//test
 }
