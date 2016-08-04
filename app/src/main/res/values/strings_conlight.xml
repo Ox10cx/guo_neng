@@ -45,6 +45,8 @@
     <string name="configure">配置</string>
     <string name="configure_route_ok">配置成功</string>
     <string name="configure_route_fail">配置失败</string>
+    <string name="mac_not_match">mac地址不匹配</string>
+    <string name="scanner_mac">请您先扫描二维码获取mac地址</string>
     <string name="get_wifi_mac_error">获取wifi的mac地址错误</string>
 
     <!--添加设备-->

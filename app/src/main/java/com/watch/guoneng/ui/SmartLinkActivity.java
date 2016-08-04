@@ -91,6 +91,7 @@ public class SmartLinkActivity extends BaseActivity {
      * 扫描跳转Activity RequestCode
      */
     public static final int REQUEST_CODE = 111;
+    private String scannerMac = "";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -564,32 +565,36 @@ public class SmartLinkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.button:
-                if (!isSendFinished) {
-                    isSendFinished = true;
-                    broadCastButton.setText(getString(R.string.cancel));
-                    timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    broadCastButton.setProgress(broadCastButton.getProgress() + 1);
-                                    if (broadCastButton.getProgress() > broadCastButton.getMax()) {
-                                        Lg.i(TAG, "broadCastButton.getProgress() > broadCastButton.getMax()");
-                                        Message message = new Message();
-                                        message.arg1 = CONFIGUREFAIL;
-                                        handler.sendMessage(message);
-                                        sendFinish();
-                                    }
-                                }
-                            });
-                        }
-                    }, 100, 1000);
-                    //有用
-                    enableThread();
+                if (scannerMac == null || scannerMac.trim().length() == 0) {
+                    showShortToast(getString(R.string.scanner_mac));
                 } else {
-                    sendFinish();
+                    if (!isSendFinished) {
+                        isSendFinished = true;
+                        broadCastButton.setText(getString(R.string.cancel));
+                        timer = new Timer();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        broadCastButton.setProgress(broadCastButton.getProgress() + 1);
+                                        if (broadCastButton.getProgress() > broadCastButton.getMax()) {
+                                            Lg.i(TAG, "broadCastButton.getProgress() > broadCastButton.getMax()");
+                                            Message message = new Message();
+                                            message.arg1 = CONFIGUREFAIL;
+                                            handler.sendMessage(message);
+                                            sendFinish();
+                                        }
+                                    }
+                                });
+                            }
+                        }, 100, 1000);
+                        //有用
+                        enableThread();
+                    } else {
+                        sendFinish();
+                    }
                 }
                 break;
             case R.id.pwd_show_hide:
@@ -626,78 +631,88 @@ public class SmartLinkActivity extends BaseActivity {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            String mac = (String) msg.obj;
-            if (mac.matches("Connection to .* refused") || mac.matches("Connect to.*timed out")) {
-                showComReminderDialog();
-                return;
-            }
             super.handleMessage(msg);
-            switch (msg.arg1) {
-                case CONFIGUREOK:
-                    sendFinish();
+            if (msg != null) {
+                String mac = (String) msg.obj;
+                if (mac.matches("Connection to .* refused") || mac.matches("Connect to.*timed out")) {
+                    showComReminderDialog();
+                    return;
+                }
+                switch (msg.arg1) {
+                    case CONFIGUREOK:
+                        sendFinish();
 //                    showShortToast(getString(R.string.configure_route_ok));
-                    //处理mac---前面不足两位，前面加0,后面添加0
-                    String str[] = mac.split("\\:");
-                    String realMac = "";
-                    for (int i = 0; i < str.length; i++) {
-                        if (str[i].length() == 1) {
-                            str[i] = "0" + str[i];
+                        //处理mac---前面不足两位，前面加0,后面添加0
+                        String str[] = mac.split("\\:");
+                        String realMac = "";
+                        for (int i = 0; i < str.length; i++) {
+                            if (str[i].length() == 1) {
+                                str[i] = "0" + str[i];
+                            }
+                            realMac = realMac + str[i];
                         }
-                        realMac = realMac + str[i];
-                    }
-                    Lg.i(TAG, "realMac->>>" + realMac);
-                    if (realMac.length() < 15) {
-                        for (int j = realMac.length() + 1; j <= 15; j++) {
-                            realMac = realMac + "0";
+                        Lg.i(TAG, "realMac->>>" + realMac);
+                        //确认扫描mac与连接mac是否相等
+                        if (!scannerMac.equalsIgnoreCase(realMac)) {
+                            showShortToast(getString(R.string.mac_not_match));
+                        } else {
+                            if (realMac.length() < 15) {
+                                for (int j = realMac.length() + 1; j <= 15; j++) {
+                                    realMac = realMac + "0";
+                                }
+                            } else if (realMac.length() > 15) {
+                                showShortToast(getString(R.string.get_wifi_mac_error));
+                                return;
+                            }
+                            final String stableMac = realMac;
+                            Lg.i(TAG, "stableMac>>>" + stableMac);
+                            showShortToast(getString(R.string.configure_route_ok));
+                            ThreadPoolManager.getInstance().addTask(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
+                                            new BasicNameValuePair(JsonUtil.IMEI, stableMac));
+                                    Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
+                                    Message msg = new Message();
+                                    msg.obj = result;
+                                    msg.arg1 = LINKWIFI;
+                                    handler.sendMessage(msg);
+                                }
+                            });
                         }
-                    } else if (realMac.length() > 15) {
-                        showShortToast(getString(R.string.get_wifi_mac_error));
-                        return;
-                    }
-                    final String stableMac = realMac;
-                    Lg.i(TAG, "stableMac>>>" + stableMac);
-                    showShortToast(getString(R.string.configure_route_ok));
-                    ThreadPoolManager.getInstance().addTask(new Runnable() {
-                        @Override
-                        public void run() {
-                            String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
-                                    new BasicNameValuePair(JsonUtil.IMEI, stableMac));
-                            Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
-                            Message msg = new Message();
-                            msg.obj = result;
-                            msg.arg1 = LINKWIFI;
-                            handler.sendMessage(msg);
+                        break;
+                    case CONFIGUREFAIL:
+                        sendFinish();
+                        showShortToast(getString(R.string.configure_route_fail));
+                        break;
+                    case LINKWIFI:
+                        JSONObject json = null;
+                        try {
+                            json = new JSONObject(mac);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-                    break;
-                case CONFIGUREFAIL:
-                    sendFinish();
-                    showShortToast(getString(R.string.configure_route_fail));
-                    break;
-                case LINKWIFI:
-                    JSONObject json = null;
-                    try {
-                        json = new JSONObject(mac);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
-                        BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
-                    } else {
-                        BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
-                        ret = 1;
-                    }
-                    Intent intent = new Intent();
-                    Bundle b = new Bundle();
-                    b.putInt("ret", ret);
-                    intent.putExtras(b);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                    break;
-                default:
-                    break;
+                        if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                            BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
+                        } else {
+                            BaseTools.showToastByLanguage(SmartLinkActivity.this, json);
+                            ret = 1;
+                        }
+                        Intent intent = new Intent();
+                        Bundle b = new Bundle();
+                        b.putInt("ret", ret);
+                        intent.putExtras(b);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                showShortToast(getString(R.string.configure_route_fail));
             }
         }
+
     };
 
     @Override
@@ -713,8 +728,8 @@ public class SmartLinkActivity extends BaseActivity {
                     return;
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                    String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    scannerMac = bundle.getString(CodeUtils.RESULT_STRING).trim();
+                    Toast.makeText(this, "解析结果:" + scannerMac, Toast.LENGTH_LONG).show();
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(SmartLinkActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                 }
