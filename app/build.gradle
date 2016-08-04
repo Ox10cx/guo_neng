@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'wifidemokey'
             keyPassword 'qinwifidemo'
-            storeFile file('C:/prog/java/wifi_demo/wifidemo.keystore')
+            storeFile file('./wifidemo.keystore')
             storePassword 'qinwifidemo'
         }
     }
@@ -14,7 +14,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.watch.wifidemo"
+        applicationId "com.watch.guoneng"
         minSdkVersion 12
         targetSdkVersion 19
         signingConfig signingConfigs.config
@@ -60,6 +60,6 @@ dependencies {
     compile files('libs/baidumapapi_util_v3_7_1.jar')
     compile files('libs/locSDK_6.13.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    //    compile project(':library')
     compile project(':menudrawer')
+//    compile project(':lib-zxing')
 }

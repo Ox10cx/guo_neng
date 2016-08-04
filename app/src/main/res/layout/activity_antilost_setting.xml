@@ -73,7 +73,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true" />
 
-        <com.watch.wifidemo.util.SwitchButton
+        <com.watch.guoneng.util.SwitchButton
             android:id="@+id/switchLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

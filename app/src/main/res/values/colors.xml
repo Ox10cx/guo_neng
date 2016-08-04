@@ -34,7 +34,6 @@
     <color name="donut_finished_color">#157efb</color>
     <color name="white">#FFFFFF</color>
     <color name="app_bg">#47aa4f</color>
-    <!--f5f2e1  -->
-    <!--47aa4f-->
+    <color name="colorPrimary">#2458ae</color>
 
 </resources>

@@ -46,8 +46,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7ad533-6c82-4ca8-b621-a3fce09e92c9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/alipay.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_3.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/baidumapapi_base_v3_7_1.xml" afterPath="" />
@@ -59,155 +57,143 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/httpcore_4_3_3.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/httpmime_4_3_6.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/locSDK_6_13.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/mockable_android_22.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_8_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/universal_image_loader_1_5_6_with_src.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/LocationActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/device_click_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-ldpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_first.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/tbtn_off.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/tbtn_off.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/tbtn_on.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/tbtn_on.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/ICallback.aidl" afterPath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/ICallback.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/IService.aidl" afterPath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/IService.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/ConLightAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/ConLightAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/DeviceListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/DeviceListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/app/MyApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/app/MyApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/DatabaseHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/UserDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/WifiDeviceDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/WifiDeviceDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpRequest.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64DataException.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64DataException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64OutputStream.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64OutputStream.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BaseJsonHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BaseJsonHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BinaryHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BinaryHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/CustomHttpUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/CustomHttpUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/DataAsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/DataAsyncHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/FileAsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/FileAsyncHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonStreamerEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonStreamerEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/MySSLSocketFactory.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/MySSLSocketFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/PersistentCookieStore.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/PersistentCookieStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestHandle.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestHandle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestParams.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/ResponseHandlerInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/ResponseHandlerInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RetryHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RetryHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SerializableCookie.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SerializableCookie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SimpleMultipartEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SimpleMultipartEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SyncHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SyncHttpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/TextHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/TextHttpResponseHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/Light.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/Light.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiConnectService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiConnectService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AboutUsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AboutUsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthLoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthLoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthRegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthRegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/ControlLightActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/ControlLightActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/DeviceListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/DeviceListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FindPasswordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FindPasswordActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FirstActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FirstActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/GroupLightActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/GroupLightActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/InfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/InfoActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/LinkWifiDeviceActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/LinkWifiDeviceActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MyButton.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MyButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonInfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonInfoActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonMainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonMainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonSettingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonUpdatePasswordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonUpdatePasswordActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SettingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SmartLinkActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SmartLinkActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/StaticPageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/StaticPageActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiSettingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiTestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CamParaUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CamParaUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ColorUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ColorUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CommonUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CommonUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DatePickerView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DatePickerView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DialogUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DialogUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DisplayUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DisplayUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/FileUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/FileUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/HttpUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/HttpUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageLoaderUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageLoaderUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/InnerListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/InnerListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/JsonUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/JsonUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/MyListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/MyListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreferenceUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreferenceUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreventAntiLostCore.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreventAntiLostCore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/StringUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/StringUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/SwitchButton.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/SwitchButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ThreadPoolManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ThreadPoolManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/UpdateManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/UpdateManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/Utils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Compat.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Compat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/DragListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/DragListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemBackGroundLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemBackGroundLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemCustomLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemCustomLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemMainLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemMainLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Menu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/MenuItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/MenuItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/SlideAndDragListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/SlideAndDragListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/WrapperAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/WrapperAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewFooter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewFooter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewHeader.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewHeader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/back_selector.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/back_selector.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/blue_btn_text.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/blue_btn_text.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_auth_register.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_auth_register.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_conlight.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_conlight.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal_pay.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal_pay.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal_result.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal_result.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_antilost_setting.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_antilost_setting.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_camera.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_camera.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_deal.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_devicelist.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_devicelist.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_findpassword.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_findpassword.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_first.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_first.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_grouplight.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_grouplight.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_link_device.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_link_device.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_deal_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_deal_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_findme_setting.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_findme_setting.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_information.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_information.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_updatepassword.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_updatepassword.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_shop_vipcard.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_shop_vipcard.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/con_light_child_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/con_light_child_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/con_light_group_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/con_light_group_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/deal_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/deal_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/device_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/device_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/loading_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/loading_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_shop.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_person_shop.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_shoplist.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_shoplist.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/add_device.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/add_device.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/left_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/left_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/loc_recordlist_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/loc_recordlist_activity.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings_conlight.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings_conlight.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/watch_app.iml" afterPath="$PROJECT_DIR$/watch_app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menudrawer/build.gradle" afterPath="$PROJECT_DIR$/menudrawer/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menudrawer/menudrawer.iml" afterPath="$PROJECT_DIR$/menudrawer/menudrawer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/Scroller.java" afterPath="$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/Scroller.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/ICallback.aidl" afterPath="$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/ICallback.aidl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/aidl/com/watch/wifidemo/ui/IService.aidl" afterPath="$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/IService.aidl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/ConLightAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/adapter/ConLightAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/adapter/DeviceListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/adapter/DeviceListAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/app/MyApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/app/MyApplication.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/dao/DatabaseHelper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/UserDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/dao/UserDao.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/dao/WifiDeviceDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/dao/WifiDeviceDao.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/AsyncHttpClient.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpRequest.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/AsyncHttpRequest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/AsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/AsyncHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/Base64.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64DataException.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/Base64DataException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/Base64OutputStream.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/Base64OutputStream.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BaseJsonHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/BaseJsonHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/BinaryHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/BinaryHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/CustomHttpUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/CustomHttpUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/DataAsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/DataAsyncHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/FileAsyncHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/FileAsyncHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/JsonHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/JsonStreamerEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/JsonStreamerEntity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/MySSLSocketFactory.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/MySSLSocketFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/PersistentCookieStore.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/PersistentCookieStore.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestHandle.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/RequestHandle.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RequestParams.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/RequestParams.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/ResponseHandlerInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/ResponseHandlerInterface.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/RetryHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/RetryHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SerializableCookie.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/SerializableCookie.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SimpleMultipartEntity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/SimpleMultipartEntity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/SyncHttpClient.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/SyncHttpClient.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/http/TextHttpResponseHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/TextHttpResponseHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/Light.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/model/Light.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/ServerMsg.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/model/ServerMsg.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/model/User.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/model/WifiDevice.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/model/WifiDevice.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiConnectService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/service/WifiConnectService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiHttpConnectService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/service/WifiHttpConnectService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/tool/AppCrashHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/tool/AppCrashHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/tool/BaseTools.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/tool/BaseTools.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/tool/Lg.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/tool/Lg.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/tool/NetStatuCheck.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/tool/NetStatuCheck.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/tool/NetworkChangeReceiver.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/tool/NetworkChangeReceiver.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AboutUsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/AboutUsActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AddLightActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/AddLightActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthLoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/AuthLoginActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AuthRegisterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/AuthRegisterActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/BaseActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/ControlLightActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/ControlLightActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/DeviceListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/DeviceListActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FindPasswordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/FindPasswordActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FirstActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/FirstActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/GroupLightActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/GroupLightActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/InfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/InfoActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/LightSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/LightSettingActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/LinkWifiDeviceActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/LinkWifiDeviceActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/MainActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/MyButton.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/MyButton.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonInfoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/PersonInfoActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonMainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/PersonMainActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/PersonSettingActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonUpdatePasswordActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/PersonUpdatePasswordActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/SettingActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SmartLinkActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/SmartLinkActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/StaticPageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/StaticPageActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/WifiSettingActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/WifiTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/WifiTestActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CamParaUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/CamParaUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ColorUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/ColorUtils.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/CommonUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/CommonUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DatePickerView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/DatePickerView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DialogUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/DialogUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/DisplayUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/DisplayUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/FileUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/FileUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/HttpUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/HttpUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageLoaderUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/ImageLoaderUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/ImageUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/InnerListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/InnerListView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/JsonUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/JsonUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/MyListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/MyListView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreferenceUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/PreferenceUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/PreventAntiLostCore.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/PreventAntiLostCore.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/StringUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/StringUtils.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/SwitchButton.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/SwitchButton.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ThreadPoolManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/ThreadPoolManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/UpdateManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/UpdateManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/Utils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/util/Utils.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ComReminderDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/ComReminderDialog.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Compat.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/Compat.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/DonutProgress.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/DonutProgress.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/DragListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/DragListView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/EditLightDialog.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/EditLightDialog.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemBackGroundLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/ItemBackGroundLayout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemCustomLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/ItemCustomLayout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/ItemMainLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/ItemMainLayout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/Menu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/Menu.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/MenuItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/MenuItem.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/RoundedDrawable.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/RoundedDrawable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/RoundedImageView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/RoundedImageView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/SlideAndDragListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/SlideAndDragListView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/WrapperAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/WrapperAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/XListView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/XListViewActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewFooter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/XListViewFooter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/xlistview/XListViewHeader.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/xlistview/XListViewHeader.java" />
     </list>
     <ignored path="watch_app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -226,7 +212,20 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="watch_app" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -234,42 +233,64 @@
     <favorites_list name="watch_app" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MyApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/app/MyApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.214286">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IService.aidl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/IService.aidl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ICallback.aidl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/ICallback.aidl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_frist.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_frist.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0491805">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="frist_logo.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/frist_logo.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/menudrawer/AndroidManifest.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/menudrawer/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.1186441">
+              <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -278,8 +299,8 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8333334">
-              <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.51088536">
+              <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -288,8 +309,8 @@
     </leaf>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="E:\projects\jixian.jks" />
-    <option name="KEY_ALIAS" value="jixian" />
+    <option name="KEY_STORE_PATH" value="E:\projects\wifidemo.keystore" />
+    <option name="KEY_ALIAS" value="wifidemokey" />
     <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
@@ -1500,12 +1521,535 @@
             </list>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/menudrawer">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the Android dependencies of the project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="androidDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all variants of all applications and secondary packages." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all the Test applications." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Debug builds." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleDefault" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Release builds." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="assembleReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a bundle containing the library in debug." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="bundleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a bundle containing the library in release." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="bundleRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="checkDebugManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="checkReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAndroidTestAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAndroidTestJavaWithJavac" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAndroidTestNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAndroidTestRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugAndroidTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugJavaWithJavac" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugUnitTestJavaWithJavac" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileDebugUnitTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseJavaWithJavac" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseUnitTestJavaWithJavac" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="compileReleaseUnitTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs instrumentation tests for all flavors on connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="connectedAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all device checks on currently connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="connectedCheck" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs the tests for debug on connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="connectedDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="copyDebugLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="copyReleaseLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs instrumentation tests using all Device Providers." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="deviceAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all device checks using Device Providers and Test Servers." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="deviceCheck" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAndroidTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAndroidTestBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAndroidTestResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAndroidTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAndroidTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateDebugSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateReleaseAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateReleaseBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateReleaseResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="generateReleaseSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the android (on device) tests for the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="installDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on all variants." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="lint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="lintDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Release build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="lintRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugAndroidTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugAndroidTestJniLibFolders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugAndroidTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugJniLibFolders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeDebugProguardFiles" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeReleaseAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeReleaseJniLibFolders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mergeReleaseProguardFiles" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Creates a version of android.jar that's suitable for unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="mockableAndroidJar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="packageDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="packageDebugRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="packageDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="packageReleaseRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="packageReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preDebugAndroidTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preDebugBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preDebugUnitTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preReleaseBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="preReleaseUnitTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="prepareDebugAndroidTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="prepareDebugDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="prepareDebugUnitTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="prepareReleaseDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="prepareReleaseUnitTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugAndroidTestJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugAndroidTestManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugAndroidTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processDebugUnitTestJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processReleaseJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="processReleaseUnitTestJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the signing info for each variant." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="signingReport" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prints out all the source sets defined in this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="sourceSets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for all variants." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for the debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="testDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for the release build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="testReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformClassesAndResourcesWithSyncLibJarsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformClassesAndResourcesWithSyncLibJarsForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformClassesWithDexForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformNative_libsWithMergeJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformNative_libsWithMergeJniLibsForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformNative_libsWithMergeJniLibsForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformNative_libsWithSyncJniLibsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformNative_libsWithSyncJniLibsForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformResourcesWithMergeJavaResForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformResourcesWithMergeJavaResForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformResourcesWithMergeJavaResForDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformResourcesWithMergeJavaResForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="transformResourcesWithMergeJavaResForReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstall all applications." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="uninstallAll" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstalls the android (on device) tests for the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="uninstallDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/menudrawer" />
+                <option name="name" value="validateDebugSigning" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="modificationStamps">
       <map>
         <entry key="D:\prog\java\watch_app" value="4388917668406" />
-        <entry key="$PROJECT_DIR$" value="5873558884166" />
+        <entry key="$PROJECT_DIR$" value="5878547191753" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1743,6 +2287,118 @@
                       </ExternalModuleBuildClasspathPojo>
                     </value>
                   </entry>
+                  <entry key="$PROJECT_DIR$/lib-zxing">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/1.5.0/gradle-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/1.5.0/gradle-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/1.5.0/gradle-core-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/1.5.0/gradle-core-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jacoco/org.jacoco.core/0.7.4.201502262128/org.jacoco.core-0.7.4.201502262128-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jacoco/org.jacoco.core/0.7.4.201502262128/org.jacoco.core-0.7.4.201502262128.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/1.5.0/transform-api-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/1.5.0/transform-api-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/1.0-rc5/compilerCommon-1.0-rc5.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.2.1/proguard-gradle-5.2.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.2.1/proguard-gradle-5.2.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/24.5.0/lint-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/24.5.0/lint-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/1.5.0/builder-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/1.5.0/builder-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-debug-all/5.0.1/asm-debug-all-5.0.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-debug-all/5.0.1/asm-debug-all-5.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/guava/guava/17.0/guava-17.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/guava/guava/17.0/guava-17.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/24.5.0/annotations-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/24.5.0/annotations-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/juniversalchardet/juniversalchardet/1.0.3/juniversalchardet-1.0.3.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/tunnelvisionlabs/antlr4/4.5/antlr4-4.5.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/1.0-rc5/baseLibrary-1.0-rc5-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/1.0-rc5/baseLibrary-1.0-rc5.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.2.1/proguard-base-5.2.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.2.1/proguard-base-5.2.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/24.5.0/lint-checks-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/24.5.0/lint-checks-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/eclipse/jdt/core/compiler/ecj/4.4.2/ecj-4.4.2-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/eclipse/jdt/core/compiler/ecj/4.4.2/ecj-4.4.2.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/24.5.0/sdk-common-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/24.5.0/sdk-common-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcprov-jdk15on/1.48/bcprov-jdk15on-1.48-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcprov-jdk15on/1.48/bcprov-jdk15on-1.48.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/1.5.0/builder-model-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/1.5.0/builder-model-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-tree/5.0.3/asm-tree-5.0.3-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-tree/5.0.3/asm-tree-5.0.3.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/24.5.0/common-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/24.5.0/common-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/24.5.0/sdklib-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/24.5.0/sdklib-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/1.5.0/builder-test-api-1.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/1.5.0/builder-test-api-1.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm/5.0.3/asm-5.0.3-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jack/jack-api/0.9.0/jack-api-0.9.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jack/jack-api/0.9.0/jack-api-0.9.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/24.5.0/ddmlib-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/24.5.0/ddmlib-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/24.5.0/manifest-merger-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/24.5.0/manifest-merger-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jill/jill-api/0.9.0/jill-api-0.9.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/jill/jill-api/0.9.0/jill-api-0.9.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.48/bcpkix-jdk15on-1.48-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.48/bcpkix-jdk15on-1.48.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/tunnelvisionlabs/antlr4-runtime/4.5/antlr4-runtime-4.5.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/tunnelvisionlabs/antlr4-annotations/4.5/antlr4-annotations-4.5.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/antlr/ST4/4.0.8/ST4-4.0.8.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-analysis/5.0.3/asm-analysis-5.0.3-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-analysis/5.0.3/asm-analysis-5.0.3.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/24.5.0/lint-api-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/24.5.0/lint-api-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpclient/4.1.1/httpclient-4.1.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpclient/4.1.1/httpclient-4.1.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpmime/4.1/httpmime-4.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpmime/4.1/httpmime-4.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/24.5.0/layoutlib-api-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/24.5.0/layoutlib-api-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/24.5.0/dvlib-24.5.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/24.5.0/dvlib-24.5.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/abego/treelayout/org.abego.treelayout.core/1.0.1/org.abego.treelayout.core-1.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpcore/4.1/httpcore-4.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpcore/4.1/httpcore-4.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
+                            <option value="E:/AndroidInstallPath/AS_sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.4.0/appcompat-v7-23.4.0.aar" />
+                            <option value="E:/AndroidInstallPath/AS_sdk/extras/android/m2repository/com/android/support/support-v4/23.4.0/support-v4-23.4.0.aar" />
+                            <option value="E:/AndroidInstallPath/AS_sdk/extras/android/m2repository/com/android/support/animated-vector-drawable/23.4.0/animated-vector-drawable-23.4.0.aar" />
+                            <option value="E:/AndroidInstallPath/AS_sdk/extras/android/m2repository/com/android/support/support-vector-drawable/23.4.0/support-vector-drawable-23.4.0.aar" />
+                            <option value="E:/AndroidInstallPath/AS_sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar" />
+                            <option value="$MODULE_DIR$/libs/zxing.jar" />
+                          </list>
+                        </option>
+                        <option name="path" value="$PROJECT_DIR$/lib-zxing" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
                   <entry key="$PROJECT_DIR$/menudrawer">
                     <value>
                       <ExternalModuleBuildClasspathPojo>
@@ -1972,15 +2628,28 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/menudrawer/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiHttpConnectService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/PersonInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/util/ImageLoaderUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/SmartLinkActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/GroupLightActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/service/WifiConnectService.java" />
+        <option value="$PROJECT_DIR$/lib-zxing/build.gradle" />
+        <option value="$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/Scroller.java" />
+        <option value="$PROJECT_DIR$/lib-zxing/src/main/java/com/uuzuche/lib_zxing/activity/CaptureActivity.java" />
+        <option value="$PROJECT_DIR$/lib-zxing/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/FirstActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/watch/wifidemo/ui/AboutUsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/DeviceListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/menudrawer/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/ICallback.aidl" />
+        <option value="$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/IService.aidl" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_frist.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -2002,11 +2671,11 @@
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
+      <flattenPackages ProjectPane="true" />
       <showMembers />
       <showModules />
       <showLibraryContents />
-      <hideEmptyPackages />
+      <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
@@ -2015,18 +2684,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watch_app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2075,17 +2734,27 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watch_app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.sdk.path" value="D:/Android/sdk" />
-    <property name="android.project.structure.last.selected" value="app" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="D:/UascentProjectCode/PetsHunting_new/bt_mouse" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../wifidemo.keystore" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="false" />
     <property name="SearchEverywhereHistoryKey" value="And&#9;ACTION&#9;ActivateAndroidMonitorToolWindow&#10;Andr&#9;ACTION&#9;ActivateAndroidMonitorToolWindow&#10;Ver&#9;ACTION&#9;ActivateChangesToolWindow&#10;Andro&#9;ACTION&#9;ActivateAndroidMonitorToolWindow" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="159" />
@@ -2110,6 +2779,13 @@
     <property name="ExportApk.ApkPath" value="C:\Users\lenovo001\Desktop" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\projects\HunanGuoNeng\watch_app\app\src\main\res\drawable-xxhdpi" />
+      <recent name="E:\projects\HunanGuoNeng\watch_app\app\src\main\res\layout" />
+      <recent name="E:\projects\HunanGuoNeng\watch_app\app\src\main\res\mipmap-xxxhdpi" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2392,7 +3068,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6d0a786b-616f-4f4f-9980-b96e5225a35c" name="Default" comment="" />
+      <changelist id="6f7ad533-6c82-4ca8-b621-a3fce09e92c9" name="Default" comment="" />
       <created>1463112214937</created>
       <option name="number" value="Default" />
       <updated>1463112214937</updated>
@@ -2401,28 +3077,29 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.2005571" sideWeight="0.49485862" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34679666" sideWeight="0.657455" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3481894" sideWeight="0.6510283" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.22284123" sideWeight="0.40102828" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.25208914" sideWeight="0.8785347" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32033426" sideWeight="0.8875321" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.22980501" sideWeight="0.8785347" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17287917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.7075209" sideWeight="0.8875321" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32729805" sideWeight="0.49485862" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15738161" sideWeight="0.34254497" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.34679666" sideWeight="0.34897172" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24485861" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.18830334" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2718509" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.21979435" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2432,7 +3109,6 @@
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17287917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44846797" sideWeight="0.84768635" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2454,6 +3130,39 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/app/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/IService.aidl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/Scroller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/menudrawer/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2488,8 +3197,216 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8333334">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/DraggableDrawer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.96520424">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menudrawer/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menudrawer/src/net/simonvt/menudrawer/Scroller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="389" column="90" selection-start-line="389" selection-start-column="90" selection-end-line="389" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/firstloading.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/FirstActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="127" column="39" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.935484">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/wifi_demo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.548388">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="16.915255">
+          <caret line="325" column="34" selection-start-line="325" selection-start-column="34" selection-end-line="325" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_devicelist.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9808917">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/http/AsyncHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.928572">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/AboutUsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="54" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/DeviceListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.035714287">
+          <caret line="539" column="0" selection-start-line="539" selection-start-column="0" selection-end-line="539" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/menudrawer/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.478955">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/adapter/ConLightAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3091437">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/InfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22351234">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/ui/FindPasswordActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9477503">
+          <caret line="145" column="16" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/IService.aidl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/watch/guoneng/ui/ICallback.aidl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/frist_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_frist.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0491805">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/watch/guoneng/app/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.214286">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wifidemo.keystore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1186441">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51088536">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding />
         </state>
       </provider>

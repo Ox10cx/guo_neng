@@ -52,5 +52,6 @@
     <dimen name="text_size">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_25">25sp</dimen>
+    <dimen name="default_margin">16dp</dimen>
 
 </resources>

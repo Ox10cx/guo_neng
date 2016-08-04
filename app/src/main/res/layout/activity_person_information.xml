@@ -50,7 +50,7 @@
             android:gravity="right|center_vertical"
             android:orientation="horizontal">
 
-            <com.watch.wifidemo.xlistview.RoundedImageView
+            <com.watch.guoneng.xlistview.RoundedImageView
                 android:id="@+id/headimage"
                 android:layout_width="@dimen/layout_size_65"
                 android:layout_height="@dimen/layout_size_65"

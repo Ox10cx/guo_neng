@@ -2,9 +2,9 @@
 <resources>
 
     <!-- system -->
-    <string name="system_name">智能WIFI</string>
-    <string name="app_versionName" translatable="false">1.5.5</string>
+    <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
+    <string name="app_versionName" translatable="false">1.0.0</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
     <string name="system_image_search">搜索</string>
@@ -323,7 +323,7 @@
     <string name="str_connecting">正在连接</string>
     <string name="prompt">左滑删除</string>
     <!-- device list -->
-    <string name="devicelist">主控</string>
+    <string name="devicelist">智能插座</string>
     <string name="name1">测试设备1</string>
     <string name="waiting">请等待…</string>
     <string name="network_error">网络错误</string>

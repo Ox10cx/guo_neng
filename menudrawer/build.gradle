@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-
-
 android {
     sourceSets {
         main {
@@ -19,5 +17,5 @@ android {
     }
 }
 
-
-
+dependencies {
+}

@@ -109,8 +109,8 @@
     <orderEntry type="library" exported="" name="support-v4-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="locSDK_6.13" level="project" />
     <orderEntry type="library" exported="" name="baidumapapi_map_v3_7_1" level="project" />
-    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
     <orderEntry type="library" exported="" name="baidumapapi_util_v3_7_1" level="project" />
+    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
     <orderEntry type="module" module-name="menudrawer" exported="" />
   </component>

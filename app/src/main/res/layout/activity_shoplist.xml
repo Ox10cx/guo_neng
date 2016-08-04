@@ -198,11 +198,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical" >
 
-            <com.watch.wifidemo.xlistview.XListView
+            <com.watch.guoneng.xlistview.XListView
                 android:id="@+id/shoplist"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
-            </com.watch.wifidemo.xlistview.XListView>
+            </com.watch.guoneng.xlistview.XListView>
         
     </RelativeLayout>
 

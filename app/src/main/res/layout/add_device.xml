@@ -107,7 +107,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/layout_size_50">
 
-        <com.watch.wifidemo.xlistview.DonutProgress
+        <com.watch.guoneng.xlistview.DonutProgress
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
