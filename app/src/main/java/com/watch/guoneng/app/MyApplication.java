@@ -3,7 +3,6 @@ package com.watch.guoneng.app;
 import android.app.Activity;
 import android.app.Application;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.watch.guoneng.BuildConfig;
 import com.watch.guoneng.tool.AppCrashHandler;
 import com.watch.guoneng.ui.IService;
@@ -32,7 +31,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
-        SDKInitializer.initialize(this);
         //异常重启
         if (!BuildConfig.debug) {
             AppCrashHandler ch = AppCrashHandler.getInstance();
