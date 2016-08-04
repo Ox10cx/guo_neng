@@ -14,7 +14,10 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.watch.guoneng.R;
 import com.watch.guoneng.tool.BaseTools;
 import com.watch.guoneng.tool.Lg;
@@ -74,6 +77,7 @@ public class SmartLinkActivity extends BaseActivity {
     private EditText passEdit;
     private DonutProgress broadCastButton;
     private ImageView iv_back;
+    private ImageView iv_scanner;
     private ImageView pwd_show_hide;
     private boolean isSendFinished = false;
     private Timer timer;
@@ -82,6 +86,11 @@ public class SmartLinkActivity extends BaseActivity {
     private static final int LINKWIFI = 12;
     private int ret = 0;
     private boolean isHidden = true;
+
+    /**
+     * 扫描跳转Activity RequestCode
+     */
+    public static final int REQUEST_CODE = 111;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -120,6 +129,8 @@ public class SmartLinkActivity extends BaseActivity {
         broadCastButton.setOnClickListener(this);
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(this);
+        iv_scanner = (ImageView) findViewById(R.id.iv_scanner);
+        iv_scanner.setOnClickListener(this);
         pwd_show_hide = (ImageView) findViewById(R.id.pwd_show_hide);
         pwd_show_hide.setOnClickListener(this);
     }
@@ -593,6 +604,10 @@ public class SmartLinkActivity extends BaseActivity {
                 }
                 isHidden = !isHidden;
                 break;
+            case R.id.iv_scanner:
+                Intent intent = new Intent(SmartLinkActivity.this, CaptureActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
             default:
                 break;
         }
@@ -684,5 +699,27 @@ public class SmartLinkActivity extends BaseActivity {
             }
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /**
+         * 处理二维码扫描结果
+         */
+        if (requestCode == REQUEST_CODE) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(SmartLinkActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
 
 }

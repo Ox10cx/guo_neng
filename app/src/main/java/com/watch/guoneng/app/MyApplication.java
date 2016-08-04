@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.watch.guoneng.BuildConfig;
 import com.watch.guoneng.tool.AppCrashHandler;
 import com.watch.guoneng.ui.IService;
 import com.watch.guoneng.util.ImageLoaderUtil;
@@ -33,8 +34,10 @@ public class MyApplication extends Application {
         super.onCreate();
         SDKInitializer.initialize(this);
         //异常重启
-        AppCrashHandler ch = AppCrashHandler.getInstance();
-        ch.init(getApplicationContext());
+        if (!BuildConfig.debug) {
+            AppCrashHandler ch = AppCrashHandler.getInstance();
+            ch.init(getApplicationContext());
+        }
     }
 
     public static MyApplication getInstance() {

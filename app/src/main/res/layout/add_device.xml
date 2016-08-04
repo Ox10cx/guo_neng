@@ -13,7 +13,7 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/layout_size_15"
+            android:layout_width="@dimen/layout_size_20"
             android:layout_height="@dimen/layout_size_30"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/layout_size_10"
@@ -28,7 +28,7 @@
 
 
         <ImageView
-            android:id="@+id/btn_connect"
+            android:id="@+id/iv_scanner"
             android:layout_width="@dimen/layout_size_30"
             android:layout_height="@dimen/layout_size_30"
             android:layout_alignParentRight="true"
