@@ -2,15 +2,17 @@ package com.watch.guoneng.tool;
 
 import android.util.Log;
 
+import com.watch.guoneng.BuildConfig;
+
 /**
  * 打印log 的工具类
  */
 public class Lg {
-    private static boolean debug = true;
+//    private static boolean BuildConfig.debug = true;
     private final static String TAG = "EDULOG";
 
     public static void i(String tag, String msg) {
-        if (debug) {
+        if (BuildConfig.debug) {
             if (tag == null) {
                 tag = TAG;
             }
@@ -22,7 +24,7 @@ public class Lg {
     }
 
     public static void e(String tag, String msg) {
-        if (debug) {
+        if (BuildConfig.debug) {
             if (tag == null) {
                 tag = TAG;
             }
@@ -34,7 +36,7 @@ public class Lg {
     }
 
     public static void v(String tag, String msg) {
-        if (debug) {
+        if (BuildConfig.debug) {
             if (tag == null) {
                 tag = TAG;
             }
@@ -47,7 +49,7 @@ public class Lg {
 
 
     public static void w(String tag, String msg) {
-        if (debug) {
+        if (BuildConfig.debug) {
             if (tag == null) {
                 tag = TAG;
             }

@@ -149,7 +149,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                                     break;
                                 }
                             }
-                            Log.e("hjq", "d = " + d);
+                            Lg.i("hjq", "d = " + d);
 
                             if (d != null) {
                                 String name;
@@ -255,7 +255,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void run() {
                         String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICELIST, new BasicNameValuePair("name", "qin"));
-                        Log.e(TAG, "result = " + result);
+                        Lg.i(TAG, "result = " + result);
 
                         Message msg = new Message();
                         msg.obj = result;
@@ -337,7 +337,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             @Override
             public void run() {
                 String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICE, new BasicNameValuePair("imei", imei));
-                Log.e(TAG, "result = " + result);
+                Lg.i(TAG, "result = " + result);
 
                 Message msg = new Message();
                 msg.obj = result;
@@ -354,7 +354,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 String result = HttpUtil.post(HttpUtil.URL_UPDATEWIFILOGINSTATUS,
                         new BasicNameValuePair("imei", imei),
                         new BasicNameValuePair("status", Integer.toString(status)));
-                Log.e(TAG, "result = " + result);
+                Lg.i(TAG, "result = " + result);
 
                 Message msg = new Message();
                 msg.obj = result;
@@ -551,7 +551,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             try {
                 MyApplication.getInstance().mService.registerCallback(mCallback);
             } catch (RemoteException e) {
-                Log.e(TAG, "", e);
+                Lg.i(TAG, ""+e);
             }
 
             if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
@@ -661,7 +661,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         public void run() {
                             // TODO Auto-generated method stub
                             String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICELIST, new BasicNameValuePair("name", "qin"));
-                            Log.e(TAG, "result = " + result);
+                            Lg.i(TAG, "result = " + result);
 
                             Message msg = new Message();
                             msg.obj = result;
@@ -755,7 +755,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                                     @Override
                                     public void run() {
                                         String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
-                                        Log.e(TAG, "result = " + result);
+                                        Lg.i(TAG, "result = " + result);
 
                                         Message msg = new Message();
                                         msg.obj = result;

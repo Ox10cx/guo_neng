@@ -8,6 +8,12 @@ android {
             storeFile file('./wifidemo.keystore')
             storePassword 'qinwifidemo'
         }
+        release {
+            keyAlias 'wifidemokey'
+            keyPassword 'qinwifidemo'
+            storeFile file('./wifidemo.keystore')
+            storePassword 'qinwifidemo'
+        }
     }
 
     compileSdkVersion 22
@@ -22,7 +28,14 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
+            buildConfigField("boolean", "debug", "false")  //不显示log
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+
+        debug {
+            signingConfig signingConfigs.release
+            buildConfigField("boolean", "debug", "true")   //显示log
         }
     }
     productFlavors {
