@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_default_bg"
+    android:background="@color/gray_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -42,7 +42,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#dddddd"></View>
+        android:background="@color/colorPrimary"></View>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -53,7 +53,8 @@
             android:id="@+id/devicelist"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:divider="#dddddd"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/listview_divider_shape"
             android:dividerHeight="1dp"></com.watch.guoneng.xlistview.SlideAndDragListView>
 
     </RelativeLayout>

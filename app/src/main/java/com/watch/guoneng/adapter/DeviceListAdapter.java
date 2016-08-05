@@ -34,21 +34,24 @@ public class DeviceListAdapter extends BaseAdapter {
         mCallback = listener;
     }
 
+    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list) {
+        this.context = context;
+        data = list;
+        mId = 0;
+    }
+
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return data.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return data.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
@@ -86,9 +89,7 @@ public class DeviceListAdapter extends BaseAdapter {
             Drawable d = context.getResources().getDrawable(R.drawable.wifi_device);
             holderView.image.setImageDrawable(d);
         }
-
         holderView.name.setText(data.get(position).getName());
-
         int status = data.get(position).getStatus();
         Log.d("hjq", "postion " + position + " status = " + status);
         if (status == WifiDevice.INACTIVE_STATUS) {
@@ -100,15 +101,19 @@ public class DeviceListAdapter extends BaseAdapter {
         } else {
             holderView.status.setText(R.string.str_unkown);
         }
-
-
-        holderView.right_arrow.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mId = position;
-                mCallback.onRightArrowClick(position);
+
             }
         });
+//        holderView.right_arrow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mId = position;
+//                mCallback.onRightArrowClick(position);
+//            }
+//        });
 
         return convertView;
     }
@@ -133,9 +138,9 @@ public class DeviceListAdapter extends BaseAdapter {
     }
 
     public interface OnItemClickCallback {
-        void onButtonClick(View v, int position);
+//        void onButtonClick(View v, int position);
 
-        void onRightArrowClick(int postion);
+//        void onRightArrowClick(int postion);
     }
 
 }

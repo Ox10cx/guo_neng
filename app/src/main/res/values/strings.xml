@@ -79,6 +79,9 @@
     <!--add device-->
     <string name="scanner">扫一扫</string>
 
+    <string name="device_name">设备名称:</string>
+    <string name="device_status">设备状态:</string>
+
 
     <!-- menuways -->
     <string name="menuways_bookmenu">手机菜单</string>

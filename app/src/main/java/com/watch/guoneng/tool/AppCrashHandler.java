@@ -87,7 +87,7 @@ public class AppCrashHandler implements UncaughtExceptionHandler {
 
     private void restartApp() {
         Intent launchIntent = mContext.getPackageManager()
-                .getLaunchIntentForPackage("com.watch.wifidemo");
+                .getLaunchIntentForPackage("com.watch.guoneng");
         launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         mContext.startActivity(launchIntent);

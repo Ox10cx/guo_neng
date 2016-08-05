@@ -52,7 +52,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by Administrator on 16-3-7.
  */
 public class SmartLinkActivity extends BaseActivity {
-    private static final String TAG = "SmartLinkActivity123";
+    private static final String TAG = "SmartLinkActivity";
     Thread sendUdpThread;
     Thread tcpThread;
     boolean exitProcess = false;
