@@ -4,7 +4,7 @@
     <!-- system -->
     <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
-    <string name="app_versionName" translatable="false">1.1.0</string>
+    <string name="app_versionName" translatable="false">1.5.0</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
     <string name="system_image_search">搜索</string>
@@ -74,8 +74,10 @@
     <string name="select_photo_sourse">选择图片来源</string>
     <string name="sdcard_not_exist">内存卡不存在</string>
     <string name="exception_not_write_album">发生意外，无法写入相册</string>
-
     <string name="is_logout_user">是否要注销当前账户</string>
+
+    <!--add device-->
+    <string name="scanner">扫一扫</string>
 
 
     <!-- menuways -->

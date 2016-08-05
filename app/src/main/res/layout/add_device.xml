@@ -13,10 +13,9 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/layout_size_20"
-            android:layout_height="@dimen/layout_size_30"
+            android:layout_width="@dimen/layout_size_40"
+            android:layout_height="@dimen/layout_size_40"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/layout_size_10"
             android:background="@drawable/btn_return"
             android:scaleType="centerCrop" />
 
@@ -27,15 +26,15 @@
             android:text="添加设备" />
 
 
-        <ImageView
+        <Button
             android:id="@+id/iv_scanner"
-            android:layout_width="@dimen/layout_size_30"
-            android:layout_height="@dimen/layout_size_30"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/layout_size_50"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/layout_size_10"
-            android:background="@drawable/more_blue"
-            android:scaleType="centerCrop" />
+            android:background="@color/app_bg"
+            android:text="@string/scanner" />
 
     </RelativeLayout>
 

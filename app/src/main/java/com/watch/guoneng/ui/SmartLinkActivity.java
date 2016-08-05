@@ -12,6 +12,7 @@ import android.os.Message;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -77,7 +78,7 @@ public class SmartLinkActivity extends BaseActivity {
     private EditText passEdit;
     private DonutProgress broadCastButton;
     private ImageView iv_back;
-    private ImageView iv_scanner;
+    private Button iv_scanner;
     private ImageView pwd_show_hide;
     private boolean isSendFinished = false;
     private Timer timer;
@@ -130,7 +131,7 @@ public class SmartLinkActivity extends BaseActivity {
         broadCastButton.setOnClickListener(this);
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(this);
-        iv_scanner = (ImageView) findViewById(R.id.iv_scanner);
+        iv_scanner = (Button) findViewById(R.id.iv_scanner);
         iv_scanner.setOnClickListener(this);
         pwd_show_hide = (ImageView) findViewById(R.id.pwd_show_hide);
         pwd_show_hide.setOnClickListener(this);

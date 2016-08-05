@@ -16,6 +16,7 @@ import com.watch.guoneng.app.MyApplication;
 import com.watch.guoneng.dao.UserDao;
 import com.watch.guoneng.model.User;
 import com.watch.guoneng.tool.BaseTools;
+import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.JsonUtil;
 import com.watch.guoneng.util.PreferenceUtil;
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 //import cn.jpush.android.api.JPushInterface;
 
 public class AuthLoginActivity extends BaseActivity implements OnClickListener {
+    private final String TAG = "AuthLoginActivity";
     private TextView upatepassbtn, registbtn;
     private EditText phoneedit;
     private EditText passwordedit;
@@ -154,7 +156,7 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
                                     new BasicNameValuePair(JsonUtil.PHONE, phone),
                                     new BasicNameValuePair(JsonUtil.PASSWORD,
                                             password));
-                            Log.e("hjq", result);
+                            Log.e(TAG, result);
 
                             Message msg = new Message();
                             msg.obj = result;
@@ -190,7 +192,7 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
         } else {
             isright = true;
         }
-        Log.i("hjq", isright + "");
+        Lg.i(TAG, isright + "");
         return isright;
     }
 

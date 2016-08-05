@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.watch.guoneng.R;
 import com.watch.guoneng.app.MyApplication;
@@ -32,6 +32,8 @@ public class FirstActivity extends BaseActivity {
     private String password;
     private final String TAG = "FirstActivity";
     private final int MSG_LOGIN = 0;
+    private Button bt_login;
+    private Button bt_resgister;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -80,7 +82,6 @@ public class FirstActivity extends BaseActivity {
                         } else {
                             JSONObject msgobj = json.getJSONObject("msg");
                             String token = msgobj.getString("token");
-
                             JSONObject userobj = json.getJSONObject("user");
                             String id = userobj.getString(JsonUtil.ID);
                             String name = userobj.getString(JsonUtil.NAME);
@@ -126,14 +127,16 @@ public class FirstActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_frist);
+        initView();
+        initUser();
+    }
 
+    /**
+     * 初始化用户
+     */
+    private void initUser() {
         ArrayList<User> list = new UserDao(this).queryAll();
-        //test
-        for (User ele : list) {
-            Lg.i(TAG, ele.getPhone());
-        }
         User user = null;
-
         if (list != null && !list.isEmpty()) {
             user = list.get(0);
         }
@@ -148,7 +151,6 @@ public class FirstActivity extends BaseActivity {
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
                         public void run() {
-                            Log.e(TAG, "begin post");
                             String result = HttpUtil.post(HttpUtil.URL_LOGIN,
                                     new BasicNameValuePair(JsonUtil.PHONE, phone),
                                     new BasicNameValuePair(JsonUtil.PASSWORD,
@@ -163,16 +165,44 @@ public class FirstActivity extends BaseActivity {
                 }
             }, 2000);
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Log.i(TAG, "user is null");
-                    finish();
-                    startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
-                }
-            }, 2000);
+            bt_login.setVisibility(View.VISIBLE);
+            bt_resgister.setVisibility(View.VISIBLE);
+
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Log.i(TAG, "user is null");
+//                    finish();
+//                    startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
+//                }
+//            }, 2000);
         }
     }
 
+    private void initView() {
+        bt_login = (Button) findViewById(R.id.bt_login);
+        bt_login.setOnClickListener(this);
+        bt_resgister = (Button) findViewById(R.id.bt_resgister);
+        bt_resgister.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View view) {
+        super.onClick(view);
+        Intent intent = null;
+        switch (view.getId()) {
+            case R.id.bt_login:
+                intent = new Intent(FirstActivity.this, AuthLoginActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.bt_resgister:
+                intent = new Intent(FirstActivity.this, AuthRegisterActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            default:
+                break;
+        }
+    }
 }

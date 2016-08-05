@@ -1,6 +1,7 @@
 package com.watch.guoneng.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,10 +12,14 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.watch.guoneng.R;
+import com.watch.guoneng.app.MyApplication;
+import com.watch.guoneng.dao.UserDao;
+import com.watch.guoneng.model.User;
 import com.watch.guoneng.tool.BaseTools;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.JsonUtil;
+import com.watch.guoneng.util.PreferenceUtil;
 import com.watch.guoneng.util.ThreadPoolManager;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -42,14 +47,14 @@ public class AuthRegisterActivity extends BaseActivity {
     private String sex;
     private final int regist_what = 0;
     private final int getcode_what = 1;
+    private final int login_what = 2;
     private Timer mTimer;
     private final static String TAG = "AuthRegisterActivity123";
 
     private Handler timerHandler = new Handler() {
         public void handleMessage(Message msg) {
             int num = msg.what;
-            getcodebtn.setText(num
-                    + getString(R.string.second));
+            getcodebtn.setText(num + getString(R.string.second));
             if (num == -1) {
                 mTimer.cancel();
                 getcodebtn.setEnabled(true);
@@ -64,12 +69,12 @@ public class AuthRegisterActivity extends BaseActivity {
         public void handleMessage(android.os.Message msg) {
             closeLoadingDialog();
             String result = msg.obj.toString();
-            if ("".equals(result.trim())||result.matches("Connection to .* refused") || result.matches("Connect to.*timed out")) {
+            if ("".equals(result.trim()) || result.matches("Connection to .* refused") || result.matches("Connect to.*timed out")) {
                 showComReminderDialog();
                 return;
             }
             switch (msg.what) {
-                case regist_what: {
+                case regist_what:
                     try {
                         JSONObject json = new JSONObject(result);
                         if (JsonUtil.getStr(json, JsonUtil.STATUS) != null && !"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
@@ -78,15 +83,16 @@ public class AuthRegisterActivity extends BaseActivity {
                             getcodebtn.setText(R.string.register_button_code);
                         } else {
                             showShortToast(getString(R.string.resgister_ok));
+                            //去登录
+                            toLogin();
                             finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     break;
-                }
 
-                case getcode_what: {
+                case getcode_what:
                     try {
                         JSONObject json = new JSONObject(result);
                         if (!JsonUtil.getStr(json, JsonUtil.STATUS).equals("ok")) {
@@ -115,16 +121,74 @@ public class AuthRegisterActivity extends BaseActivity {
                         e.printStackTrace();
                     }
                     break;
-                }
+
+                case login_what:
+                    try {
+                        JSONObject json = new JSONObject(result);
+                        closeLoadingDialog();
+                        if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                            BaseTools.showToastByLanguage(AuthRegisterActivity.this, json);
+                        } else {
+                            JSONObject msgobj = json.getJSONObject("msg");
+                            String token = msgobj.getString("token");
+                            JSONObject userobj = json.getJSONObject("user");
+                            String id = userobj.getString(JsonUtil.ID);
+                            String name = userobj.getString(JsonUtil.NAME);
+                            String phone = userobj.getString(JsonUtil.PHONE);
+                            String sex = userobj.getString(JsonUtil.SEX);
+                            //String password = userobj.getString(JsonUtil.PASSWORD);
+                            String create_time = userobj.getString(JsonUtil.CREATE_TIME);
+                            String image_thumb = null;
+                            String image = null;
+                            try {
+                                image_thumb = userobj.getString(JsonUtil.IMAGE_THUMB);
+                                image = userobj.getString(JsonUtil.IMAGE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            User user = new User(id, name, phone, sex, password, create_time, image_thumb, image, token);
+                            new UserDao(AuthRegisterActivity.this).insert(user);
+//                            showLongToast(getString(R.string.login_success));
+                            PreferenceUtil.getInstance(AuthRegisterActivity.this).setUid(user.getId());
+                            PreferenceUtil.getInstance(AuthRegisterActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
+                            PreferenceUtil.getInstance(AuthRegisterActivity.this).setToken(user.getToken());
+                            MyApplication.getInstance().mToken = user.getToken();    // update the token info.
+                            startActivity(new Intent(AuthRegisterActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
                 default:
                     break;
             }
-
         }
-
-        ;
     };
+
+    /**
+     * 登录
+     */
+    private void toLogin() {
+        ThreadPoolManager.getInstance().addTask(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                String result = HttpUtil.post(HttpUtil.URL_LOGIN,
+                        new BasicNameValuePair(JsonUtil.PHONE, phone),
+                        new BasicNameValuePair(JsonUtil.PASSWORD,
+                                password));
+                Lg.i(TAG, "url_login" + result);
+                Message msg = new Message();
+                msg.obj = result;
+                msg.what = login_what;
+                mHandler.sendMessage(msg);
+            }
+        });
+        showLoadingDialog();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
