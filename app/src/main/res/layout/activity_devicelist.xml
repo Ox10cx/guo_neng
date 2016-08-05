@@ -49,13 +49,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <com.watch.guoneng.xlistview.SlideAndDragListView
+        <ListView
             android:id="@+id/devicelist"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@drawable/listview_divider_shape"
-            android:dividerHeight="1dp"></com.watch.guoneng.xlistview.SlideAndDragListView>
+            android:dividerHeight="1dp">
+        </ListView>
 
     </RelativeLayout>
 </LinearLayout>

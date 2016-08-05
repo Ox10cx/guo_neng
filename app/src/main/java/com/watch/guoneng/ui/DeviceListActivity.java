@@ -6,8 +6,6 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -15,7 +13,9 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.watch.guoneng.BuildConfig;
@@ -36,9 +36,6 @@ import com.watch.guoneng.util.ImageLoaderUtil;
 import com.watch.guoneng.util.JsonUtil;
 import com.watch.guoneng.util.PreferenceUtil;
 import com.watch.guoneng.util.ThreadPoolManager;
-import com.watch.guoneng.xlistview.Menu;
-import com.watch.guoneng.xlistview.MenuItem;
-import com.watch.guoneng.xlistview.SlideAndDragListView;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
@@ -53,22 +50,16 @@ import java.util.ArrayList;
  * Created by Administrator on 16-3-7.
  */
 public class DeviceListActivity extends BaseActivity implements View.OnClickListener,
-        /* DeviceListAdapter.OnItemClickCallback,*//* SlideAndDragListView.OnListItemLongClickListener,*/
-        SlideAndDragListView.OnDragListener, SlideAndDragListView.OnSlideListener,
-        SlideAndDragListView.OnListItemClickListener, SlideAndDragListView.OnMenuItemClickListener,
-        SlideAndDragListView.OnItemDeleteListener, BaseTools.OnEditUserInfoListener {
+        BaseTools.OnEditUserInfoListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
     private static final String TAG = "DeviceListActivity";
     private static final int MSG_GETLIST = 1;
     private static final int MSG_GETWIFIDEVICE = 2;
     private static final int MSG_UNLINKDEVICE = 3;
     private static final int MSG_UPDATELOGINSTATUS = 4;
 
-    private SlideAndDragListView mDeviceList;
+    private ListView mDeviceList;
     private DeviceListAdapter mDeviceListAdapter;
     ArrayList<WifiDevice> mListData;
-
-
-    private Menu mMenu;
     WifiDeviceDao mDeviceDao;
 
     private ImageView left_menu;
@@ -121,10 +112,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
                         }
                     } catch (JSONException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
                     break;
                 }
 
@@ -215,26 +204,15 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     };
 
-    //    boolean MyApplication.getInstance().longConnected;
     private int LINK_DEVICE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //左滑
-        menuDrawer = MenuDrawer.attach(this);
-        menuDrawer.setContentView(R.layout.activity_devicelist);
-        menuDrawer.setMenuView(R.layout.left_menu);
-//        menuDrawer.setSlideDrawable(R.drawable.ic_drawer);
-//        menuDrawer.setDrawerIndicatorEnabled(true);
-//        menuDrawer.peekDrawer(1000, 0);
-
         initView();
-        initMenu();
-        initUiAndListener();
         fillListData();
 
-        Intent i;
+        Intent i = null;
         if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
             i = new Intent(this, WifiConnectService.class);
         } else {
@@ -263,6 +241,11 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initView() {
+        //左滑
+        menuDrawer = MenuDrawer.attach(this);
+        menuDrawer.setContentView(R.layout.activity_devicelist);
+        menuDrawer.setMenuView(R.layout.left_menu);
+
         iv_photo = (ImageView) findViewById(R.id.iv_photo);
         iv_photo.setOnClickListener(this);
         tv_name = (TextView) findViewById(R.id.tv_name);
@@ -276,30 +259,11 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         add_menu = (ImageView) findViewById(R.id.add_menu);
         add_menu.setOnClickListener(this);
         mDeviceDao = new WifiDeviceDao(this);
-        mDeviceList = (SlideAndDragListView) findViewById(R.id.devicelist);
+        mDeviceList = (ListView) findViewById(R.id.devicelist);
+        mDeviceList.setOnItemClickListener(this);
+        mDeviceList.setOnItemLongClickListener(this);
         new BaseTools().setEditUserInfoListener(this);
         updataUserInfo();
-    }
-
-    public void initMenu() {
-        mMenu = new Menu(new ColorDrawable(Color.WHITE), true);
-        mMenu.addItem(new MenuItem.Builder().setWidth((int) getResources().getDimension(R.dimen.slv_item_bg_btn_width) * 2)
-                .setBackground(new ColorDrawable(Color.RED))
-                .setText(getString(R.string.system_delete))
-                .setDirection(MenuItem.DIRECTION_RIGHT)
-                .setTextColor(Color.BLACK)
-                .setTextSize((int) getResources().getDimension(R.dimen.txt_size))
-                .build());
-    }
-
-    public void initUiAndListener() {
-        mDeviceList.setMenu(mMenu);
-//        mDeviceList.setOnListItemLongClickListener(this);
-        mDeviceList.setOnDragListener(this, mListData);
-        mDeviceList.setOnListItemClickListener(this);
-        mDeviceList.setOnSlideListener(this);
-        mDeviceList.setOnMenuItemClickListener(this);
-        mDeviceList.setOnItemDeleteListener(this);
     }
 
 
@@ -550,7 +514,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-//                    connectSocketDialog();
                         connectLongSocket();
                     }
                 });
@@ -573,55 +536,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-
-//    @Override
-//    public void onButtonClick(View view, int position) {
-//        Button v = (Button) view;
-//        WifiDevice device = mListData.get(position);
-//        int linkstatus = device.getLinkStatus();
-//
-//        Log.d("hjq", "linkstatus = " + linkstatus);
-//
-//        if (linkstatus == WifiDevice.CONNECTED) {
-//            try {
-//                MyApplication.getInstance().mService.disconnect(device.getAddress());
-//            } catch (RemoteException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            try {
-//                MyApplication.getInstance().mService.connect(device.getAddress());
-//            } catch (RemoteException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        mDeviceListAdapter.notifyDataSetChanged();
-//    }
-
-
-//
-//    @Override
-//    public void onRightArrowClick(int position) {
-//        WifiDevice d = mListData.get(position);
-//        if (!BuildConfig.USE_LONG_CONNECTION.equals("1")) {
-//            Intent intent = new Intent(this, GroupLightActivity.class);
-//            intent.putExtra("device", d);
-//            startActivity(intent);
-//        } else {
-//            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
-//                if (MyApplication.getInstance().longConnected) {
-//                    Intent intent = new Intent(this, GroupLightActivity.class);
-//                    intent.putExtra("device", d);
-//                    startActivity(intent);
-//                } else {
-//                    showShortToast(getString(R.string.service_long_socket_breaked));
-//                }
-//
-//            } else {
-//                showShortToast(getString(R.string.wifi_device_offline));
-//            }
-//        }
-//    }
 
     public void connectLongSocket() {
         try {
@@ -668,131 +582,73 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 //        Lg.i(TAG, "onListItemLongClick   " + position);
 //    }
 
-    @Override
-    public void onDragViewStart(int position) {
-        Lg.i(TAG, "onDragViewStart   " + position);
-    }
 
-    @Override
-    public void onDragViewMoving(int position) {
-        Lg.i(TAG, "onDragViewMoving   " + position);
-    }
+//        if (position < 0) {
+//            return;
+//        }
+//        WifiDevice d = mListData.get(position);
+//        if (!BuildConfig.USE_LONG_CONNECTION.equals("1")) {
+//            Intent intent = new Intent(this, GroupLightActivity.class);
+//            intent.putExtra("device", d);
+//            startActivity(intent);
+//        } else {
+//            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
+//                if (MyApplication.getInstance().longConnected) {
+//                    Intent intent = new Intent(this, GroupLightActivity.class);
+//                    intent.putExtra("device", d);
+//                    startActivity(intent);
+//                } else {
+//                    showShortToast(getString(R.string.service_long_socket_breaked));
+//                }
+//
+//            } else {
+//                showShortToast(getString(R.string.wifi_device_offline));
+//            }
+//        }
 
-    @Override
-    public void onDragViewDown(int position) {
-        Lg.i(TAG, "onDragViewDown   " + position);
-    }
 
-    @Override
-    public void onListItemClick(View v, int position) {
-        Lg.i(TAG, "onListItemClick   " + position);
-        if (position < 0) {
-            return;
-        }
-        WifiDevice d = mListData.get(position);
-        if (!BuildConfig.USE_LONG_CONNECTION.equals("1")) {
-            Intent intent = new Intent(this, GroupLightActivity.class);
-            intent.putExtra("device", d);
-            startActivity(intent);
-        } else {
-            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
-                if (MyApplication.getInstance().longConnected) {
-                    Intent intent = new Intent(this, GroupLightActivity.class);
-                    intent.putExtra("device", d);
-                    startActivity(intent);
-                } else {
-                    showShortToast(getString(R.string.service_long_socket_breaked));
-                }
+    //删除
+//    final WifiDevice d = mListData.get(itemPosition);
+//    final int postion = itemPosition;
+//    AlertDialog.Builder builder = new AlertDialog.Builder(DeviceListActivity.this);
+//    builder.setMessage(R.string.str_unlink_device);
+//    builder.setTitle(R.string.str_prompt);
+//    builder.setPositiveButton(R.string.system_sure,new DialogInterface.OnClickListener()
+//    {
+//        @Override
+//        public void onClick (DialogInterface dialog,int which){
+//        ThreadPoolManager.getInstance().addTask(new Runnable() {
+//            @Override
+//            public void run() {
+//                String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
+//                Lg.i(TAG, "result = " + result);
+//
+//                Message msg = new Message();
+//                msg.obj = result;
+//                msg.what = MSG_UNLINKDEVICE;
+//                msg.arg1 = postion;
+//                mHandler.sendMessage(msg);
+//            }
+//        });
+//        dialog.dismiss();
+//    }
+//    }
+//
+//    );
+//
+//    builder.setNegativeButton(R.string.system_cancel,new DialogInterface.OnClickListener()
+//
+//    {
+//        @Override
+//        public void onClick (DialogInterface dialog,int which){
+//        dialog.dismiss();
+//    }
+//    }
+//
+//    );
+//
+//    builder.create().show();
 
-            } else {
-                showShortToast(getString(R.string.wifi_device_offline));
-            }
-        }
-    }
-
-    @Override
-    public void onSlideOpen(View view, View parentView, int position, int direction) {
-        Lg.i(TAG, "onSlideOpen   " + position);
-    }
-
-    @Override
-    public void onSlideClose(View view, View parentView, int position, int direction) {
-        Lg.i(TAG, "onSlideClose   " + position);
-    }
-
-    @Override
-    public int onMenuItemClick(View v, int itemPosition, int buttonPosition, int direction) {
-        Lg.i(TAG, "onMenuItemClick   " + itemPosition + "   " + buttonPosition + "   " + direction);
-        switch (direction) {
-            case MenuItem.DIRECTION_LEFT:
-                switch (buttonPosition) {
-                    case 0:
-                        return Menu.ITEM_NOTHING;
-                    case 1:
-                        return Menu.ITEM_SCROLL_BACK;
-                }
-                break;
-
-            case MenuItem.DIRECTION_RIGHT:
-                switch (buttonPosition) {
-                    case 0: {
-                        final WifiDevice d = mListData.get(itemPosition);
-//                        try {
-//                            MyApplication.getInstance().mService.disconnect(d.getAddress());
-//                        } catch (RemoteException e) {
-//                            e.printStackTrace();
-//                        }
-//                        mDeviceDao.deleteById(d.getAddress());
-//                        mDeviceListAdapter.updateDataSet(itemPosition - mDeviceList.getHeaderViewsCount());
-                        final int postion = itemPosition;
-                        AlertDialog.Builder builder = new AlertDialog.Builder(DeviceListActivity.this);
-                        builder.setMessage(R.string.str_unlink_device);
-                        builder.setTitle(R.string.str_prompt);
-                        builder.setPositiveButton(R.string.system_sure, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ThreadPoolManager.getInstance().addTask(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
-                                        Lg.i(TAG, "result = " + result);
-
-                                        Message msg = new Message();
-                                        msg.obj = result;
-                                        msg.what = MSG_UNLINKDEVICE;
-                                        msg.arg1 = postion;
-                                        mHandler.sendMessage(msg);
-                                    }
-                                });
-                                dialog.dismiss();
-                            }
-                        });
-
-                        builder.setNegativeButton(R.string.system_cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-
-                        builder.create().show();
-
-                        return Menu.ITEM_SCROLL_BACK;
-                    }
-
-                    case 1: {
-                        return Menu.ITEM_DELETE_FROM_BOTTOM_TO_TOP;
-                    }
-                }
-        }
-
-        return Menu.ITEM_NOTHING;
-    }
-
-    @Override
-    public void onItemDelete(View view, int position) {
-
-    }
 
     //按返回键的监听事情
     @Override
@@ -820,5 +676,76 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         } else {
             ImageLoaderUtil.displayImage(HttpUtil.SERVER + mUser.getImage_thumb(), iv_photo, this);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (i < 0) {
+            return;
+        }
+        WifiDevice d = mListData.get(i);
+        if (!BuildConfig.USE_LONG_CONNECTION.equals("1")) {
+            Intent intent = new Intent(this, GroupLightActivity.class);
+            intent.putExtra("device", d);
+            startActivity(intent);
+        } else {
+            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
+                if (MyApplication.getInstance().longConnected) {
+                    Intent intent = new Intent(this, GroupLightActivity.class);
+                    intent.putExtra("device", d);
+                    startActivity(intent);
+                } else {
+                    showShortToast(getString(R.string.service_long_socket_breaked));
+                }
+
+            } else {
+                showShortToast(getString(R.string.wifi_device_offline));
+            }
+        }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //删除
+        final WifiDevice d = mListData.get(i);
+        final int postion = i;
+        AlertDialog.Builder builder = new AlertDialog.Builder(DeviceListActivity.this);
+        builder.setMessage(R.string.str_unlink_device);
+        builder.setTitle(R.string.str_prompt);
+        builder.setPositiveButton(R.string.system_sure, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ThreadPoolManager.getInstance().addTask(new Runnable() {
+                            @Override
+                            public void run() {
+                                String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
+                                Lg.i(TAG, "result = " + result);
+
+                                Message msg = new Message();
+                                msg.obj = result;
+                                msg.what = MSG_UNLINKDEVICE;
+                                msg.arg1 = postion;
+                                mHandler.sendMessage(msg);
+                            }
+                        });
+                        dialog.dismiss();
+                    }
+                }
+
+        );
+
+        builder.setNegativeButton(R.string.system_cancel, new DialogInterface.OnClickListener()
+
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }
+
+        );
+
+        builder.create().show();
+        return false;
     }
 }

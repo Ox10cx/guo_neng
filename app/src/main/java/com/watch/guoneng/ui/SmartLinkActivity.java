@@ -566,6 +566,14 @@ public class SmartLinkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.button:
+                if(ssidEdit.getText().toString()==null||ssidEdit.getText().toString().trim().length()==0){
+                    showShortToast(getString(R.string.wifi_id_not_empty));
+                    return;
+                }
+                if(passEdit.getText().toString()==null||passEdit.getText().toString().trim().length()==0){
+                    showShortToast(getString(R.string.wifi_pwd_not_empty));
+                    return;
+                }
                 if (scannerMac == null || scannerMac.trim().length() == 0) {
                     showShortToast(getString(R.string.scanner_mac));
                 } else {
@@ -633,8 +641,8 @@ public class SmartLinkActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg != null) {
-                String mac = (String) msg.obj;
+            String mac = (String) msg.obj;
+            if (mac != null && mac.length() != 0) {
                 if (mac.matches("Connection to .* refused") || mac.matches("Connect to.*timed out")) {
                     showComReminderDialog();
                     return;
@@ -710,7 +718,7 @@ public class SmartLinkActivity extends BaseActivity {
                         break;
                 }
             } else {
-                showShortToast(getString(R.string.configure_route_fail));
+                showShortToast(getString(R.string.check_net_config));
             }
         }
 

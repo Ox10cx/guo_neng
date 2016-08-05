@@ -52,6 +52,8 @@
     <!--添加设备-->
     <string name="str_input_id">请输入WIFI的密码</string>
     <string name="str_input_imei">请输入WIFI唯一标识</string>
+    <string name="wifi_id_not_empty">WIFI的唯一标识不能为空</string>
+    <string name="wifi_pwd_not_empty">WIFI的密码不能为空</string>
 
     <!--左边菜单-->
     <string name="set">设置</string>

@@ -81,6 +81,7 @@
 
     <string name="device_name">设备名称:</string>
     <string name="device_status">设备状态:</string>
+    <string name="check_net_config">请您检查网络配置</string>
 
 
     <!-- menuways -->

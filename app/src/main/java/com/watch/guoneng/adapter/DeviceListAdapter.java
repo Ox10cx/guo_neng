@@ -1,7 +1,6 @@
 package com.watch.guoneng.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 
 import com.watch.guoneng.R;
 import com.watch.guoneng.model.WifiDevice;
-import com.watch.guoneng.util.CommonUtil;
-import com.watch.guoneng.util.ImageLoaderUtil;
 
 import java.util.ArrayList;
 
@@ -69,26 +66,22 @@ public class DeviceListAdapter extends BaseAdapter {
                     R.layout.device_item, null);
             holderView.image = (ImageView) convertView.findViewById(R.id.device_image);
             holderView.name = (TextView) convertView.findViewById(R.id.device_name);
-
             holderView.status = (TextView) convertView.findViewById(R.id.device_status);
-
-            //holderView.button = (Button) convertView.findViewById(R.id.device_button);
-
-            holderView.right_arrow = (ImageView) convertView.findViewById(R.id.right_arrow);
-
+            holderView.iv_device_status = (ImageView) convertView.findViewById(R.id.iv_device_status);
             convertView.setTag(holderView);
         } else {
             holderView = (ViewHolder) convertView.getTag();
         }
 
-        String path = CommonUtil.getImageFilePath(data.get(position).getThumbnail());
-        // Log.e("hjq", "path = " + path);
-        if (path != null) {
-            ImageLoaderUtil.displayImage("file://" + path, holderView.image, context);
-        } else {
-            Drawable d = context.getResources().getDrawable(R.drawable.wifi_device);
-            holderView.image.setImageDrawable(d);
-        }
+//        String path = CommonUtil.getImageFilePath(data.get(position).getThumbnail());
+//        // Log.e("hjq", "path = " + path);
+//        if (path != null) {
+//            ImageLoaderUtil.displayImage("file://" + path, holderView.image, context);
+//        } else {
+//            Drawable d = context.getResources().getDrawable(R.drawable.wifi_device);
+//            holderView.image.setImageDrawable(d);
+//        }
+
         holderView.name.setText(data.get(position).getName());
         int status = data.get(position).getStatus();
         Log.d("hjq", "postion " + position + " status = " + status);
@@ -96,17 +89,18 @@ public class DeviceListAdapter extends BaseAdapter {
             holderView.status.setText(R.string.str_inactive);
         } else if (status == WifiDevice.LOGIN_STATUS) {
             holderView.status.setText(R.string.str_online);
+            holderView.iv_device_status.setImageResource(R.drawable.on);
         } else if (status == WifiDevice.LOGOUT_STATUS) {
             holderView.status.setText(R.string.str_offline);
         } else {
             holderView.status.setText(R.string.str_unkown);
         }
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 //        holderView.right_arrow.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -133,8 +127,7 @@ public class DeviceListAdapter extends BaseAdapter {
         public ImageView image;
         public TextView name;
         public TextView status;
-        //public Button button;
-        public ImageView right_arrow;
+        public ImageView iv_device_status;
     }
 
     public interface OnItemClickCallback {
