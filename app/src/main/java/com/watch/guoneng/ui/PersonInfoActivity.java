@@ -211,6 +211,11 @@ public class PersonInfoActivity extends BaseActivity implements
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
+                                        if (nameedit.getText().toString().trim().length() > 15) {
+                                            showShortToast(getString(R.string.username_length_not_more_15));
+//                                            nameedit.setHintTextColor(getResources().getColor(R.color.textbg_red));
+                                            return;
+                                        }
                                         mUser.setName(nameedit.getText().toString()
                                                 .trim());
                                         UpdateUserInfo(mUser);

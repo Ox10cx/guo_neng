@@ -87,13 +87,16 @@ public class DeviceListAdapter extends BaseAdapter {
         Log.d("hjq", "postion " + position + " status = " + status);
         if (status == WifiDevice.INACTIVE_STATUS) {
             holderView.status.setText(R.string.str_inactive);
+            holderView.iv_device_status.setImageResource(R.drawable.off);
         } else if (status == WifiDevice.LOGIN_STATUS) {
             holderView.status.setText(R.string.str_online);
             holderView.iv_device_status.setImageResource(R.drawable.on);
         } else if (status == WifiDevice.LOGOUT_STATUS) {
             holderView.status.setText(R.string.str_offline);
+            holderView.iv_device_status.setImageResource(R.drawable.off);
         } else {
             holderView.status.setText(R.string.str_unkown);
+            holderView.iv_device_status.setImageResource(R.drawable.off);
         }
 //        convertView.setOnClickListener(new View.OnClickListener() {
 //            @Override

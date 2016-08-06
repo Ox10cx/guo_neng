@@ -4,7 +4,7 @@
     <!-- system -->
     <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
-    <string name="app_versionName" translatable="false">1.5.0</string>
+    <string name="app_versionName" translatable="false">1.9.0</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
     <string name="system_image_search">搜索</string>
@@ -68,7 +68,8 @@
     <!--userinfo-->
     <string name="edit_sex">修改性别</string>
     <string name="edit_ok">修改完成</string>
-    <string name="edit_username">修改用户名</string>
+    <string name="edit_username">修改姓名</string>
+    <string name="username_length_not_more_15">姓名的长度不超过15个字符</string>
     <string name="album">相册</string>
     <string name="camera">相机</string>
     <string name="select_photo_sourse">选择图片来源</string>
