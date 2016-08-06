@@ -399,14 +399,14 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public boolean onRead(String address, byte[] val) throws RemoteException {
-            Log.d("hjq", "onRead called");
+            Lg.i(TAG, "onRead called");
             return false;
         }
 
 
         @Override
         public boolean onWrite(final String address, byte[] val) throws RemoteException {
-            Log.d("hjq", "onWrite called");
+            Lg.i(TAG, "onWrite called");
             return true;
         }
 
