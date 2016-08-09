@@ -1,9 +1,7 @@
 package com.watch.guoneng.ui;
 
 
-import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -36,6 +34,7 @@ import com.watch.guoneng.util.ImageLoaderUtil;
 import com.watch.guoneng.util.JsonUtil;
 import com.watch.guoneng.util.PreferenceUtil;
 import com.watch.guoneng.util.ThreadPoolManager;
+import com.watch.guoneng.xlistview.EditDeviceDialog;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
@@ -56,6 +55,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private static final int MSG_GETWIFIDEVICE = 2;
     private static final int MSG_UNLINKDEVICE = 3;
     private static final int MSG_UPDATELOGINSTATUS = 4;
+    private static final int MSG_EDITDEVICENAME = 5;
 
     private ListView mDeviceList;
     private DeviceListAdapter mDeviceListAdapter;
@@ -71,9 +71,20 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private User mUser;
     private String userid;
 
+    /**
+     * 修改名称的设备index
+     */
+    private int index = 0;
+
+    /**
+     * 需要修改的设备名称
+     */
+    private String device_name = "";
+
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             String result = msg.obj.toString();
+            JSONObject json = null;
             closeLoadingDialog();
             if (result.matches("Connection to .* refused") || result.matches("Connect to.*timed out")) {
                 showComReminderDialog();
@@ -82,7 +93,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             switch (msg.what) {
                 case MSG_GETLIST: {
                     try {
-                        JSONObject json = new JSONObject(result);
+                        json = new JSONObject(result);
                         if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
                             BaseTools.showToastByLanguage(DeviceListActivity.this, json);
                         } else {
@@ -118,7 +129,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_GETWIFIDEVICE: {
-                    JSONObject json;
                     try {
                         json = new JSONObject(result);
                         if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
@@ -166,7 +176,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_UNLINKDEVICE: {
-                    JSONObject json;
                     int postion = msg.arg1;
                     try {
                         json = new JSONObject(result);
@@ -183,7 +192,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_UPDATELOGINSTATUS: {
-                    JSONObject json;
                     try {
                         json = new JSONObject(result);
                         if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
@@ -197,6 +205,21 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
                     break;
                 }
+
+                case MSG_EDITDEVICENAME:
+                    try {
+                        json = new JSONObject(result);
+                        if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                            BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+                        } else {
+                            BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+                            mListData.get(index).setName(device_name);
+                            mDeviceListAdapter.notifyDataSetChanged();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
                 default:
                     break;
@@ -552,6 +575,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Lg.i(TAG,"onActivityResult->>requestCode:"+requestCode+"  resultCode:"+resultCode);
         if (resultCode == RESULT_OK) {
             if (requestCode == LINK_DEVICE) {
                 Bundle b = data.getExtras();
@@ -563,7 +587,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         @Override
                         public void run() {
                             String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICELIST, new BasicNameValuePair("name", "qin"));
-                            Lg.i(TAG, "result = " + result);
+                            Lg.i(TAG, "URL_GETWIFIDEVICELIST_result = " + result);
 
                             Message msg = new Message();
                             msg.obj = result;
@@ -573,6 +597,22 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     });
                 }
             }
+        } else if (requestCode == 212 && resultCode == 222) {
+            Lg.i(TAG, "edit device name");
+            device_name = data.getStringExtra("light_name");
+            ThreadPoolManager.getInstance().addTask(new Runnable() {
+                @Override
+                public void run() {
+                    String result = HttpUtil.post(HttpUtil.URL_EDITDEVICENAME,
+                            new BasicNameValuePair("imei", mListData.get(index).getAddress()),
+                            new BasicNameValuePair("name", device_name));
+                    Lg.i(TAG, "URL_EDITDEVICENAME_result = " + result);
+                    Message msg = new Message();
+                    msg.obj = result;
+                    msg.what = MSG_EDITDEVICENAME;
+                    mHandler.sendMessage(msg);
+                }
+            });
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -638,44 +678,80 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         Lg.i(TAG, "onItemLongClick");
         //删除
         final WifiDevice d = mListData.get(i);
-        final int postion = i;
-        AlertDialog.Builder builder = new AlertDialog.Builder(DeviceListActivity.this);
-        builder.setMessage(R.string.str_unlink_device);
-        builder.setTitle(R.string.str_prompt);
-        builder.setPositiveButton(R.string.system_sure, new DialogInterface.OnClickListener() {
+        index = i;
+        final EditDeviceDialog dialog = new EditDeviceDialog(this);
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.delete_light.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                ThreadPoolManager.getInstance().addTask(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ThreadPoolManager.getInstance().addTask(new Runnable() {
-                            @Override
-                            public void run() {
-                                String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
-                                Lg.i(TAG, "result = " + result);
-
-                                Message msg = new Message();
-                                msg.obj = result;
-                                msg.what = MSG_UNLINKDEVICE;
-                                msg.arg1 = postion;
-                                mHandler.sendMessage(msg);
-                            }
-                        });
-                        dialog.dismiss();
+                    public void run() {
+                        String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
+                        Lg.i(TAG, "result = " + result);
+                        Message msg = new Message();
+                        msg.obj = result;
+                        msg.what = MSG_UNLINKDEVICE;
+                        msg.arg1 = index;
+                        mHandler.sendMessage(msg);
                     }
-                }
+                });
+            }
+        });
 
-        );
+        dialog.edit_light.setOnClickListener(new View.OnClickListener() {
 
-        builder.setNegativeButton(R.string.system_cancel, new DialogInterface.OnClickListener()
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                Lg.i(TAG,"edit device name");
+                Intent intent = new Intent(DeviceListActivity.this, AddLightActivity.class);
+                intent.putExtra("name", d.getName());
+                startActivityForResult(intent, 212);
+            }
+        });
 
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }
 
-        );
+        //before  删除设备
+//        AlertDialog.Builder builder = new AlertDialog.Builder(DeviceListActivity.this);
+//        builder.setMessage(R.string.str_unlink_device);
+//        builder.setTitle(R.string.str_prompt);
+//        builder.setPositiveButton(R.string.system_sure, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        ThreadPoolManager.getInstance().addTask(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                String result = HttpUtil.post(HttpUtil.URL_UNLINKWIFIDEVICE, new BasicNameValuePair("imei", d.getAddress()));
+//                                Lg.i(TAG, "result = " + result);
+//
+//                                Message msg = new Message();
+//                                msg.obj = result;
+//                                msg.what = MSG_UNLINKDEVICE;
+//                                msg.arg1 = postion;
+//                                mHandler.sendMessage(msg);
+//                            }
+//                        });
+//                        dialog.dismiss();
+//                    }
+//                }
+//
+//        );
 
-        builder.create().show();
+//        builder.setNegativeButton(R.string.system_cancel, new DialogInterface.OnClickListener()
+//
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                }
+//
+//        );
+//
+//        builder.create().show();
         return true;
     }
 }

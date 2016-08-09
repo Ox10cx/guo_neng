@@ -50,7 +50,7 @@ public class HttpUtil {
     /**
      * http版长连接
      */
-    public static String IP = "120.25.100.110:4000";
+    public static String IP = "112.74.23.39:4000";
 
     public static String SERVER = "http://" + IP + "/";
     public static String URL_LOGIN = "http://" + IP + "/server/User/login";
@@ -77,6 +77,7 @@ public class HttpUtil {
     public static String URL_SENDMSG = "http://" + IP + "/server/User/sendMessage";
     public static String URL_GETUNREADMSG = "http://" + IP + "/server/User/getUnreadMessage";
     public static String URL_SETREADFLAG = "http://" + IP + "/server/User/setReadFlag";
+    public static String URL_EDITDEVICENAME = "http://" + IP + "/server/User/changeWifiName";
 
     /**
      * 用post方式来访问网络

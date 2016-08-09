@@ -27,11 +27,11 @@
     <string name="delete_light_ok">删除彩灯成功</string>
     <string name="edit_light_error">编辑彩灯失败</string>
     <string name="edit_light_ok">编辑彩灯成功</string>
-    <string name="light_name">彩灯名字:</string>
+    <string name="light_name">插座名字:</string>
     <string name="light_no">彩灯编号:</string>
-    <string name="light_name_empty_remind">彩灯名字不能为空</string>
+    <string name="light_name_empty_remind">插座名字不能为空</string>
     <string name="light_no_empty_remind">彩灯编号不能为空</string>
-    <string name="light_name_format_remind">彩灯名字的字符长度不能超过20</string>
+    <string name="light_name_format_remind">插座名字的字符长度不能超过20</string>
     <string name="light_no_format_remind">彩灯编号不在1~255之间</string>
     <string name="connect_time_out">连接超时</string>
     <string name="crash_reminder">抱歉,程序异常,即将重启</string>
@@ -58,6 +58,10 @@
     <!--左边菜单-->
     <string name="set">设置</string>
     <string name="not_login">立即登录</string>
+
+    <string name="edit_device_name">编辑名称</string>
+    <string name="edit_device_name_title">编辑插座名称</string>
+    <string name="delete_device">删除设备</string>
 
 
 </resources>

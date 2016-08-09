@@ -15,10 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.watch.guoneng.R;
 import com.watch.guoneng.tool.BaseTools;
 import com.watch.guoneng.tool.Lg;
@@ -92,7 +89,7 @@ public class SmartLinkActivity extends BaseActivity {
      * 扫描跳转Activity RequestCode
      */
     public static final int REQUEST_CODE = 111;
-    private String scannerMac = "";
+//    private String scannerMac = "";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -132,7 +129,7 @@ public class SmartLinkActivity extends BaseActivity {
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(this);
         iv_scanner = (Button) findViewById(R.id.iv_scanner);
-        iv_scanner.setOnClickListener(this);
+//        iv_scanner.setOnClickListener(this);
         pwd_show_hide = (ImageView) findViewById(R.id.pwd_show_hide);
         pwd_show_hide.setOnClickListener(this);
     }
@@ -566,45 +563,45 @@ public class SmartLinkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.button:
-                if(ssidEdit.getText().toString()==null||ssidEdit.getText().toString().trim().length()==0){
+                if (ssidEdit.getText().toString() == null || ssidEdit.getText().toString().trim().length() == 0) {
                     showShortToast(getString(R.string.wifi_id_not_empty));
                     return;
                 }
-                if(passEdit.getText().toString()==null||passEdit.getText().toString().trim().length()==0){
+                if (passEdit.getText().toString() == null || passEdit.getText().toString().trim().length() == 0) {
                     showShortToast(getString(R.string.wifi_pwd_not_empty));
                     return;
                 }
-                if (scannerMac == null || scannerMac.trim().length() == 0) {
-                    showShortToast(getString(R.string.scanner_mac));
-                } else {
-                    if (!isSendFinished) {
-                        isSendFinished = true;
-                        broadCastButton.setText(getString(R.string.cancel));
-                        timer = new Timer();
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        broadCastButton.setProgress(broadCastButton.getProgress() + 1);
-                                        if (broadCastButton.getProgress() > broadCastButton.getMax()) {
-                                            Lg.i(TAG, "broadCastButton.getProgress() > broadCastButton.getMax()");
-                                            Message message = new Message();
-                                            message.arg1 = CONFIGUREFAIL;
-                                            handler.sendMessage(message);
-                                            sendFinish();
-                                        }
+//                if (scannerMac == null || scannerMac.trim().length() == 0) {
+//                    showShortToast(getString(R.string.scanner_mac));
+//                } else {
+                if (!isSendFinished) {
+                    isSendFinished = true;
+                    broadCastButton.setText(getString(R.string.cancel));
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    broadCastButton.setProgress(broadCastButton.getProgress() + 1);
+                                    if (broadCastButton.getProgress() > broadCastButton.getMax()) {
+                                        Lg.i(TAG, "broadCastButton.getProgress() > broadCastButton.getMax()");
+                                        Message message = new Message();
+                                        message.arg1 = CONFIGUREFAIL;
+                                        handler.sendMessage(message);
+                                        sendFinish();
                                     }
-                                });
-                            }
-                        }, 100, 1000);
-                        //有用
-                        enableThread();
-                    } else {
-                        sendFinish();
-                    }
+                                }
+                            });
+                        }
+                    }, 100, 1000);
+                    //有用
+                    enableThread();
+                } else {
+                    sendFinish();
                 }
+//                }
                 break;
             case R.id.pwd_show_hide:
                 if (isHidden) {
@@ -618,10 +615,10 @@ public class SmartLinkActivity extends BaseActivity {
                 }
                 isHidden = !isHidden;
                 break;
-            case R.id.iv_scanner:
-                Intent intent = new Intent(SmartLinkActivity.this, CaptureActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
-                break;
+//            case R.id.iv_scanner:
+//                Intent intent = new Intent(SmartLinkActivity.this, CaptureActivity.class);
+//                startActivityForResult(intent, REQUEST_CODE);
+//                break;
             default:
                 break;
         }
@@ -662,33 +659,33 @@ public class SmartLinkActivity extends BaseActivity {
                         }
                         Lg.i(TAG, "realMac->>>" + realMac);
                         //确认扫描mac与连接mac是否相等
-                        if (!scannerMac.equalsIgnoreCase(realMac)) {
-                            showShortToast(getString(R.string.mac_not_match));
-                        } else {
-                            if (realMac.length() < 15) {
-                                for (int j = realMac.length() + 1; j <= 15; j++) {
-                                    realMac = realMac + "0";
-                                }
-                            } else if (realMac.length() > 15) {
-                                showShortToast(getString(R.string.get_wifi_mac_error));
-                                return;
+//                        if (!scannerMac.equalsIgnoreCase(realMac)) {
+//                            showShortToast(getString(R.string.mac_not_match));
+//                        } else {
+                        if (realMac.length() < 15) {
+                            for (int j = realMac.length() + 1; j <= 15; j++) {
+                                realMac = realMac + "0";
                             }
-                            final String stableMac = realMac;
-                            Lg.i(TAG, "stableMac>>>" + stableMac);
-                            showShortToast(getString(R.string.configure_route_ok));
-                            ThreadPoolManager.getInstance().addTask(new Runnable() {
-                                @Override
-                                public void run() {
-                                    String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
-                                            new BasicNameValuePair(JsonUtil.IMEI, stableMac));
-                                    Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
-                                    Message msg = new Message();
-                                    msg.obj = result;
-                                    msg.arg1 = LINKWIFI;
-                                    handler.sendMessage(msg);
-                                }
-                            });
+                        } else if (realMac.length() > 15) {
+                            showShortToast(getString(R.string.get_wifi_mac_error));
+                            return;
                         }
+                        final String stableMac = realMac;
+                        Lg.i(TAG, "stableMac>>>" + stableMac);
+                        showShortToast(getString(R.string.configure_route_ok));
+                        ThreadPoolManager.getInstance().addTask(new Runnable() {
+                            @Override
+                            public void run() {
+                                String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
+                                        new BasicNameValuePair(JsonUtil.IMEI, stableMac));
+                                Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
+                                Message msg = new Message();
+                                msg.obj = result;
+                                msg.arg1 = LINKWIFI;
+                                handler.sendMessage(msg);
+                            }
+                        });
+//                        }
                         break;
                     case CONFIGUREFAIL:
                         sendFinish();
@@ -724,26 +721,26 @@ public class SmartLinkActivity extends BaseActivity {
 
     };
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /**
-         * 处理二维码扫描结果
-         */
-        if (requestCode == REQUEST_CODE) {
-            //处理扫描结果（在界面上显示）
-            if (null != data) {
-                Bundle bundle = data.getExtras();
-                if (bundle == null) {
-                    return;
-                }
-                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                    scannerMac = bundle.getString(CodeUtils.RESULT_STRING).trim();
-                    Toast.makeText(this, "解析结果:" + scannerMac, Toast.LENGTH_LONG).show();
-                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-                    Toast.makeText(SmartLinkActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        /**
+//         * 处理二维码扫描结果
+//         */
+//        if (requestCode == REQUEST_CODE) {
+//            //处理扫描结果（在界面上显示）
+//            if (null != data) {
+//                Bundle bundle = data.getExtras();
+//                if (bundle == null) {
+//                    return;
+//                }
+//                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+//                    scannerMac = bundle.getString(CodeUtils.RESULT_STRING).trim();
+//                    Toast.makeText(this, "解析结果:" + scannerMac, Toast.LENGTH_LONG).show();
+//                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+//                    Toast.makeText(SmartLinkActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }
+//    }
 
 }

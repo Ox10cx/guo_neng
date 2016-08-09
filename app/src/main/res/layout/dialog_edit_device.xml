@@ -13,9 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/big_button_shape"
-        android:text="@string/delete_light"
+        android:text="@string/delete_device"
         android:textColor="#000000"
-        android:visibility="gone"
         android:textSize="@dimen/text_size" />
 
     <Button
@@ -25,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/layout_size_10"
         android:background="@drawable/big_button_shape"
-        android:text="@string/edit_light"
+        android:text="@string/edit_device_name"
         android:textColor="#000000"
         android:textSize="@dimen/text_size" />
 

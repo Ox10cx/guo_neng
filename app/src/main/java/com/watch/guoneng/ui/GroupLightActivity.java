@@ -30,7 +30,7 @@ import com.watch.guoneng.util.DialogUtil;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.JsonUtil;
 import com.watch.guoneng.util.ThreadPoolManager;
-import com.watch.guoneng.xlistview.EditLightDialog;
+import com.watch.guoneng.xlistview.EditDeviceDialog;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -612,8 +612,8 @@ public class GroupLightActivity extends BaseActivity implements View.OnClickList
             groupPosition = ExpandableListView.getPackedPositionGroup(packedPos);
             childPosition = ExpandableListView.getPackedPositionChild(packedPos);
             Lg.i(TAG, "onItemLongClick->>" + childPosition);
-//添加删除和修改
-            final EditLightDialog dialog = new EditLightDialog(this);
+            //添加删除和修改
+            final EditDeviceDialog dialog = new EditDeviceDialog(this);
             dialog.show();
             dialog.setCanceledOnTouchOutside(true);
             dialog.delete_light.setOnClickListener(new View.OnClickListener() {
