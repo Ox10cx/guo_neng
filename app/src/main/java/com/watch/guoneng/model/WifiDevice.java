@@ -9,6 +9,16 @@ public class WifiDevice implements Serializable {
    // private String name;
     private String thumbnail;
 
+    private boolean switchStatus=false;
+
+    public boolean isSwitchStatus() {
+        return switchStatus;
+    }
+
+    public void setSwitchStatus(boolean switchStatus) {
+        this.switchStatus = switchStatus;
+    }
+
     public WifiDevice copy() {
 
         WifiDevice d = new WifiDevice();

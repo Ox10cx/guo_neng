@@ -77,6 +77,7 @@ public class AddLightActivity extends BaseActivity {
         et.setText("");
         et.setHintTextColor(Color.parseColor("#FF4070"));
         et.setHint(str);
+        et.setTextSize(15);
     }
 
 }

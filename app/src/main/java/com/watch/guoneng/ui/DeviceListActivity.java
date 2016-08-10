@@ -3,13 +3,14 @@ package com.watch.guoneng.ui;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import com.watch.guoneng.service.WifiHttpConnectService;
 import com.watch.guoneng.tool.BaseTools;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.tool.NetStatuCheck;
+import com.watch.guoneng.tool.NetworkChangeReceiver;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.ImageLoaderUtil;
 import com.watch.guoneng.util.JsonUtil;
@@ -80,6 +82,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
      * 需要修改的设备名称
      */
     private String device_name = "";
+    private NetworkChangeReceiver networkChangeReceiver = null;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -233,8 +236,14 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        fillListData();
 
+        //注册网络变化广播
+        networkChangeReceiver = new NetworkChangeReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, filter);
+
+        fillListData();
         Intent i = null;
         if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
             i = new Intent(this, WifiConnectService.class);
@@ -244,7 +253,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         getApplicationContext().bindService(i, mConnection, BIND_AUTO_CREATE);
 
         showLoadingDialog(getResources().getString(R.string.waiting));
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 ThreadPoolManager.getInstance().addTask(new Runnable() {
@@ -260,7 +269,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     }
                 });
             }
-        }, 500);
+        });
     }
 
     private void initView() {
@@ -275,7 +284,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         mUserDao = new UserDao(this);
         mUser = mUserDao.queryById(PreferenceUtil.getInstance(this).getUid());
         if (mUser != null) {
-            tv_name.setText(mUser.getName());
+            tv_name.setText(BaseTools.subStringByBytes(mUser.getName(),10));
         }
         left_menu = (ImageView) findViewById(R.id.left_menu);
         left_menu.setOnClickListener(this);
@@ -308,6 +317,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             }
         }
         getApplicationContext().unbindService(mConnection);
+        unregisterReceiver(networkChangeReceiver);
         super.onDestroy();
     }
 
@@ -435,6 +445,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onNotify(final String imei, int type) throws RemoteException {
+            Lg.i(TAG,"onNotify-type-->>>>"+type);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -518,13 +529,13 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAG, "onServiceDisconnected");
+            Lg.i(TAG, "onServiceDisconnected");
             MyApplication.getInstance().mService = null;
         }
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.d(TAG, "onServiceConnected");
+            Lg.i(TAG, "onServiceConnected");
             MyApplication.getInstance().mService = IService.Stub.asInterface(service);
             Lg.i(TAG, "MyApplication.getInstance().mService:" + MyApplication.getInstance().mService);
             try {
@@ -544,10 +555,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     };
 
-    void pingWifiDevice() {
-        int i;
-
-        for (i = 0; i < mListData.size(); i++) {
+    public void pingWifiDevice() {
+        for (int i = 0; i < mListData.size(); i++) {
             WifiDevice d = mListData.get(i);
             if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
@@ -575,7 +584,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Lg.i(TAG,"onActivityResult->>requestCode:"+requestCode+"  resultCode:"+resultCode);
+        Lg.i(TAG, "onActivityResult->>requestCode:" + requestCode + "  resultCode:" + resultCode);
         if (resultCode == RESULT_OK) {
             if (requestCode == LINK_DEVICE) {
                 Bundle b = data.getExtras();
@@ -638,7 +647,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private void updataUserInfo() {
         userid = PreferenceUtil.getInstance(this).getUid();
         mUser = mUserDao.queryById(userid);
-        tv_name.setText(mUser.getName());
+        tv_name.setText(BaseTools.subStringByBytes(mUser.getName(),10));
         if (mUser.getImage() == null || "".equals(mUser.getImage())) {
             iv_photo.setImageResource(R.drawable.photo);
         } else {
@@ -706,7 +715,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                Lg.i(TAG,"edit device name");
+                Lg.i(TAG, "edit device name");
                 Intent intent = new Intent(DeviceListActivity.this, AddLightActivity.class);
                 intent.putExtra("name", d.getName());
                 startActivityForResult(intent, 212);

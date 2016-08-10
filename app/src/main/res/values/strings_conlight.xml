@@ -29,9 +29,9 @@
     <string name="edit_light_ok">编辑彩灯成功</string>
     <string name="light_name">插座名字:</string>
     <string name="light_no">彩灯编号:</string>
-    <string name="light_name_empty_remind">插座名字不能为空</string>
+    <string name="light_name_empty_remind"><font size="15">插座名字不能为空</font></string>
     <string name="light_no_empty_remind">彩灯编号不能为空</string>
-    <string name="light_name_format_remind">插座名字的字符长度不能超过20</string>
+    <string name="light_name_format_remind"><font size="15">插座名字的字符长度不能超过20</font></string>
     <string name="light_no_format_remind">彩灯编号不在1~255之间</string>
     <string name="connect_time_out">连接超时</string>
     <string name="crash_reminder">抱歉,程序异常,即将重启</string>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.watch.guoneng.R;
 import com.watch.guoneng.model.WifiDevice;
+import com.watch.guoneng.tool.BaseTools;
 
 import java.util.ArrayList;
 
@@ -82,7 +83,7 @@ public class DeviceListAdapter extends BaseAdapter {
 //            holderView.image.setImageDrawable(d);
 //        }
 
-        holderView.name.setText(data.get(position).getName());
+        holderView.name.setText(BaseTools.subStringByBytes(data.get(position).getName(), 12));
         int status = data.get(position).getStatus();
         Log.d("hjq", "postion " + position + " status = " + status);
         if (status == WifiDevice.INACTIVE_STATUS) {
