@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.watch.guoneng.R;
 import com.watch.guoneng.model.WifiDevice;
 import com.watch.guoneng.tool.BaseTools;
+import com.watch.guoneng.tool.Lg;
 
 import java.util.ArrayList;
 
@@ -19,24 +20,23 @@ import java.util.ArrayList;
  * Created by Administrator on 16-3-7.
  */
 public class DeviceListAdapter extends BaseAdapter {
-    private static final long ANIMATION_DURATION = 300;
     private Context context;
     private ArrayList<WifiDevice> data;
     private int mId;
-    OnItemClickCallback mCallback;
+    private OnItemImageViewClickCallback mCallback;
 
-    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list, OnItemClickCallback listener) {
+    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list, OnItemImageViewClickCallback listener) {
         this.context = context;
         data = list;
         mId = 0;
         mCallback = listener;
     }
 
-    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list) {
-        this.context = context;
-        data = list;
-        mId = 0;
-    }
+//    public DeviceListAdapter(Context context, ArrayList<WifiDevice> list) {
+//        this.context = context;
+//        data = list;
+//        mId = 0;
+//    }
 
     @Override
     public int getCount() {
@@ -85,33 +85,34 @@ public class DeviceListAdapter extends BaseAdapter {
 
         holderView.name.setText(BaseTools.subStringByBytes(data.get(position).getName(), 12));
         int status = data.get(position).getStatus();
-        Log.d("hjq", "postion " + position + " status = " + status);
+        Lg.i("hjq", "postion " + position + " status = " + status);
         if (status == WifiDevice.INACTIVE_STATUS) {
             holderView.status.setText(R.string.str_inactive);
-            holderView.iv_device_status.setImageResource(R.drawable.off);
+//            holderView.iv_device_status.setImageResource(R.drawable.off);
         } else if (status == WifiDevice.LOGIN_STATUS) {
             holderView.status.setText(R.string.str_online);
-            holderView.iv_device_status.setImageResource(R.drawable.on);
+//            holderView.iv_device_status.setImageResource(R.drawable.on);
         } else if (status == WifiDevice.LOGOUT_STATUS) {
             holderView.status.setText(R.string.str_offline);
-            holderView.iv_device_status.setImageResource(R.drawable.off);
+//            holderView.iv_device_status.setImageResource(R.drawable.off);
         } else {
             holderView.status.setText(R.string.str_unkown);
+//            holderView.iv_device_status.setImageResource(R.drawable.off);
+        }
+
+        if (data.get(position).isSwitchStatus()) {
+            holderView.iv_device_status.setImageResource(R.drawable.on);
+        } else {
             holderView.iv_device_status.setImageResource(R.drawable.off);
         }
-//        convertView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        holderView.right_arrow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mId = position;
-//                mCallback.onRightArrowClick(position);
-//            }
-//        });
+
+        holderView.iv_device_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mId = position;
+                mCallback.onImageViewClick(position);
+            }
+        });
 
         return convertView;
     }
@@ -134,10 +135,13 @@ public class DeviceListAdapter extends BaseAdapter {
         public ImageView iv_device_status;
     }
 
-    public interface OnItemClickCallback {
-//        void onButtonClick(View v, int position);
-
-//        void onRightArrowClick(int postion);
+    public interface OnItemImageViewClickCallback {
+        /**
+         * 控制开关
+         *
+         * @param postion
+         */
+        void onImageViewClick(int postion);
     }
 
 }

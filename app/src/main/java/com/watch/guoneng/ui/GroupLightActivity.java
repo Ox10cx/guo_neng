@@ -52,7 +52,6 @@ public class GroupLightActivity extends BaseActivity implements View.OnClickList
     private LinkedList<String> fatherList;
     private List<LinkedList<Light>> childList;
     private WifiDevice mDevice;
-    //    private IService  MyApplication.getInstance().mService;
     private ConLightAdapter adapter;
     private byte[] lightStatuList;
     private static final int LIGHT_LIST = 1;
@@ -164,7 +163,7 @@ public class GroupLightActivity extends BaseActivity implements View.OnClickList
     private ICallback.Stub mCallback = new ICallback.Stub() {
         @Override
         public void onConnect(String address) throws RemoteException {
-
+            Lg.i(TAG, TAG + "onConnect");
         }
 
         @Override
