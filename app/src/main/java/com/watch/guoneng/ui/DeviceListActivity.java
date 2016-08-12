@@ -65,6 +65,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     ArrayList<WifiDevice> mListData;
     WifiDeviceDao mDeviceDao;
 
+    private int mLastIndex = 0;     // 刷新状态使用
+
     private ImageView left_menu;
     private ImageView add_menu;
     private MenuDrawer menuDrawer;
@@ -132,6 +134,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     } else {
                         wifiDevice.setSwitchStatus(false);
                     }
+                    wifiDevice.setStatus(WifiDevice.LOGIN_STATUS);
+
                     mDeviceListAdapter.notifyDataSetChanged();
                     break;
                 default:
@@ -261,12 +265,24 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 mDeviceListAdapter.notifyDataSetChanged();
+                //
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    void refreshSocketStatus(int listIndex) {
+        if (listIndex >= mListData.size()) {
+            return;
+        }
+
+        try {
+            MyApplication.getInstance().mService.getLightStatus(mListData.get(listIndex).getAddress());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -429,6 +445,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+
     private ICallback.Stub mCallback = new ICallback.Stub() {
         @Override
         public void onConnect(String address) throws RemoteException {
@@ -537,6 +554,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         break;
                     }
                 }
+
+                if (mLastIndex < mListData.size()) {
+                    refreshSocketStatus(++mLastIndex);
+                }
             }
         }
 
@@ -550,7 +571,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     closeLoadingDialog();
                 }
             });
-            if (cmd.equals(WifiConnectService.PING_CMD)) {
+            if (cmd.equals(WifiConnectService.PING_CMD) || cmd.equals(WifiConnectService.GET_STATUS_CMD)) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -560,6 +581,12 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);
                     }
                 });
+            }
+
+            if (cmd.equals(WifiConnectService.GET_STATUS_CMD)) {
+                if (mLastIndex < mListData.size()) {
+                    refreshSocketStatus(++mLastIndex);
+                }
             }
         }
 
@@ -636,6 +663,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         connectLongSocket();
                     }
                 });
+            }
+            else {
+                mLastIndex = 0;
+                refreshSocketStatus(mLastIndex);
             }
         }
     };
@@ -817,7 +848,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     public void onImageViewClick(int postion) {
         index = postion;
         WifiDevice wifiDevice = mListData.get(postion);
-        if (wifiDevice != null) {
+        if (wifiDevice == null) {
+            return;
+        }
+        if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
             if (MyApplication.getInstance().longConnected) {
                 if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
                     try {
@@ -839,7 +873,22 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             } else {
                 showShortToast(getString(R.string.service_long_socket_breaked));
             }
+        } else {
+            try {
+                showLoadingDialog(getResources().getString(R.string.cmd_sending));
+                if (wifiDevice.isSwitchStatus()) {
+                    MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
+                    wifiDevice.setSwitchStatus(false);
+                } else {
+                    MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
+                    wifiDevice.setSwitchStatus(true);
+                }
+                mDeviceListAdapter.notifyDataSetChanged();
+            } catch (RemoteException e) {
+                Lg.i(TAG, e.toString());
+            }
         }
-
     }
 }
+
+

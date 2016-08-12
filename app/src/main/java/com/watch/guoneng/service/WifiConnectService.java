@@ -35,7 +35,7 @@ public class WifiConnectService extends Service {
     private Handler myHandler;
     //private static final String HOST = "112.74.23.39";
     private static final String HOST = "120.25.100.110";
-    private static final int PORT = 9899;
+    private static final int PORT = 7777;
 
     private static final String CLIENT = "QC";
     private static final String SEP = "@";
@@ -47,11 +47,11 @@ public class WifiConnectService extends Service {
     private static final String NOTIFY_CMD = "016";
     private static final String NOTIFY_RSP = "017";
 
-    private static final String SWITCH_CMD = "018";
-    private static final String SWITCH_RSP = "019";
+    public static final String SWITCH_CMD = "018";
+    public static final String SWITCH_RSP = "019";
 
-    private static final String GET_STATUS_CMD = "020";
-    private static final String GET_STATUS_RSP = "021";
+    public static final String GET_STATUS_CMD = "020";
+    public static final String GET_STATUS_RSP = "021";
 
     public static final String PING_CMD = "022";
     public static final String PING_RSP = "023";
