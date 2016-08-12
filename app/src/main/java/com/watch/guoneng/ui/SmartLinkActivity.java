@@ -560,6 +560,9 @@ public class SmartLinkActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.iv_back:
+                if(isSendFinished){
+                    sendFinish();
+                }
                 finish();
                 break;
             case R.id.button:
