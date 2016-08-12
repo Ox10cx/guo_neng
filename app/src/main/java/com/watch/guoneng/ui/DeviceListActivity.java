@@ -355,6 +355,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void onDestroy() {
+        MyApplication.getInstance().isSocketConnectBreak = false;
         if (mConnection != null) {
             try {
                 MyApplication.getInstance().mService.unregisterCallback(mCallback);
@@ -453,7 +454,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 public void run() {
                     closeLoadingDialog();
                     mDeviceListAdapter.notifyDataSetChanged();
-                    //长连接意外断开重连接
                     if (MyApplication.getInstance().isSocketConnectBreak) {
                         //有网络自动连接
                         if (!NetStatuCheck.checkGPRSState(DeviceListActivity.this).equals("unavailable")) {
@@ -469,7 +469,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                                     showComReminderDialog();
                                 }
                             }
-
                         }
                     }
                 }
@@ -566,11 +565,12 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
         @Override
         public void onHttpTimeout(String cmd, String imei) throws RemoteException {
-
+            Lg.i(TAG, "onHttpTimeout");
         }
 
         @Override
         public void onPingRsp(final String imei, final int ret) throws RemoteException {
+            Lg.i(TAG, "onPingRsp");
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -677,7 +677,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             if (requestCode == LINK_DEVICE) {
                 Bundle b = data.getExtras();
                 int changed = b.getInt("ret", 0);
-                Lg.i("hjq", "changed = " + changed);
+                Lg.i(TAG, "changed = " + changed);
                 if (changed == 1) {
                     mListData.clear();
                     isBlindService = false;
