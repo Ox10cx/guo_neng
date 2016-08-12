@@ -16,6 +16,7 @@ import com.watch.guoneng.app.MyApplication;
 import com.watch.guoneng.dao.UserDao;
 import com.watch.guoneng.model.User;
 import com.watch.guoneng.tool.BaseTools;
+import com.watch.guoneng.tool.GetCodeCountTimer;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.JsonUtil;
@@ -26,10 +27,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class AuthRegisterActivity extends BaseActivity {
+    private final static String TAG = "AuthRegisterActivity";
+
+
     private Button registerbtn;
     private EditText phoneedit;
     private EditText codeedit;
@@ -48,22 +49,7 @@ public class AuthRegisterActivity extends BaseActivity {
     private final int regist_what = 0;
     private final int getcode_what = 1;
     private final int login_what = 2;
-    private Timer mTimer;
-    private final static String TAG = "AuthRegisterActivity123";
 
-    private Handler timerHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            int num = msg.what;
-            getcodebtn.setText(num + getString(R.string.second));
-            if (num == -1) {
-                mTimer.cancel();
-                getcodebtn.setEnabled(true);
-                getcodebtn.setText(R.string.register_button_code);
-            }
-        }
-
-        ;
-    };
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -104,18 +90,9 @@ public class AuthRegisterActivity extends BaseActivity {
                             code = String.valueOf(JsonUtil.getInt(json, JsonUtil.CODE));
                             registerbtn.setEnabled(true);
                             showShortToast(getString(R.string.code_has_send));
-                            mTimer = new Timer();
-                            mTimer.schedule(new TimerTask() {
-                                int num = 90;
-
-                                @Override
-                                public void run() {
-                                    Message msg = new Message();
-                                    msg.what = num;
-                                    timerHandler.sendMessage(msg);
-                                    num--;
-                                }
-                            }, 0, 1000);
+                            GetCodeCountTimer getCodeCountTimer = new GetCodeCountTimer(90 * 1000,
+                                    1000, getcodebtn, AuthRegisterActivity.this);
+                            getCodeCountTimer.start();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -193,8 +170,12 @@ public class AuthRegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Lg.i(TAG, "onCreate");
         setContentView(R.layout.activity_auth_register);
+        initView();
+    }
 
+    private void initView() {
         phoneedit = (EditText) findViewById(R.id.register_phone);
         codeedit = (EditText) findViewById(R.id.register_code);
         nameedit = (EditText) findViewById(R.id.register_name);
@@ -212,6 +193,7 @@ public class AuthRegisterActivity extends BaseActivity {
         registerbtn.setEnabled(false);
     }
 
+    
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -250,7 +232,7 @@ public class AuthRegisterActivity extends BaseActivity {
                     return;
                 }
                 getcodebtn.setText(getString(R.string.is_sending));
-                getcodebtn.setEnabled(false);
+//                getcodebtn.setEnabled(false);
                 ThreadPoolManager.getInstance().addTask(new Runnable() {
                     @Override
                     public void run() {
