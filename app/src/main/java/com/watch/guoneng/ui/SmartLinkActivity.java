@@ -598,7 +598,7 @@ public class SmartLinkActivity extends BaseActivity {
                                 }
                             });
                         }
-                    }, 100, 1000);
+                    }, 0, 1000);
                     //有用
                     enableThread();
                 } else {
