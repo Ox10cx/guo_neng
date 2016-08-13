@@ -398,4 +398,5 @@
     <string name="IPMAC">IP 地址以及 MAC 地址</string>
     <string name="str_brightness">亮度</string>
     <string name="str_chrome">色度</string>
+    <string name="str_cmd_timeout">设备响应命令超时</string>
 </resources>

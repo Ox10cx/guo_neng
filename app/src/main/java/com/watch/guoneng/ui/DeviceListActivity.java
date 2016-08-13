@@ -88,8 +88,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private String device_name = "";
     private NetworkChangeReceiver networkChangeReceiver = null;
     private boolean isBlindService = false;
-//    private Timer timer;
-    private boolean isFristInit = false;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -295,7 +293,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         fillListData();
         showLoadingDialog(getResources().getString(R.string.waiting));
         isBlindService = true;
-        isFristInit = true;
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -314,32 +311,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         });
     }
 
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        //轮训请求获取状态
-//        if (!isFristInit) {
-//            timer = new Timer();
-//            timer.schedule(new TimerTask() {
-//                @Override
-//                public void run() {
-//
-//                }
-//            }, 0, 1000 * 60);
-//        } else {
-//
-//        }
-//        isFristInit = false;
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (timer != null) {
-//            timer.cancel();
-//        }
-//    }
 
     /**
      * 绑定服务
@@ -394,7 +365,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
     private void fillListData() {
         mListData = new ArrayList<>(10);
-//        timer = new Timer();
         mDeviceListAdapter = new DeviceListAdapter(this, mListData, this);
         mDeviceList.setAdapter(mDeviceListAdapter);
     }
@@ -563,17 +533,36 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
 
         @Override
-        public void onSwitchRsp(String imei, boolean ret) throws RemoteException {
+        public void onSwitchRsp(final String imei, final boolean ret) throws RemoteException {
             Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     closeLoadingDialog();
+                    WifiDevice d = null;
+
+                    for (int i = 0; i < mListData.size(); i++) {
+                        if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                            d = mListData.get(i);
+                            break;
+                        }
+                    }
+
+                    if (d != null && ret) {
+                        boolean status = d.isSwitchStatus();
+
+                        d.setSwitchStatus(!status);
+                        d.setStatus(WifiDevice.LOGIN_STATUS);
+
+                        mDeviceListAdapter.notifyDataSetChanged();
+                    }
                 }
             });
-            if (!ret) {
-                MyApplication.getInstance().mService.getLightStatus(mListData.get(index).getAddress());
-            }
+
+//            if (!ret) {
+//                MyApplication.getInstance().mService.getLightStatus(mListData.get(index).getAddress());
+//            }
+
         }
 
         @Override
@@ -599,22 +588,26 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
         //待优化
         @Override
-        public void onCmdTimeout(String cmd, final String imei) throws RemoteException {
+        public void onCmdTimeout(final String cmd, final String imei) throws RemoteException {
             Lg.i(TAG, "onCmdTimeout");
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     closeLoadingDialog();
+                    if (cmd.equals(WifiConnectService.SWITCH_CMD)) {        // 提示用户超时
+                        showShortToast(getString(R.string.str_cmd_timeout));
+                    }
                 }
             });
-            if (cmd.equals(WifiConnectService.PING_CMD) || cmd.equals(WifiConnectService.GET_STATUS_CMD)) {
+            if (cmd.equals(WifiConnectService.PING_CMD) ||
+                    cmd.equals(WifiConnectService.GET_STATUS_CMD) ||
+                    cmd.equals(WifiConnectService.SWITCH_CMD)) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         Lg.i(TAG, "onCmdTimeout_LOGOUT_STATUS");
                         setDeviceStatus(imei, WifiDevice.LOGOUT_STATUS);
                         mDeviceListAdapter.notifyDataSetChanged();
-//                        updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);
                     }
                 });
             }
@@ -982,23 +975,23 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             }
         } else {
             if (!NetStatuCheck.checkGPRSState(DeviceListActivity.this).equals("unavailable")) {
-                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
+         //       if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {          // 该状态不需要判断
                     showLoadingDialog(getResources().getString(R.string.cmd_sending));
                     try {
                         if (wifiDevice.isSwitchStatus()) {
                             MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
-                            wifiDevice.setSwitchStatus(false);
+                            // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
                         } else {
                             MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
-                            wifiDevice.setSwitchStatus(true);
+                           // wifiDevice.setSwitchStatus(true);
                         }
                         mDeviceListAdapter.notifyDataSetChanged();
                     } catch (RemoteException e) {
                         Lg.i(TAG, e.toString());
                     }
-                } else {
-                    showShortToast(getString(R.string.wifi_device_offline));
-                }
+//                } else {
+//                    showShortToast(getString(R.string.wifi_device_offline));
+//                }
             } else {
                 showComReminderDialog();
             }
