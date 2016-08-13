@@ -13,7 +13,7 @@ public class ServerMsg implements Serializable {
     long datetime;
 
     public final static int MS_HTTP_TIMEOUT = 3 * 1000;        // 3s 发送HTTP请求超时时间
-    public final static int MS_DEVICE_TIMEOUT = 8 * 1000;       // 6s 设备回应的超时时间
+    public final static int MS_DEVICE_TIMEOUT = 12 * 1000;       // 12s 设备回应的超时时间
 
     public final static int FROM_HTTP = 1;
     public final static int FROM_DEVICE = 2;
