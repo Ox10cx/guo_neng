@@ -120,7 +120,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_UPDATELOGINSTATUS: {
-                    handleUpdataLoginStatus(result);
+//                    handleUpdataLoginStatus(result);
                     break;
                 }
 
@@ -390,7 +390,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             @Override
             public void run() {
                 String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICE, new BasicNameValuePair("imei", imei));
-                Lg.i(TAG, "result = " + result);
+                Lg.i(TAG, "URL_GETWIFIDEVICE_result = " + result);
                 Message msg = new Message();
                 msg.obj = result;
                 msg.what = MSG_GETWIFIDEVICE;
@@ -406,7 +406,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 String result = HttpUtil.post(HttpUtil.URL_UPDATEWIFILOGINSTATUS,
                         new BasicNameValuePair("imei", imei),
                         new BasicNameValuePair("status", Integer.toString(status)));
-                Lg.i(TAG, "result = " + result);
+                Lg.i(TAG, "URL_UPDATEWIFILOGINSTATUS_result = " + result);
 
                 Message msg = new Message();
                 msg.obj = result;
@@ -687,8 +687,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         connectLongSocket();
                     }
                 });
-            }
-            else {
+            } else {
                 mLastIndex = 0;
                 refreshSocketStatus(mLastIndex);
             }
@@ -702,7 +701,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 try {
                     MyApplication.getInstance().mService.ping(d.getAddress(), 1);
 
-                    //lzg edit
+                    //lzg edit  获取list开关状态
                     MyApplication.getInstance().mService.getLightStatus(d.getAddress());
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -898,18 +897,26 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 showShortToast(getString(R.string.service_long_socket_breaked));
             }
         } else {
-            try {
-                showLoadingDialog(getResources().getString(R.string.cmd_sending));
-                if (wifiDevice.isSwitchStatus()) {
-                    MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
-                   // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
-                } else {
-                    MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
-                  //  wifiDevice.setSwitchStatus(true);
-                }
-                mDeviceListAdapter.notifyDataSetChanged();
-            } catch (RemoteException e) {
-                Lg.i(TAG, e.toString());
+            if (!NetStatuCheck.checkGPRSState(DeviceListActivity.this).equals("unavailable")) {
+         //       if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {          // 该状态不需要判断
+                    showLoadingDialog(getResources().getString(R.string.cmd_sending));
+                    try {
+                        if (wifiDevice.isSwitchStatus()) {
+                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
+                            // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
+                        } else {
+                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
+                           // wifiDevice.setSwitchStatus(true);
+                        }
+                        mDeviceListAdapter.notifyDataSetChanged();
+                    } catch (RemoteException e) {
+                        Lg.i(TAG, e.toString());
+                    }
+//                } else {
+//                    showShortToast(getString(R.string.wifi_device_offline));
+//                }
+            } else {
+                showComReminderDialog();
             }
         }
     }
