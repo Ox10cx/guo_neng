@@ -110,7 +110,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_GETWIFIDEVICE: {
-                    handleDeviceRsp(result);
+                    handleDeviceRspBySocket(result);
                     break;
                 }
 
@@ -160,19 +160,19 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void handleUpdataLoginStatus(String result) {
-        JSONObject json;
-        try {
-            json = new JSONObject(result);
-            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
-                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
-            } else {
-                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void handleUpdataLoginStatus(String result) {
+//        JSONObject json;
+//        try {
+//            json = new JSONObject(result);
+//            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+//                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+//            } else {
+//                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void handleUnlinkDevice(Message msg, String result) {
         JSONObject json;
@@ -189,7 +189,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void handleDeviceRsp(String result) {
+    private void handleDeviceRspBySocket(String result) {
         JSONObject json;
         try {
             json = new JSONObject(result);
@@ -273,6 +273,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     }
 
     void refreshSocketStatus(int listIndex) {
+        Lg.i(TAG,"refreshSocketStatus");
         if (listIndex >= mListData.size()) {
             return;
         }
@@ -308,8 +309,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 });
             }
         });
-//        blindService();
     }
+
 
     /**
      * 绑定服务
@@ -355,7 +356,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         add_menu.setOnClickListener(this);
         mDeviceDao = new WifiDeviceDao(this);
         mDeviceList = (ListView) findViewById(R.id.devicelist);
-//        mDeviceList.setOnItemClickListener(this);
+        mDeviceList.setOnItemClickListener(this);
         mDeviceList.setOnItemLongClickListener(this);
         new BaseTools().setEditUserInfoListener(this);
         updataUserInfo();
@@ -385,6 +386,11 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     }
 
 
+    /**
+     * 更新设备状态
+     *
+     * @param imei
+     */
     void updateWifiDeviceStatus(final String imei) {
         ThreadPoolManager.getInstance().addTask(new Runnable() {
             @Override
@@ -454,7 +460,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    pingWifiDevice();
+                    pingWifiDeviceBySocket();
                     closeLoadingDialog();
                     closeComReminderDialog();
                     mDeviceListAdapter.notifyDataSetChanged();
@@ -602,7 +608,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         Lg.i(TAG, "onCmdTimeout_LOGOUT_STATUS");
                         setDeviceStatus(imei, WifiDevice.LOGOUT_STATUS);
                         mDeviceListAdapter.notifyDataSetChanged();
-                        //updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);          // commented out by qinjiangwei 2016/8/13
                     }
                 });
             }
@@ -657,6 +662,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             WifiDevice d = mListData.get(i);
             if (d.getAddress().equals(imei)) {
                 d.setStatus(status);
+                d.setSwitchStatus(false);
                 return;
             }
         }
@@ -694,7 +700,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     };
 
-    public void pingWifiDevice() {
+    /**
+     * 获取列表开关状态，socket service
+     */
+    public void pingWifiDeviceBySocket() {
         for (int i = 0; i < mListData.size(); i++) {
             WifiDevice d = mListData.get(i);
             if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
@@ -710,6 +719,22 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+
+//    /**
+//     * 获取列表开关状态，http service
+//     */
+//    public void pingWifiDeviceByhttp() {
+//        for (int i = 0; i < mListData.size(); i++) {
+//            WifiDevice d = mListData.get(i);
+//            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
+//                try {
+//                    MyApplication.getInstance().mService.getLightStatus(d.getAddress());
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     public void connectLongSocket() {
         try {
@@ -800,6 +825,12 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Lg.i(TAG, "onItemClick");
+        index=i;
+        refreshSocketStatus(index);
+
+
+
+        //跳到控制界面
 //        if (i < 0) {
 //            return;
 //        }
@@ -823,6 +854,52 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 //                showShortToast(getString(R.string.wifi_device_offline));
 //            }
 //        }
+    }
+
+    private void handleDeviceRspByHttp(String result) {
+        JSONObject json;
+        try {
+            json = new JSONObject(result);
+            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+            } else {
+                JSONObject ob = json.getJSONObject("wifi");
+                int i;
+                String imei = ob.getString("imei");
+                WifiDevice d = null;
+                for (i = 0; i < mListData.size(); i++) {
+                    if (imei.equals(mListData.get(i).getAddress())) {
+                        d = mListData.get(i);
+                        break;
+                    }
+                }
+                Lg.i("hjq", "d = " + d);
+
+                if (d != null) {
+                    String name;
+                    int status = WifiDevice.INACTIVE_STATUS;
+
+                    if (ob.has("name")) {
+                        name = ob.getString("name");
+                    } else {
+                        name = "unkown";
+                    }
+
+                    if (ob.has("status")) {
+                        status = ob.getInt("status");
+                    }
+
+                    d.setName(name);
+                    d.setStatus(status);
+                    mListData.set(i, d);
+
+                    mDeviceListAdapter.notifyDataSetChanged();
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
