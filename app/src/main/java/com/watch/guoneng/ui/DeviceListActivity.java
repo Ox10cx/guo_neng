@@ -527,8 +527,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
 
         @Override
-        public void onSwitchRsp(final String imei, final boolean ret) throws RemoteException {
-            Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret);
+        public void onSwitchRsp(final String imei, final boolean ret, final boolean status) throws RemoteException {
+            Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret + " status ->>>" + status);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -543,9 +543,9 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     }
 
                     if (d != null && ret) {
-                        boolean status = d.isSwitchStatus();
+                       // boolean status = d.isSwitchStatus();  // commented by qinjiangwei the new status is from wifi device 2016/8/15
 
-                        d.setSwitchStatus(!status);
+                        d.setSwitchStatus(status);
                         d.setStatus(WifiDevice.LOGIN_STATUS);
 
                         mDeviceListAdapter.notifyDataSetChanged();

@@ -487,15 +487,21 @@ public class WifiHttpConnectService extends Service {
                     try {
                         int i;
                         boolean ret;
+                        boolean status = false;
 
-                        if ("1".equals(value)) {
+                        // 第一个数字为命令执行结果，第二个数字为新的状态
+                        String cmd_ret = value.substring(0, 1);
+                        String new_status = value.substring(1);
+
+                        if ("1".equals(cmd_ret)) {
                             ret = true;
+                            status = "1".equals(new_status);
                         } else {
                             ret = false;
                         }
 
                         for (i = 0; i < n; i++) {
-                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, ret);
+                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, ret, status);
                         }
                     } catch (RemoteException e) {
                         Log.e(TAG, "remote call exception", e);
