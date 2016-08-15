@@ -77,10 +77,10 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
                             PreferenceUtil.getInstance(AuthLoginActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
                             PreferenceUtil.getInstance(AuthLoginActivity.this).setToken(user.getToken());
                             MyApplication.getInstance().mToken = user.getToken();    // update the token info.
-                            startActivity(new Intent(AuthLoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(AuthLoginActivity.this, DeviceListActivity.class));
+                            finish();
                         }
                     } catch (JSONException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     break;
@@ -97,7 +97,6 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
                         PreferenceUtil.getInstance(AuthLoginActivity.this).setString(PreferenceUtil.SHIBI, shibi);
                         finish();
                     } catch (JSONException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                     break;
@@ -132,7 +131,6 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.back:
                 MyApplication.getInstance().exit();
@@ -151,7 +149,6 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
                         public void run() {
-                            // TODO Auto-generated method stub
                             String result = HttpUtil.post(HttpUtil.URL_LOGIN,
                                     new BasicNameValuePair(JsonUtil.PHONE, phone),
                                     new BasicNameValuePair(JsonUtil.PASSWORD,

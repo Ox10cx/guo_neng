@@ -74,44 +74,7 @@ public class FirstActivity extends BaseActivity {
 
             switch (msg.what) {
                 case MSG_LOGIN: {
-                    try {
-                        JSONObject json = new JSONObject(result);
-                        if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
-                            BaseTools.showToastByLanguage(FirstActivity.this, json);
-                            startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
-                        } else {
-                            JSONObject msgobj = json.getJSONObject("msg");
-                            String token = msgobj.getString("token");
-                            JSONObject userobj = json.getJSONObject("user");
-                            String id = userobj.getString(JsonUtil.ID);
-                            String name = userobj.getString(JsonUtil.NAME);
-                            String phone = userobj.getString(JsonUtil.PHONE);
-                            String sex = userobj.getString(JsonUtil.SEX);
-                            //   String password = userobj.getString(JsonUtil.PASSWORD);
-                            String create_time = userobj.getString(JsonUtil.CREATE_TIME);
-
-                            String image_thumb = null;
-                            String image = null;
-                            try {
-                                image_thumb = userobj.getString(JsonUtil.IMAGE_THUMB);
-                                image = userobj.getString(JsonUtil.IMAGE);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                            User user = new User(id, name, phone, sex, password, create_time, image_thumb, image, token);
-                            new UserDao(FirstActivity.this).insert(user);
-//                            showLongToast(getString(R.string.login_success));
-                            PreferenceUtil.getInstance(FirstActivity.this).setUid(user.getId());
-                            PreferenceUtil.getInstance(FirstActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
-                            PreferenceUtil.getInstance(FirstActivity.this).setToken(user.getToken());
-                            MyApplication.getInstance().mToken = user.getToken();
-                            startActivity(new Intent(FirstActivity.this, DeviceListActivity.class));
-                            finish();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    handleLogin(result);
                     break;
                 }
 
@@ -120,6 +83,52 @@ public class FirstActivity extends BaseActivity {
             }
         }
     };
+
+    /**
+     * 处理登录
+     *
+     * @param result
+     */
+    private void handleLogin(String result) {
+        try {
+            JSONObject json = new JSONObject(result);
+            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                BaseTools.showToastByLanguage(FirstActivity.this, json);
+                startActivity(new Intent(FirstActivity.this, AuthLoginActivity.class));
+            } else {
+                JSONObject msgobj = json.getJSONObject("msg");
+                String token = msgobj.getString("token");
+                JSONObject userobj = json.getJSONObject("user");
+                String id = userobj.getString(JsonUtil.ID);
+                String name = userobj.getString(JsonUtil.NAME);
+                String phone = userobj.getString(JsonUtil.PHONE);
+                String sex = userobj.getString(JsonUtil.SEX);
+                //   String password = userobj.getString(JsonUtil.PASSWORD);
+                String create_time = userobj.getString(JsonUtil.CREATE_TIME);
+
+                String image_thumb = null;
+                String image = null;
+                try {
+                    image_thumb = userobj.getString(JsonUtil.IMAGE_THUMB);
+                    image = userobj.getString(JsonUtil.IMAGE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                User user = new User(id, name, phone, sex, password, create_time, image_thumb, image, token);
+                new UserDao(FirstActivity.this).insert(user);
+//                            showLongToast(getString(R.string.login_success));
+                PreferenceUtil.getInstance(FirstActivity.this).setUid(user.getId());
+                PreferenceUtil.getInstance(FirstActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
+                PreferenceUtil.getInstance(FirstActivity.this).setToken(user.getToken());
+                MyApplication.getInstance().mToken = user.getToken();
+                startActivity(new Intent(FirstActivity.this, DeviceListActivity.class));
+                finish();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

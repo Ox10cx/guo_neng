@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.watch.guoneng.R;
 import com.watch.guoneng.tool.BaseTools;
+import com.watch.guoneng.tool.GetCodeCountTimer;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.util.HttpUtil;
 import com.watch.guoneng.util.JsonUtil;
@@ -18,9 +19,6 @@ import com.watch.guoneng.util.ThreadPoolManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class FindPasswordActivity extends BaseActivity {
     private EditText phone;
@@ -31,7 +29,6 @@ public class FindPasswordActivity extends BaseActivity {
     private Button getcode;
     private Button save;
 
-    private Timer mTimer;
     private String phonestr = "";
     private String codestr = "";
     private String inputcode = "";
@@ -41,19 +38,6 @@ public class FindPasswordActivity extends BaseActivity {
     private final int getcode_what = 1;
     private final String TAG = FindPasswordActivity.class.getName();
 
-    private Handler timerHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            int num = msg.what;
-            getcode.setText(num + getString(R.string.second));
-            if (num == -1) {
-                mTimer.cancel();
-                getcode.setEnabled(true);
-                getcode.setText(R.string.str_get_pwd);
-            }
-        }
-
-        ;
-    };
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -92,18 +76,9 @@ public class FindPasswordActivity extends BaseActivity {
                             codestr = String.valueOf(JsonUtil.getInt(json, JsonUtil.CODE));
                             save.setEnabled(true);
                             showShortToast(getString(R.string.code_has_send));
-                            mTimer = new Timer();
-                            mTimer.schedule(new TimerTask() {
-                                int num = 90;
-
-                                @Override
-                                public void run() {
-                                    Message msg = new Message();
-                                    msg.what = num;
-                                    timerHandler.sendMessage(msg);
-                                    num--;
-                                }
-                            }, 0, 1000);
+                            GetCodeCountTimer getCodeCountTimer = new GetCodeCountTimer(90 * 1000,
+                                    1000, getcode, FindPasswordActivity.this);
+                            getCodeCountTimer.start();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -150,7 +125,7 @@ public class FindPasswordActivity extends BaseActivity {
                 phonestr = phone.getText().toString().trim();
                 if (BaseTools.isPhoneNumber(phonestr)) {
                     getcode.setText(getString(R.string.is_sending));
-                    getcode.setEnabled(false);
+//                    getcode.setEnabled(false);
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
                         public void run() {
