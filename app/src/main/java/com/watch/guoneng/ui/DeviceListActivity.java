@@ -825,10 +825,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Lg.i(TAG, "onItemClick");
-        index=i;
+        index = i;
         refreshSocketStatus(index);
-
-
 
         //跳到控制界面
 //        if (i < 0) {
