@@ -294,6 +294,9 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        if (FirstActivity.context != null) {
+            FirstActivity.context.finish();
+        }
         registerNetChangeBroad();
         fillListData();
         showLoadingDialog(getResources().getString(R.string.waiting));

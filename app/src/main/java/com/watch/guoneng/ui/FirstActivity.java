@@ -34,6 +34,7 @@ public class FirstActivity extends BaseActivity {
     private final int MSG_LOGIN = 0;
     private Button bt_login;
     private Button bt_resgister;
+    public static FirstActivity context;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -136,6 +137,7 @@ public class FirstActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_frist);
+        context = this;
         initView();
         initUser();
     }
@@ -202,13 +204,15 @@ public class FirstActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.bt_login:
                 intent = new Intent(FirstActivity.this, AuthLoginActivity.class);
+                intent.putExtra("type", 1);
                 startActivity(intent);
-                finish();
+//                finish();
                 break;
             case R.id.bt_resgister:
                 intent = new Intent(FirstActivity.this, AuthRegisterActivity.class);
+                intent.putExtra("type", 1);
                 startActivity(intent);
-                finish();
+//                finish();
                 break;
             default:
                 break;

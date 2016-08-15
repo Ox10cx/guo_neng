@@ -193,12 +193,12 @@ public class AuthRegisterActivity extends BaseActivity {
         registerbtn.setEnabled(false);
     }
 
-    
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back: {
-                onBackPressed();
+                finish();
                 break;
             }
 
@@ -311,5 +311,4 @@ public class AuthRegisterActivity extends BaseActivity {
         }
         return true;
     }
-
 }

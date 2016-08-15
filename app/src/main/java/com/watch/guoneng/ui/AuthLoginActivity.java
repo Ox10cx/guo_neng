@@ -133,7 +133,7 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                MyApplication.getInstance().exit();
+                onBackPressed();
                 break;
 
             case R.id.updatepassbtn:
@@ -195,7 +195,11 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onBackPressed() {
+        if (getIntent().getIntExtra("type", 0) == 1) {
+            finish();
+        } else {
+            MyApplication.getInstance().exit();
+        }
         super.onBackPressed();
-        MyApplication.getInstance().exit();
     }
 }
