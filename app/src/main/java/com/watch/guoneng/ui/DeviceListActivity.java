@@ -273,7 +273,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     }
 
     void refreshSocketStatus(int listIndex) {
-        Lg.i(TAG,"refreshSocketStatus");
+        Lg.i(TAG, "refreshSocketStatus");
         if (listIndex >= mListData.size()) {
             return;
         }
@@ -550,10 +550,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
                     if (d != null && ret) {
                         boolean status = d.isSwitchStatus();
-
                         d.setSwitchStatus(!status);
                         d.setStatus(WifiDevice.LOGIN_STATUS);
-
                         mDeviceListAdapter.notifyDataSetChanged();
                     }
                 }
@@ -825,9 +823,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Lg.i(TAG, "onItemClick");
-        index=i;
+        index = i;
         refreshSocketStatus(index);
-
 
 
         //跳到控制界面
@@ -975,20 +972,20 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             }
         } else {
             if (!NetStatuCheck.checkGPRSState(DeviceListActivity.this).equals("unavailable")) {
-         //       if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {          // 该状态不需要判断
-                    showLoadingDialog(getResources().getString(R.string.cmd_sending));
-                    try {
-                        if (wifiDevice.isSwitchStatus()) {
-                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
-                            // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
-                        } else {
-                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
-                           // wifiDevice.setSwitchStatus(true);
-                        }
-                        mDeviceListAdapter.notifyDataSetChanged();
-                    } catch (RemoteException e) {
-                        Lg.i(TAG, e.toString());
+//                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {          // 该状态不需要判断
+                showLoadingDialog(getResources().getString(R.string.cmd_sending));
+                try {
+                    if (wifiDevice.isSwitchStatus()) {
+                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
+                        // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
+                    } else {
+                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
+                        // wifiDevice.setSwitchStatus(true);
                     }
+                    mDeviceListAdapter.notifyDataSetChanged();
+                } catch (RemoteException e) {
+                    Lg.i(TAG, e.toString());
+                }
 //                } else {
 //                    showShortToast(getString(R.string.wifi_device_offline));
 //                }
