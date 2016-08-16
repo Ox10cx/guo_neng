@@ -247,29 +247,54 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 BaseTools.showToastByLanguage(DeviceListActivity.this, json);
             } else {
                 JSONArray wifilist = json.getJSONArray("wifis");
-                for (int i = 0; i < wifilist.length(); i++) {
-                    JSONObject ob = wifilist.getJSONObject(i);
-                    String address = ob.getString("imei");
-                    String name;
-                    int status = WifiDevice.INACTIVE_STATUS;
+                if (!isBlindService) {
+                    if (wifilist.length() > mListData.size()) {
+                        JSONObject ob = wifilist.getJSONObject(mListData.size());
+                        String address = ob.getString("imei");
+                        String name;
+                        int status = WifiDevice.INACTIVE_STATUS;
 
-                    if (ob.has("name")) {
-                        name = ob.getString("name");
-                    } else {
-                        name = "unkown";
+                        if (ob.has("name")) {
+                            name = ob.getString("name");
+                        } else {
+                            name = "unkown";
+                        }
+
+                        if (ob.has("status")) {
+                            status = ob.getInt("status");
+                        }
+
+                        WifiDevice d = new WifiDevice(null, name, address);
+                        d.setStatus(status);
+                        mListData.add(d);
+                        mDeviceListAdapter.notifyDataSetChanged();
+                        isItemRefresh = true;
+                        //刷新最后一项的状态
+                        refreshSocketStatus(mListData.size() - 1);
                     }
+                } else {
+                    for (int i = 0; i < wifilist.length(); i++) {
+                        JSONObject ob = wifilist.getJSONObject(i);
+                        String address = ob.getString("imei");
+                        String name;
+                        int status = WifiDevice.INACTIVE_STATUS;
 
-                    if (ob.has("status")) {
-                        status = ob.getInt("status");
+                        if (ob.has("name")) {
+                            name = ob.getString("name");
+                        } else {
+                            name = "unkown";
+                        }
+
+                        if (ob.has("status")) {
+                            status = ob.getInt("status");
+                        }
+
+                        WifiDevice d = new WifiDevice(null, name, address);
+                        d.setStatus(status);
+                        mListData.add(d);
                     }
-
-                    WifiDevice d = new WifiDevice(null, name, address);
-                    d.setStatus(status);
-                    mListData.add(d);
+                    mDeviceListAdapter.notifyDataSetChanged();
                 }
-
-                mDeviceListAdapter.notifyDataSetChanged();
-                //
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -372,7 +397,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
 
     private void fillListData() {
-        mListData = new ArrayList<>(10);
+        mListData = new ArrayList<>();
         mDeviceListAdapter = new DeviceListAdapter(this, mListData, this);
         mDeviceList.setAdapter(mDeviceListAdapter);
     }
@@ -755,7 +780,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 int changed = b.getInt("ret", 0);
                 Lg.i(TAG, "changed = " + changed);
                 if (changed == 1) {
-                    mListData.clear();
+//                    mListData.clear();
                     isBlindService = false;
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
