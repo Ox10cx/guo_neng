@@ -451,18 +451,23 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    public void getUnreadMsg(int pageIndex) {
-        String result = HttpUtil.post(HttpUtil.URL_GETUNREADMSG,
-                new BasicNameValuePair("pi", Integer.toString(pageIndex)),
-                new BasicNameValuePair("ps", Integer.toString(MSG_PS)));
-        Log.i(TAG, "get http message " + result);
-        Bundle b = new Bundle();
-        b.putInt("pi", pageIndex);
-        b.putString("result", result);
-        Message msg = new Message();
-        msg.obj = b;
-        msg.what = MSG_GETMANSWITCHRSP;
-        mHandler.sendMessage(msg);
+    public void getUnreadMsg(final int pageIndex) {
+        ThreadPoolManager.getInstance().addTask(new Runnable() {
+            @Override
+            public void run() {
+                String result = HttpUtil.post(HttpUtil.URL_GETUNREADMSG,
+                        new BasicNameValuePair("pi", Integer.toString(pageIndex)),
+                        new BasicNameValuePair("ps", Integer.toString(MSG_PS)));
+                Log.i(TAG, "get http message " + result);
+                Bundle b = new Bundle();
+                b.putInt("pi", pageIndex);
+                b.putString("result", result);
+                Message msg = new Message();
+                msg.obj = b;
+                msg.what = MSG_GETMANSWITCHRSP;
+                mHandler.sendMessage(msg);
+            }
+        });
     }
 
 
