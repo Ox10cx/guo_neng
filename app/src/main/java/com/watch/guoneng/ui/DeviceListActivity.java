@@ -190,7 +190,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private static final String IMEI_PATTERN = "([0-9a-fA-F]+)";
     private static final String CLIENT = "QC";
     private static final String SEP = "@";
-    private static final String END = "$";
     private static final String NOTIFY_CMD = "016";
 
     /**
@@ -199,7 +198,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
      * @param s
      */
     public void parseSwitchResponse(String s) {
-        Lg.i(TAG, "parseResponse->>>" + s);
+        Lg.i(TAG, "parseSwitchResponse->>>" + s);
         Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
         Matcher m = p.matcher(s);
 
