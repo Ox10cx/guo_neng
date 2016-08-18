@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -46,6 +47,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 16-3-7.
@@ -59,6 +64,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private static final int MSG_UPDATELOGINSTATUS = 4;
     private static final int MSG_EDITDEVICENAME = 5;
     private static final int MSG_DEVICESWITCHSTATUSRSP = 6;
+    private static final int MSG_GETMANSWITCHRSP = 8;
 
     private ListView mDeviceList;
     private DeviceListAdapter mDeviceListAdapter;
@@ -92,6 +98,11 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private String device_name = "";
     private NetworkChangeReceiver networkChangeReceiver = null;
     private boolean isBlindService = false;
+
+    private Timer timer;
+    private static final int MSG_PS = 5;
+    private static final int MSG_PI = 0;
+
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -142,11 +153,87 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
                     mDeviceListAdapter.notifyDataSetChanged();
                     break;
+                case MSG_GETMANSWITCHRSP:
+                    handleManSwitchRsp(msg);
+                    break;
+
                 default:
                     break;
             }
         }
     };
+
+    public void handleManSwitchRsp(Message msg) {
+        String result;
+        Bundle b = (Bundle) msg.obj;
+        result = b.getString("result");
+        JSONObject json = null;
+        try {
+            json = new JSONObject(result);
+            int pi = b.getInt("pi");
+            JSONArray msgList = json.getJSONArray("list");
+            for (int i = 0; i < msgList.length(); i++) {
+                JSONObject obj = new JSONObject(msgList.getString(i));
+                String resultMsg = obj.getString("message");
+                parseSwitchResponse(resultMsg);
+            }
+
+            // 还有未读消息,再接着读取
+            if (msgList.length() == MSG_PS) {
+                getUnreadMsg(++pi);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static final String IMEI_PATTERN = "([0-9a-fA-F]+)";
+    private static final String CLIENT = "QC";
+    private static final String SEP = "@";
+    private static final String END = "$";
+    private static final String NOTIFY_CMD = "016";
+
+    /**
+     * 解析手动控制开关后，返回的结果
+     *
+     * @param s
+     */
+    public void parseSwitchResponse(String s) {
+        Lg.i(TAG, "parseResponse->>>" + s);
+        Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
+        Matcher m = p.matcher(s);
+
+        while (m.find()) {
+            String cmd = m.group(1);
+            String token = m.group(2);
+            String imei = m.group(3);
+            String value = m.group(4);
+            if (NOTIFY_CMD.equals(cmd)) {
+                updataListStatus(imei, value);
+            }
+        }
+    }
+
+    /**
+     * 通过imei更新list的开关状态
+     *
+     * @param imei
+     * @param value
+     */
+    public void updataListStatus(String imei, String value) {
+        for (int i = 0; i < mListData.size(); i++) {
+            if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                WifiDevice wifiDevice = mListData.get(i);
+                if (value.equals("1")) {
+                    wifiDevice.setSwitchStatus(true);
+                } else {
+                    wifiDevice.setSwitchStatus(false);
+                }
+                break;
+            }
+        }
+        mDeviceListAdapter.notifyDataSetChanged();
+    }
 
     private void handleEditDeviceName(String result) {
         JSONObject json;
@@ -319,6 +406,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        timer = new Timer();
         if (FirstActivity.context != null) {
             FirstActivity.context.finish();
         }
@@ -342,6 +430,40 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 });
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                getUnreadMsg(MSG_PI);
+            }
+        }, 0, 10 * 1000);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
+    public void getUnreadMsg(int pageIndex) {
+        String result = HttpUtil.post(HttpUtil.URL_GETUNREADMSG,
+                new BasicNameValuePair("pi", Integer.toString(pageIndex)),
+                new BasicNameValuePair("ps", Integer.toString(MSG_PS)));
+        Log.i(TAG, "get http message " + result);
+        Bundle b = new Bundle();
+        b.putInt("pi", pageIndex);
+        b.putString("result", result);
+        Message msg = new Message();
+        msg.obj = b;
+        msg.what = MSG_GETMANSWITCHRSP;
+        mHandler.sendMessage(msg);
     }
 
 
