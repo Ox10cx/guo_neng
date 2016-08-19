@@ -570,10 +570,11 @@ public class SmartLinkActivity extends BaseActivity {
                     showShortToast(getString(R.string.wifi_id_not_empty));
                     return;
                 }
-                if (passEdit.getText().toString() == null || passEdit.getText().toString().trim().length() == 0) {
-                    showShortToast(getString(R.string.wifi_pwd_not_empty));
-                    return;
-                }
+//                if (passEdit.getText().toString() == null || passEdit.getText().toString().trim().length() == 0) {
+//                    showShortToast(getString(R.string.wifi_pwd_not_empty));
+//                    return;
+//                }
+
 //                if (scannerMac == null || scannerMac.trim().length() == 0) {
 //                    showShortToast(getString(R.string.scanner_mac));
 //                } else {

@@ -131,7 +131,7 @@ public class AuthRegisterActivity extends BaseActivity {
                             PreferenceUtil.getInstance(AuthRegisterActivity.this).getString(PreferenceUtil.PHONE, user.getPhone());
                             PreferenceUtil.getInstance(AuthRegisterActivity.this).setToken(user.getToken());
                             MyApplication.getInstance().mToken = user.getToken();    // update the token info.
-                            startActivity(new Intent(AuthRegisterActivity.this, MainActivity.class));
+                            startActivity(new Intent(AuthRegisterActivity.this, DeviceListActivity.class));
                             finish();
                         }
                     } catch (JSONException e) {

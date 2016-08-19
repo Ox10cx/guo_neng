@@ -209,7 +209,7 @@ public class ControlLightActivity extends BaseActivity implements View.OnClickLi
         }
 
         @Override
-        public void onSwitchRsp(String imei, final boolean ret) throws RemoteException {
+        public void onSwitchRsp(String imei, String ret) throws RemoteException {
 
         }
 

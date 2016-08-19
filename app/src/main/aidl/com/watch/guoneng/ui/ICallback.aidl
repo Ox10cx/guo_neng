@@ -8,7 +8,7 @@ interface ICallback {
        boolean onRead(String address, in byte[] val);
        boolean onWrite(String address, out byte[] val);
        void onNotify(String imei, int type);
-       void onSwitchRsp(String imei, boolean ret);
+       void onSwitchRsp(String imei, String ret);
 
        //获取led状态
        void onGetStatusRsp(String imei, int ret);

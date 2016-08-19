@@ -47,7 +47,7 @@ public class WifiConnectService extends Service {
     private static final String NOTIFY_CMD = "016";
     private static final String NOTIFY_RSP = "017";
 
-    private static final String SWITCH_CMD = "018";
+    public static final String SWITCH_CMD = "018";
     private static final String SWITCH_RSP = "019";
 
     private static final String GET_STATUS_CMD = "020";
@@ -460,16 +460,16 @@ public class WifiConnectService extends Service {
                     int n = mCallbacks.beginBroadcast();
                     try {
                         int i;
-                        boolean ret;
-
-                        if ("1".equals(value)) {
-                            ret = true;
-                        } else {
-                            ret = false;
-                        }
+//                        boolean ret;
+//
+//                        if ("1".equals(value)) {
+//                            ret = true;
+//                        } else {
+//                            ret = false;
+//                        }
 
                         for (i = 0; i < n; i++) {
-                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, ret);
+                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, value);
                         }
                     } catch (RemoteException e) {
                         Log.e(TAG, "remote call exception", e);

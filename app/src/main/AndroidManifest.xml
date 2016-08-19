@@ -62,12 +62,6 @@
         </activity>
 
         <activity
-            android:name=".ui.MainActivity"
-            android:configChanges="orientation|screenSize"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
             android:name=".ui.AuthLoginActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -91,9 +85,6 @@
         <activity
             android:name=".ui.InfoActivity"
             android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".ui.GroupLightActivity"
-            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".ui.ControlLightActivity"
@@ -114,39 +105,13 @@
 
 
         <activity
-            android:name=".ui.WifiSettingActivity"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
             android:name=".ui.FindPasswordActivity"
             android:screenOrientation="portrait"></activity>
 
-        <activity
-            android:name=".ui.LightSettingActivity"
-            android:screenOrientation="portrait"></activity>
-
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="KF1Sp0yWSXX5mjt01kXOGDCb"></meta-data>
 
         <service
             android:name=".service.WifiConnectService"
             android:enabled="true"></service>
-
-        <service
-            android:name=".service.WifiHttpConnectService"
-            android:enabled="true"></service>
-
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote"></service>
-
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <!--  </>值来自开发者平台取得的AppKey-->
 
     </application>
 </manifest>

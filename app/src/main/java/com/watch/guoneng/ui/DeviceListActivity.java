@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.watch.guoneng.BuildConfig;
 import com.watch.guoneng.R;
 import com.watch.guoneng.adapter.DeviceListAdapter;
 import com.watch.guoneng.app.MyApplication;
@@ -26,7 +25,6 @@ import com.watch.guoneng.dao.WifiDeviceDao;
 import com.watch.guoneng.model.User;
 import com.watch.guoneng.model.WifiDevice;
 import com.watch.guoneng.service.WifiConnectService;
-import com.watch.guoneng.service.WifiHttpConnectService;
 import com.watch.guoneng.tool.BaseTools;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.tool.NetStatuCheck;
@@ -300,12 +298,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
      */
     private void blindService() {
         Lg.i(TAG, "blindService");
-        Intent i = null;
-        if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
-            i = new Intent(this, WifiConnectService.class);
-        } else {
-            i = new Intent(this, WifiHttpConnectService.class);
-        }
+        Intent i = new Intent(this, WifiConnectService.class);
         getApplicationContext().bindService(i, mConnection, BIND_AUTO_CREATE);
     }
 
@@ -489,38 +482,56 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
 
         @Override
-        public void onNotify(final String imei, int type) throws RemoteException {
+        public void onNotify(final String imei, final int type) throws RemoteException {
             Lg.i(TAG, "onNotify-type-->>>>" + type);
-//            if (type == 100) {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    updateWifiDeviceStatus(imei);
+                    for (int i = 0; i < mListData.size(); i++) {
+                        if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                            if (type == 0) {
+                                mListData.get(i).setSwitchStatus(false);
+                            } else if (type == 1) {
+                                mListData.get(i).setSwitchStatus(true);
+                            } else if (type == 2) {
+                                mListData.get(i).setStatus(2);
+                            } else {
+                                mListData.get(i).setStatus(1);
+                                mListData.get(i).setSwitchStatus(false);
+                            }
+                            break;
+                        }
+                    }
+                    mDeviceListAdapter.notifyDataSetChanged();
                 }
             });
-//            } else if (type == 1) {
-            for (int i = 0; i < mListData.size(); i++) {
-                if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
-                    MyApplication.getInstance().mService.getLightStatus(mListData.get(i).getAddress());
-                    break;
-                }
-            }
-//            }
-
         }
 
         @Override
-        public void onSwitchRsp(String imei, boolean ret) throws RemoteException {
+        public void onSwitchRsp(final String imei, final String ret) throws RemoteException {
             Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     closeLoadingDialog();
+                    if (!"FF".equals(ret)) {
+                        for (int i = 0; i < mListData.size(); i++) {
+                            if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                                if ("01".equals(ret)) {
+                                    mListData.get(i).setSwitchStatus(true);
+                                } else {
+                                    mListData.get(i).setSwitchStatus(false);
+                                }
+                            }
+                        }
+                        mDeviceListAdapter.notifyDataSetChanged();
+                    }
                 }
             });
-            if (!ret) {
+            if ("FF".equals(ret)) {
                 MyApplication.getInstance().mService.getLightStatus(mListData.get(index).getAddress());
             }
+
         }
 
         @Override
@@ -550,7 +561,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     closeLoadingDialog();
                 }
             });
-            if (cmd.equals(WifiConnectService.PING_CMD)) {
+            if (cmd.equals(WifiConnectService.PING_CMD)||cmd.equals(WifiConnectService.SWITCH_CMD)) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -591,7 +602,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
 
         @Override
-        public void onGetBrightChromeRsp(String imei, int index, int bright, int chrome) throws RemoteException {
+        public void onGetBrightChromeRsp(String imei, int index, int bright, int chrome) throws
+                RemoteException {
 
         }
 
@@ -606,6 +618,9 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             WifiDevice d = mListData.get(i);
             if (d.getAddress().equals(imei)) {
                 d.setStatus(status);
+                if(status!=2){
+                    d.setSwitchStatus(false);
+                }
                 return;
             }
         }
@@ -628,15 +643,12 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             } catch (RemoteException e) {
                 Lg.i(TAG, "" + e);
             }
-
-            if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        connectLongSocket();
-                    }
-                });
-            }
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    connectLongSocket();
+                }
+            });
         }
     };
 
@@ -646,8 +658,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
                     MyApplication.getInstance().mService.ping(d.getAddress(), 1);
-
-                    //lzg edit
                     MyApplication.getInstance().mService.getLightStatus(d.getAddress());
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -774,7 +784,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Lg.i(TAG, "onItemLongClick");
-        //删除
+//删除
         final WifiDevice d = mListData.get(i);
         index = i;
         final EditDeviceDialog dialog = new EditDeviceDialog(this);
@@ -821,15 +831,15 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             if (MyApplication.getInstance().longConnected) {
                 if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
                     try {
-                        showLoadingDialog(getResources().getString(R.string.cmd_sending));
+//                        showLoadingDialog(getResources().getString(R.string.cmd_sending));
                         if (wifiDevice.isSwitchStatus()) {
                             MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
-                            wifiDevice.setSwitchStatus(false);
+//                            wifiDevice.setSwitchStatus(false);
                         } else {
                             MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
-                            wifiDevice.setSwitchStatus(true);
+//                            wifiDevice.setSwitchStatus(true);
                         }
-                        mDeviceListAdapter.notifyDataSetChanged();
+//                        mDeviceListAdapter.notifyDataSetChanged();
                     } catch (RemoteException e) {
                         Lg.i(TAG, e.toString());
                     }
