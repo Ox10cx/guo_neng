@@ -49,7 +49,7 @@ android.buildTypes.all {
     buildConfigField "String", "PASSWORD_SALT", "\"ggggukggg\""
     buildConfigField "String", "PASSWORD_ENC_SECRET", "\"sggggxxyyyzzzzgggeee213,2355\""
     buildConfigField "String", "PASSWORD_PREFERENCE_KEY", "\"passwordkey\""
-    buildConfigField "String", "USE_LONG_CONNECTION", "\"0\""
+    buildConfigField "String", "USE_LONG_CONNECTION", "\"1\""
 }
 
 android {
