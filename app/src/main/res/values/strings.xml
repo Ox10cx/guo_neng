@@ -4,7 +4,7 @@
     <!-- system -->
     <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
-    <string name="app_versionName" translatable="false">2.2.0</string>
+    <string name="app_versionName" translatable="false">3.0.0</string>
     <string name="system_image_logo">Logo</string>
     <string name="system_image_setting">设置</string>
     <string name="system_image_search">搜索</string>
