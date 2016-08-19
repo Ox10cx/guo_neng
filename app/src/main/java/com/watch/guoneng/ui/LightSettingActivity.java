@@ -129,7 +129,7 @@ public class LightSettingActivity extends BaseActivity {
         }
 
         @Override
-        public void onSwitchRsp(String imei, final boolean ret, final boolean status) throws RemoteException {
+        public void onSwitchRsp(String imei, final boolean ret) throws RemoteException {
 
         }
 

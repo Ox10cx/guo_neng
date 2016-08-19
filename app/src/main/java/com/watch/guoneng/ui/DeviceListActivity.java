@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -47,10 +46,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 16-3-7.
@@ -64,18 +59,11 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private static final int MSG_UPDATELOGINSTATUS = 4;
     private static final int MSG_EDITDEVICENAME = 5;
     private static final int MSG_DEVICESWITCHSTATUSRSP = 6;
-    private static final int MSG_GETMANSWITCHRSP = 8;
 
     private ListView mDeviceList;
     private DeviceListAdapter mDeviceListAdapter;
     ArrayList<WifiDevice> mListData;
     WifiDeviceDao mDeviceDao;
-
-    private int mLastIndex = 0;     // 全部刷新状态使用
-    /**
-     * 是否是item 刷新
-     */
-    private boolean isItemRefresh = false;
 
     private ImageView left_menu;
     private ImageView add_menu;
@@ -99,11 +87,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     private NetworkChangeReceiver networkChangeReceiver = null;
     private boolean isBlindService = false;
 
-    private Timer timer;
-    private static final int MSG_PS = 5;
-    private static final int MSG_PI = 0;
-
-
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             closeLoadingDialog();
@@ -125,7 +108,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_GETWIFIDEVICE: {
-                    handleDeviceRspBySocket(result);
+                    handleDeviceRsp(result);
                     break;
                 }
 
@@ -135,7 +118,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 }
 
                 case MSG_UPDATELOGINSTATUS: {
-//                    handleUpdataLoginStatus(result);
+                    handleUpdataLoginStatus(result);
                     break;
                 }
 
@@ -149,90 +132,13 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     } else {
                         wifiDevice.setSwitchStatus(false);
                     }
-                    wifiDevice.setStatus(WifiDevice.LOGIN_STATUS);
-
                     mDeviceListAdapter.notifyDataSetChanged();
                     break;
-                case MSG_GETMANSWITCHRSP:
-                    handleManSwitchRsp(msg);
-                    break;
-
                 default:
                     break;
             }
         }
     };
-
-    public void handleManSwitchRsp(Message msg) {
-        String result;
-        Bundle b = (Bundle) msg.obj;
-        result = b.getString("result");
-        JSONObject json = null;
-        try {
-            json = new JSONObject(result);
-            int pi = b.getInt("pi");
-            JSONArray msgList = json.getJSONArray("list");
-            for (int i = 0; i < msgList.length(); i++) {
-                JSONObject obj = new JSONObject(msgList.getString(i));
-                String resultMsg = obj.getString("message");
-                parseSwitchResponse(resultMsg);
-            }
-
-            // 还有未读消息,再接着读取
-            if (msgList.length() == MSG_PS) {
-                getUnreadMsg(++pi);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static final String IMEI_PATTERN = "([0-9a-fA-F]+)";
-    private static final String CLIENT = "QC";
-    private static final String SEP = "@";
-    private static final String NOTIFY_CMD = "016";
-
-    /**
-     * 解析手动控制开关后，返回的结果
-     *
-     * @param s
-     */
-    public void parseSwitchResponse(String s) {
-        Lg.i(TAG, "parseSwitchResponse->>>" + s);
-        Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
-        Matcher m = p.matcher(s);
-
-        while (m.find()) {
-            String cmd = m.group(1);
-            String token = m.group(2);
-            String imei = m.group(3);
-            String value = m.group(4);
-            if (NOTIFY_CMD.equals(cmd)) {
-                updataListStatus(imei, value);
-            }
-        }
-    }
-
-    /**
-     * 通过imei更新list的开关状态
-     *
-     * @param imei
-     * @param value
-     */
-    public void updataListStatus(String imei, String value) {
-        for (int i = 0; i < mListData.size(); i++) {
-            if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
-                WifiDevice wifiDevice = mListData.get(i);
-                if (value.equals("1")) {
-                    wifiDevice.setSwitchStatus(true);
-                } else {
-                    wifiDevice.setSwitchStatus(false);
-                }
-                break;
-            }
-        }
-        mDeviceListAdapter.notifyDataSetChanged();
-    }
 
     private void handleEditDeviceName(String result) {
         JSONObject json;
@@ -250,19 +156,19 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-//    private void handleUpdataLoginStatus(String result) {
-//        JSONObject json;
-//        try {
-//            json = new JSONObject(result);
-//            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
-//                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
-//            } else {
-//                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void handleUpdataLoginStatus(String result) {
+        JSONObject json;
+        try {
+            json = new JSONObject(result);
+            if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
+                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+            } else {
+                BaseTools.showToastByLanguage(DeviceListActivity.this, json);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void handleUnlinkDevice(Message msg, String result) {
         JSONObject json;
@@ -279,7 +185,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void handleDeviceRspBySocket(String result) {
+    private void handleDeviceRsp(String result) {
         JSONObject json;
         try {
             json = new JSONObject(result);
@@ -333,82 +239,39 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 BaseTools.showToastByLanguage(DeviceListActivity.this, json);
             } else {
                 JSONArray wifilist = json.getJSONArray("wifis");
-                if (!isBlindService) {
-                    if (wifilist.length() > mListData.size()) {
-                        JSONObject ob = wifilist.getJSONObject(mListData.size());
-                        String address = ob.getString("imei");
-                        String name;
-                        int status = WifiDevice.INACTIVE_STATUS;
+                for (int i = 0; i < wifilist.length(); i++) {
+                    JSONObject ob = wifilist.getJSONObject(i);
+                    String address = ob.getString("imei");
+                    String name;
+                    int status = WifiDevice.INACTIVE_STATUS;
 
-                        if (ob.has("name")) {
-                            name = ob.getString("name");
-                        } else {
-                            name = "unkown";
-                        }
-
-                        if (ob.has("status")) {
-                            status = ob.getInt("status");
-                        }
-
-                        WifiDevice d = new WifiDevice(null, name, address);
-                        d.setStatus(status);
-                        mListData.add(d);
-                        mDeviceListAdapter.notifyDataSetChanged();
-                        isItemRefresh = true;
-                        //刷新最后一项的状态
-                        refreshSocketStatus(mListData.size() - 1);
+                    if (ob.has("name")) {
+                        name = ob.getString("name");
+                    } else {
+                        name = "unkown";
                     }
-                } else {
-                    for (int i = 0; i < wifilist.length(); i++) {
-                        JSONObject ob = wifilist.getJSONObject(i);
-                        String address = ob.getString("imei");
-                        String name;
-                        int status = WifiDevice.INACTIVE_STATUS;
 
-                        if (ob.has("name")) {
-                            name = ob.getString("name");
-                        } else {
-                            name = "unkown";
-                        }
-
-                        if (ob.has("status")) {
-                            status = ob.getInt("status");
-                        }
-
-                        WifiDevice d = new WifiDevice(null, name, address);
-                        d.setStatus(status);
-                        mListData.add(d);
+                    if (ob.has("status")) {
+                        status = ob.getInt("status");
                     }
-                    mDeviceListAdapter.notifyDataSetChanged();
+
+                    WifiDevice d = new WifiDevice(null, name, address);
+                    d.setStatus(status);
+                    mListData.add(d);
                 }
+
+                mDeviceListAdapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    void refreshSocketStatus(int listIndex) {
-        Lg.i(TAG, "refreshSocketStatus");
-        if (listIndex >= mListData.size()) {
-            return;
-        }
-
-        try {
-            MyApplication.getInstance().mService.getLightStatus(mListData.get(listIndex).getAddress());
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        isItemRefresh = false;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        timer = new Timer();
-        if (FirstActivity.context != null) {
-            FirstActivity.context.finish();
-        }
         registerNetChangeBroad();
         fillListData();
         showLoadingDialog(getResources().getString(R.string.waiting));
@@ -429,47 +292,8 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 });
             }
         });
+//        blindService();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                getUnreadMsg(MSG_PI);
-            }
-        }, 0, 10 * 1000);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (timer != null) {
-            timer.cancel();
-        }
-    }
-
-    public void getUnreadMsg(final int pageIndex) {
-        ThreadPoolManager.getInstance().addTask(new Runnable() {
-            @Override
-            public void run() {
-                String result = HttpUtil.post(HttpUtil.URL_GETUNREADMSG,
-                        new BasicNameValuePair("pi", Integer.toString(pageIndex)),
-                        new BasicNameValuePair("ps", Integer.toString(MSG_PS)));
-                Log.i(TAG, "get http message " + result);
-                Bundle b = new Bundle();
-                b.putInt("pi", pageIndex);
-                b.putString("result", result);
-                Message msg = new Message();
-                msg.obj = b;
-                msg.what = MSG_GETMANSWITCHRSP;
-                mHandler.sendMessage(msg);
-            }
-        });
-    }
-
 
     /**
      * 绑定服务
@@ -515,7 +339,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         add_menu.setOnClickListener(this);
         mDeviceDao = new WifiDeviceDao(this);
         mDeviceList = (ListView) findViewById(R.id.devicelist);
-        mDeviceList.setOnItemClickListener(this);
+//        mDeviceList.setOnItemClickListener(this);
         mDeviceList.setOnItemLongClickListener(this);
         new BaseTools().setEditUserInfoListener(this);
         updataUserInfo();
@@ -523,7 +347,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
 
     private void fillListData() {
-        mListData = new ArrayList<>();
+        mListData = new ArrayList<>(10);
         mDeviceListAdapter = new DeviceListAdapter(this, mListData, this);
         mDeviceList.setAdapter(mDeviceListAdapter);
     }
@@ -545,17 +369,12 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     }
 
 
-    /**
-     * 更新设备状态
-     *
-     * @param imei
-     */
     void updateWifiDeviceStatus(final String imei) {
         ThreadPoolManager.getInstance().addTask(new Runnable() {
             @Override
             public void run() {
                 String result = HttpUtil.post(HttpUtil.URL_GETWIFIDEVICE, new BasicNameValuePair("imei", imei));
-                Lg.i(TAG, "URL_GETWIFIDEVICE_result = " + result);
+                Lg.i(TAG, "result = " + result);
                 Message msg = new Message();
                 msg.obj = result;
                 msg.what = MSG_GETWIFIDEVICE;
@@ -571,7 +390,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 String result = HttpUtil.post(HttpUtil.URL_UPDATEWIFILOGINSTATUS,
                         new BasicNameValuePair("imei", imei),
                         new BasicNameValuePair("status", Integer.toString(status)));
-                Lg.i(TAG, "URL_UPDATEWIFILOGINSTATUS_result = " + result);
+                Lg.i(TAG, "result = " + result);
 
                 Message msg = new Message();
                 msg.obj = result;
@@ -583,7 +402,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        Intent intent = null;
         switch (v.getId()) {
             case R.id.left_menu:
                 if (menuDrawer.isMenuVisible()) {
@@ -610,7 +429,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-
     private ICallback.Stub mCallback = new ICallback.Stub() {
         @Override
         public void onConnect(String address) throws RemoteException {
@@ -619,7 +437,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    pingWifiDeviceBySocket();
+                    pingWifiDevice();
                     closeLoadingDialog();
                     closeComReminderDialog();
                     mDeviceListAdapter.notifyDataSetChanged();
@@ -673,44 +491,36 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onNotify(final String imei, int type) throws RemoteException {
             Lg.i(TAG, "onNotify-type-->>>>" + type);
+//            if (type == 100) {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     updateWifiDeviceStatus(imei);
                 }
             });
+//            } else if (type == 1) {
             for (int i = 0; i < mListData.size(); i++) {
                 if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
                     MyApplication.getInstance().mService.getLightStatus(mListData.get(i).getAddress());
                     break;
                 }
             }
+//            }
 
         }
 
         @Override
-        public void onSwitchRsp(final String imei, final boolean ret, final boolean status) throws RemoteException {
-            Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret + " status ->>>" + status);
+        public void onSwitchRsp(String imei, boolean ret) throws RemoteException {
+            Lg.i(TAG, "onSwitchRsp-ret-->>>>" + ret);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     closeLoadingDialog();
-                    WifiDevice d = null;
-
-                    for (int i = 0; i < mListData.size(); i++) {
-                        if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
-                            d = mListData.get(i);
-                            break;
-                        }
-                    }
-
-                    if (d != null && ret) {
-                        d.setSwitchStatus(status);
-                        d.setStatus(WifiDevice.LOGIN_STATUS);
-                        mDeviceListAdapter.notifyDataSetChanged();
-                    }
                 }
             });
+            if (!ret) {
+                MyApplication.getInstance().mService.getLightStatus(mListData.get(index).getAddress());
+            }
         }
 
         @Override
@@ -727,43 +537,29 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         break;
                     }
                 }
-
-                if ((!isItemRefresh) && mLastIndex < mListData.size()) {
-                    refreshSocketStatus(++mLastIndex);
-                }
             }
         }
 
         //待优化
         @Override
-        public void onCmdTimeout(final String cmd, final String imei) throws RemoteException {
+        public void onCmdTimeout(String cmd, final String imei) throws RemoteException {
             Lg.i(TAG, "onCmdTimeout");
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     closeLoadingDialog();
-                    if (cmd.equals(WifiConnectService.SWITCH_CMD)) {        // 提示用户超时
-                        showShortToast(getString(R.string.str_cmd_timeout));
-                    }
                 }
             });
-            if (cmd.equals(WifiConnectService.PING_CMD) ||
-                    cmd.equals(WifiConnectService.GET_STATUS_CMD) ||
-                    cmd.equals(WifiConnectService.SWITCH_CMD)) {
+            if (cmd.equals(WifiConnectService.PING_CMD)) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         Lg.i(TAG, "onCmdTimeout_LOGOUT_STATUS");
                         setDeviceStatus(imei, WifiDevice.LOGOUT_STATUS);
                         mDeviceListAdapter.notifyDataSetChanged();
+                        updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);
                     }
                 });
-            }
-
-            if (cmd.equals(WifiConnectService.GET_STATUS_CMD)) {
-                if ((!isItemRefresh) && mLastIndex < mListData.size()) {
-                    refreshSocketStatus(++mLastIndex);
-                }
             }
         }
 
@@ -810,7 +606,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             WifiDevice d = mListData.get(i);
             if (d.getAddress().equals(imei)) {
                 d.setStatus(status);
-                d.setSwitchStatus(false);
                 return;
             }
         }
@@ -841,24 +636,18 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         connectLongSocket();
                     }
                 });
-            } else {
-                mLastIndex = 0;
-                refreshSocketStatus(mLastIndex);
             }
         }
     };
 
-    /**
-     * 获取列表开关状态，socket service
-     */
-    public void pingWifiDeviceBySocket() {
+    public void pingWifiDevice() {
         for (int i = 0; i < mListData.size(); i++) {
             WifiDevice d = mListData.get(i);
             if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
                     MyApplication.getInstance().mService.ping(d.getAddress(), 1);
 
-                    //lzg edit  获取list开关状态
+                    //lzg edit
                     MyApplication.getInstance().mService.getLightStatus(d.getAddress());
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -867,22 +656,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-
-//    /**
-//     * 获取列表开关状态，http service
-//     */
-//    public void pingWifiDeviceByhttp() {
-//        for (int i = 0; i < mListData.size(); i++) {
-//            WifiDevice d = mListData.get(i);
-//            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
-//                try {
-//                    MyApplication.getInstance().mService.getLightStatus(d.getAddress());
-//                } catch (RemoteException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
 
     public void connectLongSocket() {
         try {
@@ -906,7 +679,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 int changed = b.getInt("ret", 0);
                 Lg.i(TAG, "changed = " + changed);
                 if (changed == 1) {
-//                    mListData.clear();
+                    mListData.clear();
                     isBlindService = false;
                     ThreadPoolManager.getInstance().addTask(new Runnable() {
                         @Override
@@ -973,11 +746,6 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Lg.i(TAG, "onItemClick");
-        isItemRefresh = true;
-        index = i;
-        refreshSocketStatus(index);
-
-        //跳到控制界面
 //        if (i < 0) {
 //            return;
 //        }
@@ -1049,10 +817,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     public void onImageViewClick(int postion) {
         index = postion;
         WifiDevice wifiDevice = mListData.get(postion);
-        if (wifiDevice == null) {
-            return;
-        }
-        if (BuildConfig.USE_LONG_CONNECTION.equals("1")) {
+        if (wifiDevice != null) {
             if (MyApplication.getInstance().longConnected) {
                 if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
                     try {
@@ -1074,30 +839,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             } else {
                 showShortToast(getString(R.string.service_long_socket_breaked));
             }
-        } else {
-            if (!NetStatuCheck.checkGPRSState(DeviceListActivity.this).equals("unavailable")) {
-//                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {          // 该状态不需要判断
-                showLoadingDialog(getResources().getString(R.string.cmd_sending));
-                try {
-                    if (wifiDevice.isSwitchStatus()) {
-                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
-                        // wifiDevice.setSwitchStatus(false);            // commented out by qinjiangwei 2016/8/12.
-                    } else {
-                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
-                        // wifiDevice.setSwitchStatus(true);
-                    }
-                    mDeviceListAdapter.notifyDataSetChanged();
-                } catch (RemoteException e) {
-                    Lg.i(TAG, e.toString());
-                }
-//                } else {
-//                    showShortToast(getString(R.string.wifi_device_offline));
-//                }
-            } else {
-                showComReminderDialog();
-            }
         }
+
     }
 }
-
-

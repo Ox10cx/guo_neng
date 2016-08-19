@@ -427,9 +427,9 @@ public class WifiHttpConnectService extends Service {
      * @param s
      */
     void parseResponse(String s) {
-        Lg.i(TAG,"parseResponse->>>"+s);
         Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
         Matcher m = p.matcher(s);
+        String[] cmdPack = null;
 
         while (m.find()) {
             String cmd = m.group(1);
@@ -487,21 +487,15 @@ public class WifiHttpConnectService extends Service {
                     try {
                         int i;
                         boolean ret;
-                        boolean status = false;
 
-                        // 第一个数字为命令执行结果，第二个数字为新的状态
-                        String cmd_ret = value.substring(0, 1);
-                        String new_status = value.substring(1);
-
-                        if ("1".equals(cmd_ret)) {
+                        if ("1".equals(value)) {
                             ret = true;
-                            status = "1".equals(new_status);
                         } else {
                             ret = false;
                         }
 
                         for (i = 0; i < n; i++) {
-                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, ret, status);
+                            mCallbacks.getBroadcastItem(i).onSwitchRsp(imei, ret);
                         }
                     } catch (RemoteException e) {
                         Log.e(TAG, "remote call exception", e);

@@ -217,7 +217,7 @@ public class GroupLightActivity extends BaseActivity implements View.OnClickList
         }
 
         @Override
-        public void onSwitchRsp(String imei, final boolean ret, final boolean status) throws RemoteException {
+        public void onSwitchRsp(String imei, final boolean ret) throws RemoteException {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
