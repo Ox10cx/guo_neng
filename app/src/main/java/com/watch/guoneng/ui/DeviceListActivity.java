@@ -559,19 +559,22 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 @Override
                 public void run() {
                     closeLoadingDialog();
+                    showShortToast(getString(R.string.control_timeout));
                 }
             });
-            if (cmd.equals(WifiConnectService.PING_CMD)||cmd.equals(WifiConnectService.SWITCH_CMD)) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Lg.i(TAG, "onCmdTimeout_LOGOUT_STATUS");
-                        setDeviceStatus(imei, WifiDevice.LOGOUT_STATUS);
-                        mDeviceListAdapter.notifyDataSetChanged();
-                        updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);
-                    }
-                });
-            }
+
+            //有用
+//            if (cmd.equals(WifiConnectService.PING_CMD)||cmd.equals(WifiConnectService.SWITCH_CMD)) {
+//                mHandler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Lg.i(TAG, "onCmdTimeout_LOGOUT_STATUS");
+//                        setDeviceStatus(imei, WifiDevice.LOGOUT_STATUS);
+//                        mDeviceListAdapter.notifyDataSetChanged();
+//                        updateWifiDeviceLoginStatus(imei, WifiDevice.LOGOUT_STATUS);
+//                    }
+//                });
+//            }
         }
 
         @Override
@@ -618,7 +621,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             WifiDevice d = mListData.get(i);
             if (d.getAddress().equals(imei)) {
                 d.setStatus(status);
-                if(status!=2){
+                if (status != 2) {
                     d.setSwitchStatus(false);
                 }
                 return;
@@ -829,23 +832,23 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         WifiDevice wifiDevice = mListData.get(postion);
         if (wifiDevice != null) {
             if (MyApplication.getInstance().longConnected) {
-                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
-                    try {
+//                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
+                try {
 //                        showLoadingDialog(getResources().getString(R.string.cmd_sending));
-                        if (wifiDevice.isSwitchStatus()) {
-                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
+                    if (wifiDevice.isSwitchStatus()) {
+                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), false);
 //                            wifiDevice.setSwitchStatus(false);
-                        } else {
-                            MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
+                    } else {
+                        MyApplication.getInstance().mService.enableLight(wifiDevice.getAddress(), true);
 //                            wifiDevice.setSwitchStatus(true);
-                        }
-//                        mDeviceListAdapter.notifyDataSetChanged();
-                    } catch (RemoteException e) {
-                        Lg.i(TAG, e.toString());
                     }
-                } else {
-                    showShortToast(getString(R.string.wifi_device_offline));
+//                        mDeviceListAdapter.notifyDataSetChanged();
+                } catch (RemoteException e) {
+                    Lg.i(TAG, e.toString());
                 }
+//                } else {
+//                    showShortToast(getString(R.string.wifi_device_offline));
+//                }
             } else {
                 showShortToast(getString(R.string.service_long_socket_breaked));
             }

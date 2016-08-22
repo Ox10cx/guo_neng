@@ -48,6 +48,7 @@
     <string name="mac_not_match">mac地址不匹配</string>
     <string name="scanner_mac">请您先扫描二维码获取mac地址</string>
     <string name="get_wifi_mac_error">获取wifi的mac地址错误</string>
+    <string name="control_timeout">控制超时,请您检查网络或者设备的连接状态</string>
 
     <!--添加设备-->
     <string name="str_input_id">请输入WIFI的密码</string>
