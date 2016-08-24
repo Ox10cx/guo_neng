@@ -532,8 +532,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                         if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
                             if (type == 0) {
                                 mListData.get(i).setSwitchStatus(false);
+                                mListData.get(i).setStatus(2);
                             } else if (type == 1) {
                                 mListData.get(i).setSwitchStatus(true);
+                                mListData.get(i).setStatus(2);
                             } else if (type == 2) {
                                 mListData.get(i).setStatus(2);
                             } else {
@@ -560,8 +562,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                             if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
                                 if ("01".equals(ret)) {
                                     mListData.get(i).setSwitchStatus(true);
+                                    mListData.get(i).setStatus(2);
                                 } else {
                                     mListData.get(i).setSwitchStatus(false);
+                                    mListData.get(i).setStatus(2);
                                 }
                             }
                         }

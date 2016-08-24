@@ -116,9 +116,22 @@ public class SmartLinkActivity extends BaseActivity {
         serv = null;
         sendUdpThread = null;
         tcpThread = null;
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        //test virtual mac
+
+//        ThreadPoolManager.getInstance().addTask(new Runnable() {
+//            @Override
+//            public void run() {
+//                String result = HttpUtil.post(HttpUtil.URL_LINKWIFIDEVICE,
+//                        new BasicNameValuePair(JsonUtil.IMEI, "0023456787a7000"));
+//                Lg.i(TAG, "HttpUtil.URL_LINKWIFIDEVICE->>>>>" + result);
+//                Message msg = new Message();
+//                msg.obj = result;
+//                msg.arg1 = LINKWIFI;
+//                handler.sendMessage(msg);
+//            }
+//        });
+
     }
 
     private void initView() {
@@ -560,7 +573,7 @@ public class SmartLinkActivity extends BaseActivity {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.iv_back:
-                if(isSendFinished){
+                if (isSendFinished) {
                     sendFinish();
                 }
                 finish();
