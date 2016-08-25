@@ -781,7 +781,7 @@ public class WifiConnectService extends Service {
         return doSend(pack);
     }
 
-    boolean sendCmd(String cmd, String imei, String value) {
+    void sendCmd(String cmd, String imei, String value) {
         String pack;
 
         mToken = MyApplication.getInstance().mToken;
@@ -803,14 +803,21 @@ public class WifiConnectService extends Service {
 
         synchronized (mLock) {
             mCmdList.add(sb.toString());
-            if (mCmdList.size() == 1) {
-                pack = mCmdList.get(0);
-            } else {
+            if (mCmdList.size() > 0) {
+                for (int i = 0; i < mCmdList.size(); i++) {
+                    pack = mCmdList.get(i);
+                    Lg.i(TAG, "pack:" + i + "   " + pack);
+                    if (!(i > 0 && pack.equals(mCmdList.get(i - 1)))) {
+                        Lg.i(TAG, "doSend");
+                        doSend(pack);
+                    } else {
+                        Lg.i(TAG, "cmd is same");
+                    }
+                }
+            }/* else {
                 Lg.i(TAG, "wait for cmd '" + mCmdList.get(0) + "' response");
-                return true;
-            }
+            }*/
         }
-        return doSend(pack);
     }
 
     @Override
