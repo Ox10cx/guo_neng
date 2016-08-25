@@ -10,6 +10,7 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.watch.guoneng.BuildConfig;
 import com.watch.guoneng.app.MyApplication;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.ui.ICallback;
@@ -31,11 +32,12 @@ import java.util.regex.Pattern;
  * Created by Administrator on 16-3-15.
  */
 public class WifiConnectService extends Service {
-    private static final String TAG = "hjq";
+    private static final String TAG = "WifiConnectService";
     private Handler myHandler;
     //private static final String HOST = "112.74.23.39";
     private static final String HOST = "120.25.100.110";
-    private static final int PORT = 9899;
+    //  debug  ip 120.25.100.110:7777
+    private static int PORT = 9899;
 
     private static final String CLIENT = "QC";
     private static final String SEP = "@";
@@ -215,7 +217,7 @@ public class WifiConnectService extends Service {
 
         int len = s.length();
         if (len % 2 != 0) {
-            Log.e("hjq", "the length is odd, something error + '" + len + "'");
+            Lg.i(TAG, "the length is odd, something error + '" + len + "'");
             len--;
         }
 
@@ -255,7 +257,7 @@ public class WifiConnectService extends Service {
 
         int len = s.length();
         if (len % 2 != 0) {
-            Log.e("hjq", "the length is odd, something error + '" + len + "'");
+            Lg.i(TAG, "the length is odd, something error + '" + len + "'");
             len--;
         }
 
@@ -346,7 +348,7 @@ public class WifiConnectService extends Service {
         s = s.toLowerCase();
         int len = s.length();
         if (len != 6) {
-            Log.e("hjq", "the length is odd, something error + '" + len + "'");
+            Lg.i(TAG, "the length is odd, something error + '" + len + "'");
             return null;
         }
         for (i = 0, j = 0; i < len; i += 2) {
@@ -366,7 +368,7 @@ public class WifiConnectService extends Service {
         s = s.toLowerCase();
         int len = s.length();
         if (len != length) {
-            Log.e("hjq", "the length is odd, something error + '" + len + "'");
+            Lg.i(TAG, "the length is odd, something error + '" + len + "'");
             return 255;
         }
         int ret = hex2bin(s.charAt(length - 2), s.charAt(length - 1)) & 0xff;
@@ -609,6 +611,13 @@ public class WifiConnectService extends Service {
 
         try {
             if (socket == null) {
+                if (BuildConfig.debug) {
+                    PORT = 7777;
+                    Lg.i(TAG, "BuildConfig.debug:" + BuildConfig.debug);
+
+                } else {
+                    Lg.i(TAG, "BuildConfig.debug:" + BuildConfig.debug);
+                }
                 socket = new Socket(HOST, PORT);
                 mSocketMap.put(IMEI, socket);
             }
@@ -627,7 +636,7 @@ public class WifiConnectService extends Service {
 
             while ((len = in.read(b)) != -1) {
                 String line = new String(b, 0, len);
-                Log.e("hjq", "line = " + line);
+                Lg.i(TAG, "line = " + line);
                 parseResponse(line);
             }
         } catch (Exception e) {
@@ -670,7 +679,7 @@ public class WifiConnectService extends Service {
         Iterator<String> iterator = mSocketMap.keySet().iterator();
         final String imei = iterator.next();
         if (imei == null) {
-            Log.e("hjq", "no valid imei");
+            Lg.i(TAG, "no valid imei");
             return;
         }
 
@@ -709,7 +718,7 @@ public class WifiConnectService extends Service {
                 sendNextPack();
             }
 
-            Log.e("hjq", "cmd '" + s + "' res timeout");
+            Lg.i(TAG, "cmd '" + s + "' res timeout");
             String[] cmds = getCommand(s);
             if (cmds != null) {
                 sendCmdTimeout(cmds);
@@ -720,11 +729,11 @@ public class WifiConnectService extends Service {
     protected boolean doSend(String pack) {
         Socket socket = mSocketMap.get(IMEI);
         if (socket == null) {
-            Log.e("hjq", "no socket for server");
+            Lg.i(TAG, "no socket for server");
             return false;
         }
 
-        Log.e("hjq", "cmd string = " + pack);
+        Lg.i(TAG, "cmd string = " + pack);
         OutputStream os = null;
         mHandler.postDelayed(mTimeoutProc, mInterval * 1000);
 
@@ -797,7 +806,7 @@ public class WifiConnectService extends Service {
             if (mCmdList.size() == 1) {
                 pack = mCmdList.get(0);
             } else {
-                Log.e("hjq", "wait for cmd '" + mCmdList.get(0) + "' response");
+                Lg.i(TAG, "wait for cmd '" + mCmdList.get(0) + "' response");
                 return true;
             }
         }
@@ -922,11 +931,11 @@ public class WifiConnectService extends Service {
         @Override
         public void setBrightChrome(final String address, int index, int bright, int chrome) throws RemoteException {
             if (index < 0 || index > 255) {
-                Log.e("hjq", "index parameter error " + index);
+                Lg.i(TAG, "index parameter error " + index);
                 return;
             }
             if (bright < 0 || bright > 255 || chrome < 0 || chrome > 255) {
-                Log.e("hjq", "bright or chrome parameter error " + bright + ":" + chrome);
+                Lg.i(TAG, "bright or chrome parameter error " + bright + ":" + chrome);
                 return;
             }
 
@@ -947,7 +956,7 @@ public class WifiConnectService extends Service {
         @Override
         public void getBrightChrome(final String address, int index) throws RemoteException {
             if (index < 0 || index > 255) {
-                Log.e("hjq", "index parameter error " + index);
+                Lg.i(TAG, "index parameter error " + index);
                 return;
             }
             StringBuffer sb = new StringBuffer();
@@ -965,7 +974,7 @@ public class WifiConnectService extends Service {
         @Override
         public void pairLight(final String address, int index) throws RemoteException {
             if (index < 0 || index > 255) {
-                Log.e("hjq", "index parameter error " + index);
+                Lg.i(TAG, "index parameter error " + index);
                 return;
             }
             StringBuffer sb = new StringBuffer();
