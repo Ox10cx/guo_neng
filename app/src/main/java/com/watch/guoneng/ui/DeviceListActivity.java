@@ -128,7 +128,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     WifiDevice wifiDevice = mListData.get(msg.arg1);
                     if (msg.arg2 == 1) {
                         wifiDevice.setSwitchStatus(true);
+                    } else if (msg.arg2 == 0) {
+                        wifiDevice.setSwitchStatus(false);
                     } else {
+                        wifiDevice.setStatus(1);
                         wifiDevice.setSwitchStatus(false);
                     }
                     mDeviceListAdapter.notifyDataSetChanged();
@@ -471,7 +474,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    pingWifiDevice();
+                    getWifiDeviceSwitchStatu();
                     closeLoadingDialog();
                     closeComReminderDialog();
                     mDeviceListAdapter.notifyDataSetChanged();
@@ -630,13 +633,13 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onPingRsp(final String imei, final int ret) throws RemoteException {
             Lg.i(TAG, "onPingRsp");
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    setDeviceStatus(imei, WifiDevice.LOGIN_STATUS);
-                    mDeviceListAdapter.notifyDataSetChanged();
-                }
-            });
+//            mHandler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    setDeviceStatus(imei, WifiDevice.LOGIN_STATUS);
+//                    mDeviceListAdapter.notifyDataSetChanged();
+//                }
+//            });
         }
 
         @Override
@@ -700,12 +703,13 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         }
     };
 
-    public void pingWifiDevice() {
+    public void getWifiDeviceSwitchStatu() {
         for (int i = 0; i < mListData.size(); i++) {
             WifiDevice d = mListData.get(i);
             if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
-                    MyApplication.getInstance().mService.ping(d.getAddress(), 1);
+//                    Lg.i(TAG, "pingWifiDevice_i:" + i);
+//                    MyApplication.getInstance().mService.ping(d.getAddress(), 1);
                     MyApplication.getInstance().mService.getLightStatus(d.getAddress());
                 } catch (RemoteException e) {
                     e.printStackTrace();

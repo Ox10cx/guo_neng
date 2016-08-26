@@ -4,7 +4,7 @@
     <!-- system -->
     <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
-    <string name="app_versionName" translatable="false">3.4.0</string>
+    <string name="app_versionName" translatable="false">3.4.2</string>
     <string name="user_has_expired">账户已过期，请您重新登录!</string>
     <string name="user_has_expired_en">account has expired, please relogin！</string>
     <string name="system_image_logo">Logo</string>

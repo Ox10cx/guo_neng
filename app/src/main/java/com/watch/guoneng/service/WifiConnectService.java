@@ -91,6 +91,7 @@ public class WifiConnectService extends Service {
 
     private RemoteCallbackList<ICallback> mCallbacks = new RemoteCallbackList<ICallback>();
     private HandlerThread mHandlerThread;
+    private static String temCmd = "";
 
     public class LocalBinder extends Binder {
         public WifiConnectService getService() {
@@ -782,8 +783,8 @@ public class WifiConnectService extends Service {
     }
 
     void sendCmd(String cmd, String imei, String value) {
-        String pack;
-
+//        String pack;
+        Lg.i(TAG, "sendCmd:" + cmd);
         mToken = MyApplication.getInstance().mToken;
 
         StringBuilder sb = new StringBuilder(CLIENT);
@@ -802,21 +803,24 @@ public class WifiConnectService extends Service {
         sb.append(END);
 
         synchronized (mLock) {
-            mCmdList.add(sb.toString());
+            String tem = sb.toString();
+            mCmdList.add(tem);
             if (mCmdList.size() > 0) {
-                for (int i = 0; i < mCmdList.size(); i++) {
-                    pack = mCmdList.get(i);
-                    Lg.i(TAG, "pack:" + i + "   " + pack);
-                    if (!(i > 0 && pack.equals(mCmdList.get(i - 1)))) {
-                        Lg.i(TAG, "doSend");
-                        doSend(pack);
-                    } else {
-                        Lg.i(TAG, "cmd is same");
-                    }
+                if (!temCmd.equals(tem)) {
+                    doSend(tem);
+                    temCmd = tem;
                 }
-            }/* else {
-                Lg.i(TAG, "wait for cmd '" + mCmdList.get(0) + "' response");
-            }*/
+//                for (int i = 0; i < mCmdList.size(); i++) {
+//                    pack = mCmdList.get(i);
+//                    Lg.i(TAG, "pack:" + i + "   " + pack);
+//                    if (!(i > 0 && pack.equals(mCmdList.get(i - 1)))) {
+//                        Lg.i(TAG, "doSend");
+//                        doSend(pack);
+//                    } else {
+//                        Lg.i(TAG, "cmd is same");
+//                    }
+//                }
+            }
         }
     }
 
