@@ -108,8 +108,8 @@ public class HttpUtil {
             } else if (status == HttpStatus.SC_UNAUTHORIZED) {
                 JSONObject json = new JSONObject();
                 json.put("status", "nok");
-                json.put("error", "password error");
-                json.put("msg", "密码错误");
+                json.put("error", "account has expired, please relogin！");
+                json.put("msg", "账户已过期，请您重新登录!");
                 msg = json.toString();
             } else {
                 Log.e("hjq", "网络请求失败");
