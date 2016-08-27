@@ -385,7 +385,7 @@ public class WifiConnectService extends Service {
             mHandler.removeCallbacks(mTimeoutProc);
             synchronized (mLock) {
                 mCmdList.remove(0);
-                sendNextPack();
+//                sendNextPack();
             }
         }
     }
@@ -700,6 +700,7 @@ public class WifiConnectService extends Service {
                     @Override
                     public void run() {
                         doSend(pack);
+                        Lg.i(TAG, "sendNextPack");
                     }
                 });
             }
@@ -716,7 +717,7 @@ public class WifiConnectService extends Service {
                 }
 
                 s = mCmdList.remove(0);
-                sendNextPack();
+//                sendNextPack();
             }
 
             Lg.i(TAG, "cmd '" + s + "' res timeout");
@@ -734,10 +735,9 @@ public class WifiConnectService extends Service {
             return false;
         }
 
-        Lg.i(TAG, "cmd string = " + pack);
+        Lg.i(TAG, "cmd string do send = " + pack);
         OutputStream os = null;
         mHandler.postDelayed(mTimeoutProc, mInterval * 1000);
-
         try {
             os = socket.getOutputStream();
             byte[] strbyte = pack.getBytes("UTF-8");
@@ -751,18 +751,14 @@ public class WifiConnectService extends Service {
                     e.printStackTrace();
                 }
             }
-
             return false;
         }
-
         return true;
     }
 
     boolean sendCmdDirect(String cmd, String imei, String value) {
         String pack;
-
         mToken = MyApplication.getInstance().mToken;
-
         StringBuilder sb = new StringBuilder(CLIENT);
         sb.append(SEP);
         sb.append(cmd);
@@ -778,15 +774,12 @@ public class WifiConnectService extends Service {
         }
         sb.append(END);
         pack = sb.toString();
-
+        Lg.i(TAG, "sendCmdDirect_dosend:" + pack);
         return doSend(pack);
     }
 
     void sendCmd(String cmd, String imei, String value) {
-//        String pack;
-        Lg.i(TAG, "sendCmd:" + cmd);
         mToken = MyApplication.getInstance().mToken;
-
         StringBuilder sb = new StringBuilder(CLIENT);
         sb.append(SEP);
         sb.append(cmd);
@@ -808,18 +801,9 @@ public class WifiConnectService extends Service {
             if (mCmdList.size() > 0) {
                 if (!temCmd.equals(tem)) {
                     doSend(tem);
+                    Lg.i(TAG, "sendCmd_dosend:" + tem);
                     temCmd = tem;
                 }
-//                for (int i = 0; i < mCmdList.size(); i++) {
-//                    pack = mCmdList.get(i);
-//                    Lg.i(TAG, "pack:" + i + "   " + pack);
-//                    if (!(i > 0 && pack.equals(mCmdList.get(i - 1)))) {
-//                        Lg.i(TAG, "doSend");
-//                        doSend(pack);
-//                    } else {
-//                        Lg.i(TAG, "cmd is same");
-//                    }
-//                }
             }
         }
     }
