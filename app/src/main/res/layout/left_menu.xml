@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:makeramen="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
         <com.watch.guoneng.xlistview.RoundedImageView
             android:id="@+id/iv_photo"
             android:layout_width="@dimen/layout_size_100"
             android:layout_height="@dimen/layout_size_100"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/photo"
             android:scaleType="centerCrop"
             makeramen:riv_border_width="0dip"
@@ -31,45 +30,45 @@
             android:text="@string/not_login"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size" />
-
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
+    <!-- <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="2"
+         android:visibility="gone">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_size_2"
-                android:background="@color/white"></View>
+             <View
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/layout_size_2"
+                 android:background="@color/white"></View>
 
-            <LinearLayout
-                android:id="@+id/set_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_size_50"
-                android:orientation="horizontal">
+             <LinearLayout
+                 android:id="@+id/set_layout"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/layout_size_50"
+                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/Left_Menu_ImageViewStyle"
-                    android:background="@drawable/left_menu_setting" />
+                 <ImageView
+                     style="@style/Left_Menu_ImageViewStyle"
+                     android:background="@drawable/left_menu_setting" />
 
-                <TextView
-                    style="@style/Left_Menu_TextViewStyle"
-                    android:text="@string/set" />
+                 <TextView
+                     style="@style/Left_Menu_TextViewStyle"
+                     android:text="@string/set" />
 
-            </LinearLayout>
+             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_size_2"
-                android:background="@color/white"></View>
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+             <View
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/layout_size_2"
+                 android:background="@color/white"></View>
+         </LinearLayout>
+     </ScrollView>-->
+</RelativeLayout>

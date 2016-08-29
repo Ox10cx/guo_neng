@@ -612,12 +612,12 @@ public class WifiConnectService extends Service {
 
         try {
             if (socket == null) {
-                if (BuildConfig.debug) {
+                if (BuildConfig.debug_port) {
                     PORT = 7777;
-                    Lg.i(TAG, "BuildConfig.debug:" + BuildConfig.debug);
+                    Lg.i(TAG, "BuildConfig.debug_port:" + BuildConfig.debug_port);
 
                 } else {
-                    Lg.i(TAG, "BuildConfig.debug:" + BuildConfig.debug);
+                    Lg.i(TAG, "BuildConfig.debug_port:" + BuildConfig.debug_port);
                 }
                 socket = new Socket(HOST, PORT);
                 mSocketMap.put(IMEI, socket);
