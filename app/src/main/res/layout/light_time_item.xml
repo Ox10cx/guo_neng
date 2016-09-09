@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/listview_item_bg">
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/light_timeoff"
+        android:id="@+id/image"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="测试"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="23dp"
+        android:id="@+id/tv_name"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_alignTop="@+id/image"
+        android:layout_toRightOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/remain_time"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="57dp"
+        android:textColor="#a0a0a0"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/tv_time"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="仅一次"
+        android:id="@+id/tv_repeat"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/image"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_alignStart="@+id/tv_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开启"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="19dp"
+        android:id="@+id/tv_action"
+        android:layout_alignBottom="@+id/tv_repeat"
+        android:layout_toRightOf="@+id/tv_repeat"
+        android:layout_toEndOf="@+id/tv_repeat" />
+
+</RelativeLayout>

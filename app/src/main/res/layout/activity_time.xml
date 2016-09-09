@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.watch.guoneng.ui.TimeActivity">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/text_white">
+
+
+        <TextView
+            android:id="@+id/device_text"
+            style="@style/TitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_name" />
+        <ImageView
+            android:id="@+id/add_menu"
+            android:layout_width="@dimen/layout_size_30"
+            android:layout_height="@dimen/layout_size_30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/layout_size_10"
+            android:background="@drawable/add_btn" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/btn_return"
+            android:layout_alignTop="@+id/device_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="doBack"
+            />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/fenggexian"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/header"></View>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/listview_divider_shape"
+        android:dividerHeight="1dp"
+        android:id="@+id/time_list"
+        android:layout_below="@+id/fenggexian"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"></ListView>
+</RelativeLayout>
