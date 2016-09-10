@@ -4,7 +4,7 @@
     <!-- system -->
     <string name="system_name">智园国能</string>
     <string name="system_image_back">返回</string>
-    <string name="app_versionName" translatable="false">3.5.0</string>
+    <string name="app_versionName" translatable="false">3.6.1</string>
     <string name="user_has_expired">账户已过期，请您重新登录!</string>
     <string name="user_has_expired_en">account has expired, please relogin！</string>
     <string name="system_image_logo">Logo</string>
@@ -357,6 +357,7 @@
     <string name="str_reenter_pass">重新输入密码</string>
     <string name="str_no_match">密码不匹配,重新输入</string>
 
+
     <string name="str_second">秒</string>
     <string name="str_stretch">张</string>
     <string name="str_camera_busy">相机忙碌</string>
@@ -401,4 +402,10 @@
     <string name="str_brightness">亮度</string>
     <string name="str_chrome">色度</string>
     <string name="str_cmd_timeout">设备响应命令超时</string>
+
+    <string name="time_name">定时功能</string>
+    <string name="time_on">开启</string>
+    <string name="time_off">关闭</string>
+    <string name="remain_time">剩余时间:%s</string>
+    <string name="unconnect_addtime_fail">设备离线，操作失败</string>
 </resources>

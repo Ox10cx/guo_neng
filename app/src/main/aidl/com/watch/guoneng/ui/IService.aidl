@@ -30,4 +30,8 @@ interface IService {
 
     //添加彩灯
     void pairLight(String address, int index);
+
+    //添加定时器
+    void creatrTimer(String address);
+
 }

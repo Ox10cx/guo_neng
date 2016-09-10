@@ -64,5 +64,8 @@
     <string name="edit_device_name_title">编辑插座名称</string>
     <string name="delete_device">删除设备</string>
 
+    <string name="time_device">定时功能</string>
+
+
 
 </resources>

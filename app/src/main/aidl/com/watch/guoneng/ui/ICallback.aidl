@@ -24,4 +24,8 @@ interface ICallback {
        void onGetBrightChromeRsp(String imei, int index, int bright, int chrome);
 
        void onPairLightRsp(String imei, int ret);
+
+       void onCreateTimerRsp(String imei, int ret);
+        //定时器到了通知
+       void onTimerNotify(String imei,int ret);
 }

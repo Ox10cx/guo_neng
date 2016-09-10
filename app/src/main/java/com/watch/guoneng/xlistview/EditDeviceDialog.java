@@ -12,6 +12,7 @@ public class EditDeviceDialog extends Dialog {
 
     public Button delete_light;
     public Button edit_light;
+    public Button time_light;
 
     public EditDeviceDialog(Context context) {
         this(context, R.style.CustomProgressDialog);
@@ -23,6 +24,7 @@ public class EditDeviceDialog extends Dialog {
         this.getWindow().getAttributes().gravity = Gravity.CENTER;
         delete_light = (Button) this.findViewById(R.id.delete_light);
         edit_light = (Button) this.findViewById(R.id.edit_light);
+        time_light= (Button) this.findViewById(R.id.time_light);
     }
 
     /**

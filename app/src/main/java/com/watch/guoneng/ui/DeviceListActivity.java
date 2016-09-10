@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -50,7 +51,7 @@ import java.util.ArrayList;
  */
 public class DeviceListActivity extends BaseActivity implements View.OnClickListener, DeviceListAdapter.OnItemImageViewClickCallback
         , BaseTools.OnEditUserInfoListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
-    private static final String TAG = "DeviceListActivity";
+    private static final String TAG = "testDeviceListActivity";
     private static final int MSG_GETLIST = 7;
     private static final int MSG_GETWIFIDEVICE = 2;
     private static final int MSG_UNLINKDEVICE = 3;
@@ -128,8 +129,10 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                     WifiDevice wifiDevice = mListData.get(msg.arg1);
                     if (msg.arg2 == 1) {
                         wifiDevice.setSwitchStatus(true);
+                        wifiDevice.setStatus(2);
                     } else if (msg.arg2 == 0) {
                         wifiDevice.setSwitchStatus(false);
+                        wifiDevice.setStatus(2);
                     } else {
                         wifiDevice.setStatus(1);
                         wifiDevice.setSwitchStatus(false);
@@ -603,6 +606,26 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         @Override
         public void onCmdTimeout(String cmd, final String imei) throws RemoteException {
             Lg.i(TAG, "onCmdTimeout");
+
+            //超时之后可以发送相同命令
+            WifiConnectService.temCmd = "";
+
+            if(cmd.equals(WifiConnectService.HEART_RSP_CMD)){
+                return;
+            }
+
+            //如果没有收到 GET_STATUS_RSP  则判定设备不在线
+            if (cmd.equals(WifiConnectService.GET_STATUS_CMD)) {
+                for (int i = 0; i < mListData.size(); i++) {
+                    if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                        mListData.get(i).setSwitchStatus(false);
+                        mListData.get(i).setStatus(1);
+                    }
+                }
+                return;
+            }
+
+
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -662,6 +685,35 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         public void onPairLightRsp(String imei, int ret) throws RemoteException {
 
         }
+
+        @Override
+        public void onCreateTimerRsp(String imei, int ret) throws RemoteException {
+
+        }
+
+        @Override
+        public void onTimerNotify(final String imei, final int ret) throws RemoteException {
+            Log.d(TAG, "onTimerNotify:" + imei + "  ret:" + ret);
+            //收到了长连接的定时器响应后  请求服务器 更新列表
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < mListData.size(); i++) {
+                        if (imei.equalsIgnoreCase(mListData.get(i).getAddress())) {
+                            if (ret == 0) {
+                                mListData.get(i).setSwitchStatus(false);
+                                mListData.get(i).setStatus(2);
+                            } else if (ret == 1) {
+                                mListData.get(i).setSwitchStatus(true);
+                                mListData.get(i).setStatus(2);
+                            }
+                        }
+                    }
+                    mDeviceListAdapter.notifyDataSetChanged();
+
+                }
+            });
+        }
     };
 
     void setDeviceStatus(String imei, int status) {
@@ -706,7 +758,15 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
     public void getWifiDeviceSwitchStatu() {
         for (int i = 0; i < mListData.size(); i++) {
             WifiDevice d = mListData.get(i);
-            if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
+            //获取设备状态
+            try {
+                //收到了rsp 则判定设备在线  没收到则判定离线
+                //GET_STATUS_CMD = "020";
+                MyApplication.getInstance().mService.getLightStatus(d.getAddress());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+       /*     if (d.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
 //                    Lg.i(TAG, "pingWifiDevice_i:" + i);
 //                    MyApplication.getInstance().mService.ping(d.getAddress(), 1);
@@ -714,7 +774,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         }
     }
 
@@ -871,6 +931,18 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
                 startActivityForResult(intent, 212);
             }
         });
+
+        dialog.time_light.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                Lg.i(TAG, "time device");
+                Intent intent = new Intent(DeviceListActivity.this, TimeActivity.class);
+                intent.putExtra("device", d);
+                startActivity(intent);
+            }
+        });
         return true;
     }
 
@@ -880,7 +952,7 @@ public class DeviceListActivity extends BaseActivity implements View.OnClickList
         WifiDevice wifiDevice = mListData.get(postion);
         if (wifiDevice != null) {
             if (MyApplication.getInstance().longConnected) {
-//                if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
+//              if (wifiDevice.getStatus() == WifiDevice.LOGIN_STATUS) {
                 try {
 //                        showLoadingDialog(getResources().getString(R.string.cmd_sending));
                     if (wifiDevice.isSwitchStatus()) {

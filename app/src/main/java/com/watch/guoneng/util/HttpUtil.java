@@ -50,7 +50,12 @@ public class HttpUtil {
     /**
      * http版长连接
      */
-    public static String IP = "112.74.23.39:4000";
+   // public static String IP = "112.74.23.39:4000";
+
+    /**
+     * 定时器ip
+     */
+    public static String IP = "120.25.100.110:4100";
 
     public static String SERVER = "http://" + IP + "/";
     public static String URL_LOGIN = "http://" + IP + "/server/User/login";
@@ -79,6 +84,14 @@ public class HttpUtil {
     public static String URL_SETREADFLAG = "http://" + IP + "/server/User/setReadFlag";
     public static String URL_EDITDEVICENAME = "http://" + IP + "/server/User/changeWifiName";
 
+
+    //定时器接口
+    public static String URL_CREATETIMER = "http://" + IP +"/server/User/createTimer";
+    public static String URL_UPDATETIMER = "http://" + IP +"/server/User/updateTimer";
+    public static String URL_DELETETIMER = "http://" + IP +"/server/User/deleteTimer";
+    public static String URL_GETTIMERLIST = "http://" + IP +"/server/User/getTimerList";
+
+
     /**
      * 用post方式来访问网络
      *
@@ -100,6 +113,7 @@ public class HttpUtil {
         try {
             post.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
             post.addHeader("Authorization", "Bearer " + token);
+            Log.e("hjq", "uri = " + post.getURI().toString());
             httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 20000);
             HttpResponse response = httpClient.execute(post);
             int status = response.getStatusLine().getStatusCode();

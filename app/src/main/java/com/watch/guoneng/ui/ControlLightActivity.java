@@ -288,6 +288,16 @@ public class ControlLightActivity extends BaseActivity implements View.OnClickLi
         public void onPairLightRsp(String imei, int ret) throws RemoteException {
 
         }
+
+        @Override
+        public void onCreateTimerRsp(String imei, int ret) throws RemoteException {
+
+        }
+
+        @Override
+        public void onTimerNotify(String imei, int ret) throws RemoteException {
+
+        }
     };
 
     private ServiceConnection mConnection = new ServiceConnection() {

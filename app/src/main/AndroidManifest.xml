@@ -4,7 +4,6 @@
     android:versionCode="1"
     android:versionName="@string/app_versionName">
 
-
     <!-- baidu_map base permission -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -42,7 +41,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -50,68 +48,63 @@
         android:label="@string/system_name"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.FirstActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.AuthLoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.AuthRegisterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.PersonInfoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.PersonUpdatePasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.StaticPageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SmartLinkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SettingActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.InfoActivity"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.ControlLightActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.AddLightActivity"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.DeviceListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainAppTheme"></activity>
-
-
+            android:theme="@style/MainAppTheme" />
         <activity
             android:name=".ui.LinkWifiDeviceActivity"
-            android:screenOrientation="portrait"></activity>
-
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.FindPasswordActivity"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".service.WifiConnectService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
+        <activity
+            android:name=".ui.TimeActivity" />
     </application>
+
 </manifest>

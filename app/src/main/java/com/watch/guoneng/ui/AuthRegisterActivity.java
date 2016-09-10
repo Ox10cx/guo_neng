@@ -227,6 +227,8 @@ public class AuthRegisterActivity extends BaseActivity {
 
             case R.id.register_getcode: {
                 phone = phoneedit.getText().toString().trim();
+                if (phone.length() >=14)
+                    phone = phone.substring(3,14);
                 if (!BaseTools.isPhoneNumber(phone)) {
                     showShortToast(getString(R.string.phone_format_not_match));
                     return;

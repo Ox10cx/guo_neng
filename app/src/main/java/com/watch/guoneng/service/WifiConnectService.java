@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.watch.guoneng.BuildConfig;
 import com.watch.guoneng.app.MyApplication;
+import com.watch.guoneng.model.ServerMsg;
 import com.watch.guoneng.tool.Lg;
 import com.watch.guoneng.ui.ICallback;
 import com.watch.guoneng.ui.IService;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -32,12 +34,13 @@ import java.util.regex.Pattern;
  * Created by Administrator on 16-3-15.
  */
 public class WifiConnectService extends Service {
-    private static final String TAG = "WifiConnectService";
+    private static final String TAG = "testWifiConnectService";
     private Handler myHandler;
     //private static final String HOST = "112.74.23.39";
     private static final String HOST = "120.25.100.110";
     //  debug  ip 120.25.100.110:7777
-    private static int PORT = 9899;
+    //private static int PORT = 9899;
+    private static int PORT = 7777;
 
     private static final String CLIENT = "QC";
     private static final String SEP = "@";
@@ -45,15 +48,15 @@ public class WifiConnectService extends Service {
     private static final String LOGIN_CMD = "010";
     private static final String LOGIN_RSP_CMD = "011";
     private static final String HEART_CMD = "014";
-    private static final String HEART_RSP_CMD = "015";
+    public static final String HEART_RSP_CMD = "015";
     private static final String NOTIFY_CMD = "016";
     private static final String NOTIFY_RSP = "017";
 
     public static final String SWITCH_CMD = "018";
     private static final String SWITCH_RSP = "019";
 
-    private static final String GET_STATUS_CMD = "020";
-    private static final String GET_STATUS_RSP = "021";
+    public static final String GET_STATUS_CMD = "020";
+    public static final String GET_STATUS_RSP = "021";
 
     public static final String PING_CMD = "022";
     public static final String PING_RSP = "023";
@@ -70,12 +73,18 @@ public class WifiConnectService extends Service {
     public static final String PAIR_LIGHT_CMD = "030";
     public static final String PAIR_LIGHT_RSP = "031";
 
+    public static final String GET_TIMER_TASK_CMD = "044";     //发送定时命令
+    public static final String GET_TIMER_TASK_RSP = "045";
+    public static final String NOTIFY_TIMER_CMD = "046";       //收到定时结束
+
     private static final String ON = "1";
     private static final String OFF = "0";
 
     private static final String IMEI_PATTERN = "([0-9a-fA-F]+)";
 
     final static String IMEI = "123456789012345";
+
+    private int createTimerCount = 0;
 
 
     private String mToken = null;
@@ -85,13 +94,14 @@ public class WifiConnectService extends Service {
     Handler mHandler = new Handler();
 
     // 命令发送队列
-    List<String> mCmdList = new LinkedList<String>();
+    List<ServerMsg> mCmdList = new ArrayList<>();
     final Object mLock = new Object();
-    final int mInterval = 20;       // 15s 内响应命令
+    final int mInterval = 15;       // 15s 内响应命令
+    public final static long MS_POLL_INTERVAL = 3000; // 3S
 
     private RemoteCallbackList<ICallback> mCallbacks = new RemoteCallbackList<ICallback>();
     private HandlerThread mHandlerThread;
-    private static String temCmd = "";
+    public static String temCmd = "";
 
     public class LocalBinder extends Binder {
         public WifiConnectService getService() {
@@ -110,7 +120,7 @@ public class WifiConnectService extends Service {
     }
 
     /* cmd, imei */
-    protected String[] getCommand(String s) {
+    public static String[] getCommand(String s) {
         Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
         Matcher m = p.matcher(s);
 
@@ -128,6 +138,7 @@ public class WifiConnectService extends Service {
 
         String cmd = cmds[0];
         String imei = cmds[1];
+
         Log.e(TAG, "cmd '" + cmd + "', imei = " + imei + " timeout");
         synchronized (mCallbacks) {
             int n = mCallbacks.beginBroadcast();
@@ -380,14 +391,19 @@ public class WifiConnectService extends Service {
     * cmdPack 指令队列中的指令和参数
     * cmd, imei 收到的返回指令和参数
      */
-    void doWithCmdList(String[] cmdPack, String cmd, String imei) {
-        if (cmdPack != null && cmdPack[0].equals(cmd) && cmdPack[1].equals(imei)) {
-            mHandler.removeCallbacks(mTimeoutProc);
-            synchronized (mLock) {
-                mCmdList.remove(0);
-//                sendNextPack();
+    void doWithCmdList(String cmd, String imei) {
+        Log.d(TAG,"doWithCmdList:"+mCmdList.size());
+        synchronized (mLock) {
+            for (int i = 0; i < mCmdList.size(); i++) {
+                ServerMsg msg = mCmdList.get(i);
+                if (msg.getCmd().equals(cmd) && msg.getImei().equals(imei)) {
+                    mCmdList.remove(i);
+                    i--;
+                }
             }
+            Log.d(TAG,"doWithCmdList:"+mCmdList.size());
         }
+
     }
 
     /**
@@ -398,14 +414,7 @@ public class WifiConnectService extends Service {
     void parseResponse(String s) {
         Pattern p = Pattern.compile(CLIENT + SEP + "(\\d+)" + SEP + "([A-Za-z0-9]+)" + SEP + IMEI_PATTERN + SEP + "([0-9A-Fa-f]+)\\$");
         Matcher m = p.matcher(s);
-        String[] cmdPack = null;
 
-        synchronized (mLock) {
-            if (mCmdList.size() > 0) {
-                String str = mCmdList.get(0);
-                cmdPack = getCommand(str);
-            }
-        }
 
         while (m.find()) {
             String cmd = m.group(1);
@@ -419,7 +428,7 @@ public class WifiConnectService extends Service {
 
             if (LOGIN_RSP_CMD.equals(cmd)) {
                 Lg.i("hjq", "get login rsp cmd");
-                doWithCmdList(cmdPack, LOGIN_CMD, imei);
+                doWithCmdList(LOGIN_CMD, imei);
 
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
@@ -457,8 +466,8 @@ public class WifiConnectService extends Service {
             }
 
             if (SWITCH_RSP.equals(cmd)) {
-                Lg.i("hjq", "Get switch rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, SWITCH_CMD, imei);
+                Lg.i("testhjq", "Get switch rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
+                doWithCmdList(SWITCH_CMD, imei);
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
                     try {
@@ -483,7 +492,7 @@ public class WifiConnectService extends Service {
 
             if (PING_RSP.equals(cmd)) {
                 Lg.i("hjq", "Get ping rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, PING_CMD, imei);
+                doWithCmdList(PING_CMD, imei);
 
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
@@ -503,7 +512,7 @@ public class WifiConnectService extends Service {
 
             if (GET_STATUS_RSP.equals(cmd)) {
                 Lg.i("hjq", "Get status rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, GET_STATUS_CMD, imei);
+                doWithCmdList(GET_STATUS_CMD, imei);
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
                     try {
@@ -522,7 +531,7 @@ public class WifiConnectService extends Service {
 
             if (GET_LIGHT_LIST_RSP.equals(cmd)) {
                 Lg.i("hjq", "Get light list rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, GET_LIGHT_LIST_CMD, imei);
+                doWithCmdList(GET_LIGHT_LIST_CMD, imei);
 //                int[] lightArray = getLightIntArray(value);
                 byte[] lightArray = getLightByteArrayPro(value);
                 synchronized (mCallbacks) {
@@ -543,7 +552,7 @@ public class WifiConnectService extends Service {
 
             if (GET_BRIGHT_CHROME_RSP.equals(cmd)) {
                 Lg.i("hjq", "Get bright and chrome rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, GET_BRIGHT_CHROME_CMD, imei);
+                doWithCmdList(GET_BRIGHT_CHROME_CMD, imei);
                 int[] retArray = getRetValue(value);
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
@@ -562,7 +571,7 @@ public class WifiConnectService extends Service {
 
             if (SET_BRIGHT_CHROME_RSP.equals(cmd)) {
                 Lg.i("hjq", "Set bright and chrome rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, SET_BRIGHT_CHROME_CMD, imei);
+                doWithCmdList(SET_BRIGHT_CHROME_CMD, imei);
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
                     Lg.i("hjq", "n->>>" + n);
@@ -581,7 +590,7 @@ public class WifiConnectService extends Service {
 
             if (PAIR_LIGHT_RSP.equals(cmd)) {
                 Lg.i("hjq", "pair light device rsp here: token =" + token + ", imei = " + imei + ", ret = " + value);
-                doWithCmdList(cmdPack, PAIR_LIGHT_CMD, imei);
+                doWithCmdList(PAIR_LIGHT_CMD, imei);
                 synchronized (mCallbacks) {
                     int n = mCallbacks.beginBroadcast();
                     try {
@@ -589,6 +598,40 @@ public class WifiConnectService extends Service {
 
                         for (i = 0; i < n; i++) {
                             mCallbacks.getBroadcastItem(i).onPairLightRsp(imei, getRetValueByLength(value, 2));
+                        }
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "remote call exception", e);
+                    }
+                    mCallbacks.finishBroadcast();
+                }
+            }
+
+            if (NOTIFY_TIMER_CMD.equals(cmd)) {
+                Lg.i("hjq", "notify timer cmd here: token =" + token + ", imei = " + imei + ", ret = " + value);
+                synchronized (mCallbacks) {
+                    int n = mCallbacks.beginBroadcast();
+                    try {
+                        int i;
+                        for (i = 0; i < n; i++) {
+                            mCallbacks.getBroadcastItem(i).onTimerNotify(imei, Integer.parseInt(value));
+                        }
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "remote call exception", e);
+                    }
+                    mCallbacks.finishBroadcast();
+                }
+            }
+
+            if (GET_TIMER_TASK_RSP.equals(cmd)) {
+                Lg.i("testhjq", "get timer task cmd here: token =" + token + ", imei = " + imei + ", ret = " + value);
+                doWithCmdList(GET_TIMER_TASK_CMD, imei);
+                synchronized (mCallbacks) {
+                    int n = mCallbacks.beginBroadcast();
+                    try {
+                        int i;
+
+                        for (i = 0; i < n; i++) {
+                            mCallbacks.getBroadcastItem(i).onCreateTimerRsp(imei, getRetValueByLength(value, 2));
                         }
                     } catch (RemoteException e) {
                         Log.e(TAG, "remote call exception", e);
@@ -637,7 +680,7 @@ public class WifiConnectService extends Service {
 
             while ((len = in.read(b)) != -1) {
                 String line = new String(b, 0, len);
-                Lg.i(TAG, "line = " + line);
+                Lg.e(TAG, "line = " + line);
                 parseResponse(line);
             }
         } catch (Exception e) {
@@ -692,41 +735,6 @@ public class WifiConnectService extends Service {
         });
     }
 
-    void sendNextPack() {
-        if (mCmdList.size() > 0) {
-            final String pack = mCmdList.get(0);
-            if (pack != null) {
-                myHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        doSend(pack);
-                        Lg.i(TAG, "sendNextPack");
-                    }
-                });
-            }
-        }
-    }
-
-    Runnable mTimeoutProc = new Runnable() {
-        @Override
-        public void run() {
-            String s;
-            synchronized (mLock) {
-                if (mCmdList.size() == 0) {
-                    return;
-                }
-
-                s = mCmdList.remove(0);
-//                sendNextPack();
-            }
-
-            Lg.i(TAG, "cmd '" + s + "' res timeout");
-            String[] cmds = getCommand(s);
-            if (cmds != null) {
-                sendCmdTimeout(cmds);
-            }
-        }
-    };
 
     protected boolean doSend(String pack) {
         Socket socket = mSocketMap.get(IMEI);
@@ -735,9 +743,13 @@ public class WifiConnectService extends Service {
             return false;
         }
 
-        Lg.i(TAG, "cmd string do send = " + pack);
+        Lg.e(TAG, "cmd string do send = " + pack);
         OutputStream os = null;
-        mHandler.postDelayed(mTimeoutProc, mInterval * 1000);
+
+        ServerMsg msg = new ServerMsg(pack);
+        mCmdList.add(msg);
+        startPollTimer();
+
         try {
             os = socket.getOutputStream();
             byte[] strbyte = pack.getBytes("UTF-8");
@@ -754,6 +766,53 @@ public class WifiConnectService extends Service {
             return false;
         }
         return true;
+    }
+
+    void startPollTimer() {
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                checkCmdTimeout(mCmdList);  //检查是否超时
+
+                if (!mCmdList.isEmpty()) {
+                    myHandler.postDelayed(this, MS_POLL_INTERVAL);
+                }
+            }
+        }, MS_POLL_INTERVAL);
+    }
+
+    void checkCmdTimeout(List<ServerMsg> list) {
+        ServerMsg msg;
+        boolean timeout = false;
+
+        synchronized (mLock) {
+            if (list.isEmpty()) {
+                return;
+            }
+            msg = list.get(0);
+            if (msg.isTimeout()) {
+                Log.e("testhjq", "msg: " + msg + "is timeout");
+                timeout = true;
+                list.remove(0);
+            }
+        }
+        if (!timeout) {
+            return;
+        }
+
+        String[] array = getCommand(msg.getPack());
+        synchronized (mCallbacks) {
+            int n = mCallbacks.beginBroadcast();
+            try {
+                int i;
+                for (i = 0; i < n; i++) {
+                    mCallbacks.getBroadcastItem(i).onCmdTimeout(array[0], array[1]);
+                }
+            } catch (RemoteException e) {
+                Log.e(TAG, "remote call exception", e);
+            }
+            mCallbacks.finishBroadcast();
+        }
     }
 
     boolean sendCmdDirect(String cmd, String imei, String value) {
@@ -797,13 +856,11 @@ public class WifiConnectService extends Service {
 
         synchronized (mLock) {
             String tem = sb.toString();
-            mCmdList.add(tem);
-            if (mCmdList.size() > 0) {
-                if (!temCmd.equals(tem)) {
-                    doSend(tem);
-                    Lg.i(TAG, "sendCmd_dosend:" + tem);
-                    temCmd = tem;
-                }
+            Lg.i(TAG, "sendCmd_dosend:" + tem);
+            if (!temCmd.equals(tem)) {
+                Lg.i(TAG, "mCmdList size:");
+                doSend(tem);
+                temCmd = tem;
             }
         }
     }
@@ -984,6 +1041,19 @@ public class WifiConnectService extends Service {
             });
         }
 
+        @Override
+        public void creatrTimer(final String address) throws RemoteException {
+            Log.d(TAG, "xxxcreatrTimer");
+            createTimerCount++;
+            //为了保证与上一次命令不相同  修改value值
+            myHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    sendCmd(GET_TIMER_TASK_CMD, address, createTimerCount + "");
+                }
+            });
+        }
+
 
         public void unregisterCallback(ICallback cb) {
             if (cb != null) {
@@ -997,5 +1067,6 @@ public class WifiConnectService extends Service {
             }
         }
     };
+
 
 }

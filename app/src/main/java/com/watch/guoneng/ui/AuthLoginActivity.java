@@ -50,7 +50,8 @@ public class AuthLoginActivity extends BaseActivity implements OnClickListener {
                     try {
                         JSONObject json = new JSONObject(result);
                         if (!"ok".equals(JsonUtil.getStr(json, JsonUtil.STATUS))) {
-                            BaseTools.showToastByLanguage(AuthLoginActivity.this, json);
+                            showLongToast("用户名或密码错误");
+                            //BaseTools.showToastByLanguage(AuthLoginActivity.this, json);
                         } else {
                             JSONObject msgobj = json.getJSONObject("msg");
                             String token = msgobj.getString("token");
